@@ -4,9 +4,9 @@ extends CharacterBody3D
 
 # Movement parameters
 @export var thrust_power: float = 500.0
-@export var rotation_speed: float = 3.0  # radians per second
+@export var rotation_speed: float = 1.5  # radians per second
 @export var max_speed: float = 800.0
-@export var drag: float = 0.95  # Velocity multiplier per frame (0.95 = slight drag)
+@export var drag: float = 0.995  # Velocity multiplier per frame (0.99 = very little drag, space-like)
 
 # Current rotation angle (in radians, 0 = pointing right)
 var rotation_angle: float = 0.0
@@ -37,9 +37,9 @@ func _ready():
 		# Convert all materials to unshaded
 		convert_to_unshaded(model)
 		
-		# Apply model-specific rotation corrections
+		# Apply standard rotation correction
 		print("Model initial rotation: ", model.rotation_degrees)
-		apply_model_rotation_fix(model, ship_name)
+		apply_standard_rotation_fix(model)
 	else:
 		print("ERROR: Model node not found!")
 
@@ -74,32 +74,24 @@ func convert_to_unshaded(node: Node):
 	for child in node.get_children():
 		convert_to_unshaded(child)
 
-func apply_model_rotation_fix(model: Node3D, model_name: String):
-	# Different GLB models have different orientations
-	# This function corrects them to face "forward" correctly
-	# Strategy: wrap the model in a container node and rotate the container
+func apply_standard_rotation_fix(model: Node3D):
+	## Apply the standard rotation fix that works for all ships
+	# Create a wrapper node
+	var wrapper = Node3D.new()
+	wrapper.name = "ModelWrapper"
 	
-	match model_name:
-		"Dart Scout":
-			# Create a wrapper node
-			var wrapper = Node3D.new()
-			wrapper.name = "ModelWrapper"
-			
-			# Remove model from its current parent
-			var parent = model.get_parent()
-			parent.remove_child(model)
-			
-			# Add wrapper to parent, then model to wrapper
-			parent.add_child(wrapper)
-			wrapper.add_child(model)
-			
-			# Now rotate the wrapper instead of the model
-			# Key 9 rotation (90, 90, 0) gives correct thrust direction
-			wrapper.rotation_degrees = Vector3(90, 90, 0)
-			print("Applied Dart Scout rotation fix using wrapper node")
-		_:
-			# Default: assume the current transform from the scene file
-			pass
+	# Remove model from its current parent
+	var parent = model.get_parent()
+	parent.remove_child(model)
+	
+	# Add wrapper to parent, then model to wrapper
+	parent.add_child(wrapper)
+	wrapper.add_child(model)
+	
+	# Apply the standard rotation that makes ships face correctly
+	# This rotation (90, 90, 0) aligns the ship's nose with its movement direction
+	wrapper.rotation_degrees = Vector3(90, 90, 0)
+	print("Applied standard rotation fix using wrapper node")
 
 # Debug function to test different rotations
 func test_rotation(x_deg: float, y_deg: float, z_deg: float):
@@ -142,7 +134,7 @@ func handle_thrust(delta):
 	
 	# K or Down Arrow = reverse thrust (braking)
 	if Input.is_key_pressed(KEY_K) or Input.is_key_pressed(KEY_DOWN):
-		velocity -= direction * thrust_power * 0.5 * delta  # Reverse is weaker
+		velocity -= direction * thrust_power * 0.33 * delta  # Reverse is weaker
 
 func apply_drag():
 	# Slight drag to prevent infinite acceleration
@@ -157,41 +149,3 @@ func _input(event):
 	# Quick stop with Space (optional convenience)
 	if event.is_action_pressed("ui_select"):  # Space bar
 		velocity *= 0.5
-	
-	# Rotation testing with number keys (1-9) - tests wrapper rotation
-	if event is InputEventKey and event.pressed and not event.echo:
-		var wrapper = get_node_or_null("ModelWrapper")
-		if wrapper:
-			match event.keycode:
-				KEY_1:
-					wrapper.rotation_degrees = Vector3(0, 0, 0)
-					print("=== Wrapper rotation: (0, 0, 0) ===")
-				KEY_2:
-					wrapper.rotation_degrees = Vector3(-90, 0, 0)
-					print("=== Wrapper rotation: (-90, 0, 0) ===")
-				KEY_3:
-					wrapper.rotation_degrees = Vector3(90, 0, 0)
-					print("=== Wrapper rotation: (90, 0, 0) ===")
-				KEY_4:
-					wrapper.rotation_degrees = Vector3(0, 90, 0)
-					print("=== Wrapper rotation: (0, 90, 0) ===")
-				KEY_5:
-					wrapper.rotation_degrees = Vector3(0, -90, 0)
-					print("=== Wrapper rotation: (0, -90, 0) ===")
-				KEY_6:
-					wrapper.rotation_degrees = Vector3(0, 180, 0)
-					print("=== Wrapper rotation: (0, 180, 0) ===")
-				KEY_7:
-					wrapper.rotation_degrees = Vector3(-90, 90, 0)
-					print("=== Wrapper rotation: (-90, 90, 0) ===")
-				KEY_8:
-					wrapper.rotation_degrees = Vector3(-90, -90, 0)
-					print("=== Wrapper rotation: (-90, -90, 0) ===")
-				KEY_9:
-					wrapper.rotation_degrees = Vector3(90, 90, 0)
-					print("=== Wrapper rotation: (90, 90, 0) ===")
-				KEY_0:
-					wrapper.rotation_degrees = Vector3(90, -90, 0)
-					print("=== Wrapper rotation: (90, -90, 0) ===")
-
-
