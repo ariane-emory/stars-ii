@@ -120,24 +120,9 @@ func apply_standard_rotation_fix(model: Node3D):
 	parent.add_child(wrapper)
 	wrapper.add_child(model)
 	
-	# Determine rotation based on ship name
-	var ship_rotation = get_ship_rotation(self.ship_name)
+	# Get rotation from centralized ship data
+	var ship_rotation = ShipData.get_ship_rotation(self.ship_name)
 	wrapper.rotation_degrees = ship_rotation
-
-func get_ship_rotation(ship_identifier: String) -> Vector3:
-	## Get the appropriate rotation for a specific ship
-	# Default rotation for most ships
-	var default_rotation = Vector3(90, 90, 0)
-	
-	# Ship-specific rotation overrides
-	# Some ship models have different default orientations in their GLB files
-	match ship_identifier:
-		"Pickax Mining Ship", "Luna Shuttle", "Cyclops Missile Boat", "Blood Eagle Fighter", "Vulture Gunship":
-			# These ships have a different default orientation in their GLB models
-			# They require this custom rotation to align nose forward and thrust correctly
-			return Vector3(0, 90, 0)
-		_:
-			return default_rotation
 
 func create_name_label():
 	## Create a 2D HUD-style text label that follows the ship

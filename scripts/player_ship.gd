@@ -74,7 +74,7 @@ func convert_to_unshaded(node: Node):
 		convert_to_unshaded(child)
 
 func apply_standard_rotation_fix(model: Node3D):
-	## Apply the standard rotation fix that works for all ships
+	## Apply rotation fix using centralized ship data
 	# Create a wrapper node
 	var wrapper = Node3D.new()
 	wrapper.name = "ModelWrapper"
@@ -87,10 +87,10 @@ func apply_standard_rotation_fix(model: Node3D):
 	parent.add_child(wrapper)
 	wrapper.add_child(model)
 	
-	# Apply the standard rotation that makes ships face correctly
-	# This rotation (90, 90, 0) aligns the ship's nose with its movement direction
-	wrapper.rotation_degrees = Vector3(90, 90, 0)
-	print("Applied standard rotation fix using wrapper node")
+	# Get rotation from centralized ship data
+	var ship_rotation = ShipData.get_ship_rotation(ship_name)
+	wrapper.rotation_degrees = ship_rotation
+	print("Applied rotation fix using wrapper node: ", ship_rotation)
 
 # Debug function to test different rotations
 func test_rotation(x_deg: float, y_deg: float, z_deg: float):
