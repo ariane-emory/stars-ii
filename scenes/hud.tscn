@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cy8ym4xp7kfw"]
+[gd_scene load_steps=3 format=3 uid="uid://cy8ym4xp7kfw"]
 
 [ext_resource type="Script" path="res://scripts/debug_hud.gd" id="1_hud"]
+[ext_resource type="Script" path="res://scripts/radar_display.gd" id="2_radar"]
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -13,3 +14,15 @@ theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_font_sizes/font_size = 32
 text = "Debug Info"
 script = ExtResource("1_hud")
+
+[node name="RadarDisplay" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -350.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 350.0
+grow_horizontal = 0
+script = ExtResource("2_radar")

@@ -13,6 +13,9 @@ var ship_name: String = ""
 var ship_name_label: Label = null
 
 func _ready():
+	# Add to npc_ships group for radar detection
+	add_to_group("npc_ships")
+	
 	# Random starting rotation
 	rotation_angle = randf_range(0, TAU)
 	target_rotation_angle = rotation_angle

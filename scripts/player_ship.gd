@@ -47,7 +47,6 @@ func convert_to_unshaded(node: Node):
 	## Recursively convert all materials in this node and its children to unshaded
 	if node is MeshInstance3D:
 		var mesh_instance = node as MeshInstance3D
-		var surface_count = mesh_instance.get_surface_override_material_count()
 		
 		# Process each surface
 		for i in range(mesh_instance.mesh.get_surface_count()):
