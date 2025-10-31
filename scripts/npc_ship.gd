@@ -9,6 +9,7 @@ var rotation_angle: float = 0.0
 var target_rotation_angle: float = 0.0
 var wander_time: float = 0.0
 var wander_duration: float = 5.0
+var ship_name: String = ""
 
 func _ready():
 	# Random starting rotation
@@ -31,6 +32,10 @@ func _ready():
 		
 		# Apply standard rotation fix for all ships
 		apply_standard_rotation_fix(model)
+	
+	# Create a 3D label to display the ship name
+	if ship_name != "":
+		create_name_label()
 
 func _physics_process(delta):
 	wander_time += delta
@@ -106,3 +111,15 @@ func apply_standard_rotation_fix(model: Node3D):
 	
 	# Apply the standard rotation that makes ships face correctly
 	wrapper.rotation_degrees = Vector3(90, 90, 0)
+
+func create_name_label():
+	## Create a 3D label that displays the ship name above the ship
+	var label = Label3D.new()
+	label.text = ship_name
+	label.modulate = Color(0, 1, 0)  # Green color
+	label.outline_modulate = Color(0, 0, 0)  # Black outline
+	label.outline_size = 8
+	label.font_size = 32
+	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+	label.position = Vector3(0, 30, 0)  # Position above the ship
+	add_child(label)

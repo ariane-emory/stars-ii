@@ -91,6 +91,10 @@ func spawn_npcs():
         var random_model_path = ship_models[randi() % ship_models.size()]
         var model_scene = load(random_model_path)
         
+        # Extract ship name from path (e.g., "res://glb/Falcon Scout.glb" -> "Falcon Scout")
+        var ship_name = random_model_path.get_file().get_basename()
+        npc.ship_name = ship_name
+        
         # Remove the default Model node if it exists
         var old_model = npc.get_node_or_null("Model")
         if old_model:
@@ -104,4 +108,4 @@ func spawn_npcs():
         # Add NPC to scene (this will trigger _ready() which expects Model to exist)
         add_child(npc)
         
-        print("Spawned NPC #", i, " with model: ", random_model_path)
+        print("Spawned NPC #", i, " with model: ", ship_name)
