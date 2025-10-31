@@ -94,7 +94,8 @@ func apply_model_rotation_fix(model: Node3D, model_name: String):
 			wrapper.add_child(model)
 			
 			# Now rotate the wrapper instead of the model
-			wrapper.rotation_degrees = Vector3(0, 90, 0)
+			# Key 9 rotation (90, 90, 0) gives correct thrust direction
+			wrapper.rotation_degrees = Vector3(90, 90, 0)
 			print("Applied Dart Scout rotation fix using wrapper node")
 		_:
 			# Default: assume the current transform from the scene file
@@ -122,11 +123,11 @@ func _physics_process(delta):
 func handle_rotation(delta):
 	# J or Left Arrow = rotate left (counter-clockwise)
 	if Input.is_key_pressed(KEY_J) or Input.is_key_pressed(KEY_LEFT):
-		rotation_angle += rotation_speed * delta
+		rotation_angle -= rotation_speed * delta
 	
 	# L or Right Arrow = rotate right (clockwise)
 	if Input.is_key_pressed(KEY_L) or Input.is_key_pressed(KEY_RIGHT):
-		rotation_angle -= rotation_speed * delta
+		rotation_angle += rotation_speed * delta
 	
 	# Keep angle in 0-2π range
 	rotation_angle = wrapf(rotation_angle, 0, TAU)
