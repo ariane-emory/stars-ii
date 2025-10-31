@@ -108,4 +108,4 @@ func spawn_npcs():
         # Add NPC to scene (this will trigger _ready() which expects Model to exist)
         add_child(npc)
         
-        print("Spawned NPC #", i, " with model: ", ship_name)
+        

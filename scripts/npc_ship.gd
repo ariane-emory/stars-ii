@@ -10,6 +10,7 @@ var target_rotation_angle: float = 0.0
 var wander_time: float = 0.0
 var wander_duration: float = 5.0
 var ship_name: String = ""
+var ship_name_label: Label = null
 
 func _ready():
 	# Random starting rotation
@@ -36,6 +37,8 @@ func _ready():
 	# Create a 3D label to display the ship name
 	if ship_name != "":
 		create_name_label()
+	
+
 
 func _physics_process(delta):
 	wander_time += delta
@@ -65,6 +68,10 @@ func _physics_process(delta):
 	
 	# Update visual rotation
 	rotation.y = -rotation_angle
+	
+	# Update name label position if it exists
+	if ship_name_label:
+		update_name_label_position()
 
 func convert_to_unshaded(node: Node):
 	## Recursively convert all materials in this node and its children to unshaded
@@ -97,6 +104,7 @@ func convert_to_unshaded(node: Node):
 
 func apply_standard_rotation_fix(model: Node3D):
 	## Apply the standard rotation fix that works for all ships
+	
 	# Create a wrapper node
 	var wrapper = Node3D.new()
 	wrapper.name = "ModelWrapper"
@@ -113,13 +121,52 @@ func apply_standard_rotation_fix(model: Node3D):
 	wrapper.rotation_degrees = Vector3(90, 90, 0)
 
 func create_name_label():
-	## Create a 3D label that displays the ship name above the ship
-	var label = Label3D.new()
-	label.text = ship_name
-	label.modulate = Color(0, 1, 0)  # Green color
-	label.outline_modulate = Color(0, 0, 0)  # Black outline
-	label.outline_size = 8
-	label.font_size = 32
-	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
-	label.position = Vector3(0, 30, 0)  # Position above the ship
-	add_child(label)
+	## Create a 2D HUD-style text label that follows the ship
+	
+	# Find the HUD CanvasLayer in the main scene
+	var hud = get_node("/root/Main/HUD")
+	if not hud:
+		return
+	
+	# Create the actual text label as a child of HUD
+	var text_label = Label.new()
+	text_label.text = ship_name
+	text_label.name = "ShipLabel_" + ship_name  # Unique name
+	text_label.add_theme_color_override("font_color", Color.GREEN)
+	text_label.add_theme_font_size_override("font_size", 24)
+	text_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	text_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	text_label.modulate = Color.GREEN
+	
+	# Add to HUD
+	hud.add_child(text_label)
+	
+	# Store reference for position updates
+	ship_name_label = text_label
+
+func update_name_label_position():
+	## Update the 2D label position to follow the ship in screen space
+	
+	if not ship_name_label:
+		return
+	
+	# Get the camera from the main scene
+	var camera = get_node("/root/Main/Camera3D")
+	if not camera:
+		return
+	
+	# Convert world position to screen coordinates
+	var screen_pos = camera.unproject_position(global_position)
+	
+	# Set label position (centered on the ship)
+	var label_size = ship_name_label.get_size()
+	ship_name_label.position = Vector2(
+		screen_pos.x - label_size.x / 2,
+		screen_pos.y - label_size.y / 2 - 30  # Offset above ship
+	)
+
+func _exit_tree():
+	## Clean up the label when ship is removed from scene
+	if ship_name_label and is_instance_valid(ship_name_label):
+		ship_name_label.queue_free()
+		ship_name_label = null

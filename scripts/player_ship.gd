@@ -25,12 +25,12 @@ func _ready():
 		print("Model found: ", model)
 		print("Model has ", model.get_child_count(), " children")
 		
-		# Get ship name from the model's scene file path
+		# Get ship name from model's scene file path
 		if model.scene_file_path:
 			ship_name = model.scene_file_path.get_file().get_basename()
 			print("Ship name: ", ship_name)
 		
-		# Scale up the model MUCH larger
+		# Scale up model MUCH larger
 		model.scale = Vector3(100, 100, 100)
 		print("Model scaled to: ", model.scale)
 		
@@ -144,6 +144,8 @@ func limit_speed():
 	# Cap maximum speed
 	if velocity.length() > max_speed:
 		velocity = velocity.normalized() * max_speed
+
+
 
 func _input(event):
 	# Quick stop with Space (optional convenience)

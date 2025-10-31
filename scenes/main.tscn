@@ -19,7 +19,7 @@ environment = SubResource("Environment_1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 300, 300)
-projection = 1
+projection = 0
 size = 800.0
 far = 2000.0
 script = ExtResource("5_camera")
