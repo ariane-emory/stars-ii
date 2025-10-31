@@ -3,10 +3,10 @@ extends CharacterBody3D
 ## Player-controlled spaceship with rotation-based movement (like Escape Velocity)
 
 # Movement parameters
-@export var thrust_power: float = 300.0
-@export var rotation_speed: float = 2.0  # radians per second
-@export var max_speed: float = 500.0
-@export var drag: float = 0.98  # Velocity multiplier per frame (0.98 = slight drag)
+@export var thrust_power: float = 500.0
+@export var rotation_speed: float = 3.0  # radians per second
+@export var max_speed: float = 800.0
+@export var drag: float = 0.95  # Velocity multiplier per frame (0.95 = slight drag)
 
 # Current rotation angle (in radians, 0 = pointing right)
 var rotation_angle: float = 0.0
@@ -21,8 +21,8 @@ func _ready():
 	if model:
 		print("Model found: ", model)
 		print("Model has ", model.get_child_count(), " children")
-		# Scale up the model significantly
-		model.scale = Vector3(5, 5, 5)
+		# Scale up the model MUCH larger
+		model.scale = Vector3(50, 50, 50)
 		print("Model scaled to: ", model.scale)
 	else:
 		print("ERROR: Model node not found!")
@@ -40,13 +40,20 @@ func _physics_process(delta):
 	rotation.y = -rotation_angle
 
 func handle_rotation(delta):
+	var turning = false
+	
 	# J = rotate left (counter-clockwise)
 	if Input.is_key_pressed(KEY_J):
 		rotation_angle += rotation_speed * delta
+		turning = true
 	
 	# L = rotate right (clockwise)
 	if Input.is_key_pressed(KEY_L):
 		rotation_angle -= rotation_speed * delta
+		turning = true
+	
+	if turning:
+		print("Turning! Angle: %.2f" % rotation_angle)
 	
 	# Keep angle in 0-2π range
 	rotation_angle = wrapf(rotation_angle, 0, TAU)

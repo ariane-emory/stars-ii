@@ -17,9 +17,12 @@ func _process(_delta):
 		var velocity = player_ship.velocity
 		var speed = velocity.length()
 		var pos = player_ship.position
+		var rotation_angle = player_ship.rotation_angle
 		
 		text = "Speed: %.0f units/s\n" % speed
 		text += "Position: (%.0f, %.0f)\n" % [pos.x, pos.z]
-		text += "FPS: %d" % Engine.get_frames_per_second()
+		text += "Rotation: %.2f rad (%.0f°)\n" % [rotation_angle, rad_to_deg(rotation_angle)]
+		text += "FPS: %d\n" % Engine.get_frames_per_second()
+		text += "\nControls: I/K thrust, J/L rotate, Space stop"
 	else:
 		text = "Player ship not found"

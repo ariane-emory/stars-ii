@@ -17,10 +17,10 @@ func _ready():
 	# Random wander duration
 	wander_duration = randf_range(3.0, 8.0)
 	
-	# Scale up the model
+	# Scale up the model MUCH larger
 	var model = get_node_or_null("Model")
 	if model:
-		model.scale = Vector3(5, 5, 5)
+		model.scale = Vector3(50, 50, 50)
 
 func _physics_process(delta):
 	wander_time += delta
