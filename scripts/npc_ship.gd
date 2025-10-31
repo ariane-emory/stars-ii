@@ -138,6 +138,14 @@ func create_name_label():
 	text_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	text_label.modulate = Color.GREEN
 	
+	# Set proper monospaced font using SystemFont
+	var mono_font = SystemFont.new()
+	mono_font.font_names = ["Consolas", "Monaco", "Courier New", "DejaVu Sans Mono", "monospace"]
+	mono_font.allow_system_fallback = true
+	
+	# Apply the monospace font with fallback
+	text_label.add_theme_font_override("font", mono_font)
+	
 	# Add to HUD
 	hud.add_child(text_label)
 	
@@ -162,7 +170,7 @@ func update_name_label_position():
 	var label_size = ship_name_label.get_size()
 	ship_name_label.position = Vector2(
 		screen_pos.x - label_size.x / 2,
-		screen_pos.y - label_size.y / 2 - 30  # Offset above ship
+		screen_pos.y - label_size.y / 2 - 100  # Offset above ship
 	)
 
 func _exit_tree():
