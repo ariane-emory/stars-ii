@@ -131,7 +131,7 @@ func create_name_label():
 	if not hud:
 		return
 	
-	# Create the actual text label as a child of HUD
+# Create the actual text label as a child of HUD
 	var text_label = Label.new()
 	text_label.text = ship_name
 	text_label.name = "ShipLabel_" + ship_name  # Unique name

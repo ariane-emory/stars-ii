@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://bq8yg3xm5kfqw"]
 
-[ext_resource type="Script" path="res://scripts/starfield.gd" id="1_starfield"]
+[ext_resource type="Script" uid="uid://b2x3hx2xb24eh" path="res://scripts/starfield.gd" id="1_starfield"]
 [ext_resource type="PackedScene" uid="uid://c4j8ym3xp5kfw" path="res://scenes/player_ship.tscn" id="2_player"]
-[ext_resource type="Script" path="res://scripts/npc_spawner.gd" id="3_spawner"]
+[ext_resource type="Script" uid="uid://j6b3lyqox2qw" path="res://scripts/npc_spawner.gd" id="3_spawner"]
 [ext_resource type="PackedScene" uid="uid://cy8ym4xp7kfw" path="res://scenes/hud.tscn" id="4_hud"]
-[ext_resource type="Script" path="res://scripts/camera_controller.gd" id="5_camera"]
+[ext_resource type="Script" uid="uid://c1omst61wrjp1" path="res://scripts/camera_controller.gd" id="5_camera"]
 
 [sub_resource type="Environment" id="Environment_1"]
 background_mode = 1
@@ -19,7 +19,6 @@ environment = SubResource("Environment_1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 300, 300)
-projection = 0
 size = 800.0
 far = 2000.0
 script = ExtResource("5_camera")
@@ -33,7 +32,6 @@ shadow_enabled = true
 script = ExtResource("1_starfield")
 
 [node name="PlayerShip" parent="." instance=ExtResource("2_player")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="NPCShips" type="Node3D" parent="."]
 script = ExtResource("3_spawner")
