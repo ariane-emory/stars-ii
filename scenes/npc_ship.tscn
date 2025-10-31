@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bx7ynaxp2kfw"]
+
+[ext_resource type="Script" path="res://scripts/npc_ship.gd" id="1_npc"]
+[ext_resource type="PackedScene" uid="uid://bkdynj8l71rjy" path="res://glb/Falcon Scout.glb" id="2_model"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
+radius = 8.0
+height = 20.0
+
+[node name="NPCShip" type="CharacterBody3D"]
+script = ExtResource("1_npc")
+
+[node name="Model" parent="." instance=ExtResource("2_model")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_1")
