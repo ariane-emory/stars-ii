@@ -133,7 +133,7 @@ func create_name_label():
 	text_label.text = ship_name
 	text_label.name = "ShipLabel_" + ship_name  # Unique name
 	text_label.add_theme_color_override("font_color", Color.GREEN)
-	text_label.add_theme_font_size_override("font_size", 24)
+	text_label.add_theme_font_size_override("font_size", 28)
 	text_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	text_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	text_label.modulate = Color.GREEN
