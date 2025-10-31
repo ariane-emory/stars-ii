@@ -124,6 +124,12 @@ func apply_standard_rotation_fix(model: Node3D):
 	var ship_rotation = ShipData.get_ship_rotation(self.ship_name)
 	wrapper.rotation_degrees = ship_rotation
 
+func update_rotation_fix():
+	## Update rotation fix after ship name is set
+	var model = get_node_or_null("Model")
+	if model:
+		apply_standard_rotation_fix(model)
+
 func create_name_label():
 	## Create a 2D HUD-style text label that follows the ship
 	

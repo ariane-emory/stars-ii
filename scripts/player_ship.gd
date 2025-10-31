@@ -133,7 +133,7 @@ func handle_thrust(delta):
 	
 	# K or Down Arrow = reverse thrust (braking)
 	if Input.is_key_pressed(KEY_K) or Input.is_key_pressed(KEY_DOWN):
-		velocity -= direction * thrust_power * 0.33 * delta  # Reverse is weaker
+		velocity -= direction * thrust_power * 0.5 * delta  # Reverse is weaker
 
 func apply_drag():
 	# Slight drag to prevent infinite acceleration

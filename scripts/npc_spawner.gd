@@ -45,4 +45,7 @@ func spawn_npcs():
         # Add NPC to scene (this will trigger _ready() which expects Model to exist)
         add_child(npc)
         
+        # Update rotation fix now that ship name is set
+        npc.update_rotation_fix()
+        
         

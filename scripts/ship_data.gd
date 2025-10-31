@@ -32,13 +32,15 @@ func _initialize_ship_data():
 	# Old default rotation - some ships still need this
 	var old_default_rotation = Vector3(90, 90, 0)
 	
-	# Alternative rotation for ships with different GLB orientation
+	# Alternative rotation for ships with different GLB orientation (left wingtip thrust)
 	var alt_rotation = Vector3(0, 90, 0)
+	
+	# Reverse rotation for ships with right wingtip thrust (opposite of alt_rotation)
+	var reverse_rotation = Vector3(0, -90, 0)
 	
 	# Ships that need the old default rotation (90, 90, 0)
 	var old_default_ships = [
-		"Dart Scout",
-		"Falcon Scout"
+		"Dart Scout"
 	]
 	
 	# Ships that need the alternative rotation (0, 90, 0)
@@ -56,7 +58,26 @@ func _initialize_ship_data():
 		"Nebulous Scout",
 		"Fortress Cruiser",
 		"Starways Hauler",
-		"Strider Scout"
+		"Strider Scout",
+		"Fleetfoot Scout",
+		"Vector Battleship",
+		"Equinox Battleship",
+		"Tortoise Gunship",
+		"Drushi Battleship",
+		"Star Eagle Fighter",
+		"Occulus Gun Platform",
+		"Spear Frigate",
+		"Shield Battleship",
+		"Breacher Assault Ship",
+		"Pacifica Liner",
+		"Falcon Scout"
+	]
+	
+	# Ships that need the reverse rotation (0, -90, 0) for right wingtip thrust
+	var reverse_rotation_ships = [
+		"Prosperity Trader",
+		"Eclipse Battlleship",
+		"Stalwart Battleship"
 	]
 	
 	# All ship models with their paths
@@ -105,7 +126,7 @@ func _initialize_ship_data():
 		"Snowbird Gunship",
 		"Solar Empress Liner",
 		"Spear Frigate",
-		"Stalward Battleship",
+		"Stalwart Battleship",
 		"Star Eagle Fighter",
 		"Star Skipper Trader",
 		"Starways Hauler",
@@ -113,12 +134,11 @@ func _initialize_ship_data():
 		"Strider Scout",
 		"Sunbird Fighter",
 		"Swordsman Gunship",
-		"Tortois Gunship",
+		"Tortoise Gunship",
 		"Unyielding Battleship",
 		"Vector Battleship",
 		"Void Hauler",
 		"Vulture Gunship",
-		"Was Fighter",
 		"Wasp Fighter",
 		"Zephyr Scout"
 	]
@@ -133,6 +153,8 @@ func _initialize_ship_data():
 			rotation = alt_rotation
 		elif ship_name in old_default_ships:
 			rotation = old_default_rotation
+		elif ship_name in reverse_rotation_ships:
+			rotation = reverse_rotation
 		else:
 			rotation = default_rotation
 		
