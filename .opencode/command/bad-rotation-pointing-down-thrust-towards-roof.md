@@ -3,7 +3,7 @@ description: Fix bad rotation (nose down)
 agent: build
 ---
 
-The following ship(s) are oriented incorrectly: $ARGUMENTS 
+The following ship(s) are oriented incorrectly: $ARGUMENTS.
 
 The ship's nose is pointed straight down, and thrust/movement is towards what should be the roof of the ship's cockpit. 
 

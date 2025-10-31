@@ -3,7 +3,7 @@ description: Fix bad rotation (thrusting towards left wingtip)
 agent: build
 ---
 
-The following ship(s) are oriented incorrectly: $ARGUMENTS 
+The following ship(s) are oriented incorrectly: $ARGUMENTS.
 
 It looks like it's direction of thrust/movement is currently towards its left wingtip.
 

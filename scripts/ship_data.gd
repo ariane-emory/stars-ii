@@ -54,7 +54,9 @@ func _initialize_ship_data():
 		"Shark Gunship",
 		"Star Skipper Trader",
 		"Nebulous Scout",
-		"Fortress Cruiser"
+		"Fortress Cruiser",
+		"Starways Hauler",
+		"Strider Scout"
 	]
 	
 	# All ship models with their paths
