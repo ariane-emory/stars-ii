@@ -122,5 +122,41 @@ func _input(event):
 	# Quick stop with Space (optional convenience)
 	if event.is_action_pressed("ui_select"):  # Space bar
 		velocity *= 0.5
+	
+	# Rotation testing with number keys (1-9) - tests wrapper rotation
+	if event is InputEventKey and event.pressed and not event.echo:
+		var wrapper = get_node_or_null("ModelWrapper")
+		if wrapper:
+			match event.keycode:
+				KEY_1:
+					wrapper.rotation_degrees = Vector3(0, 0, 0)
+					print("=== Wrapper rotation: (0, 0, 0) ===")
+				KEY_2:
+					wrapper.rotation_degrees = Vector3(-90, 0, 0)
+					print("=== Wrapper rotation: (-90, 0, 0) ===")
+				KEY_3:
+					wrapper.rotation_degrees = Vector3(90, 0, 0)
+					print("=== Wrapper rotation: (90, 0, 0) ===")
+				KEY_4:
+					wrapper.rotation_degrees = Vector3(0, 90, 0)
+					print("=== Wrapper rotation: (0, 90, 0) ===")
+				KEY_5:
+					wrapper.rotation_degrees = Vector3(0, -90, 0)
+					print("=== Wrapper rotation: (0, -90, 0) ===")
+				KEY_6:
+					wrapper.rotation_degrees = Vector3(0, 180, 0)
+					print("=== Wrapper rotation: (0, 180, 0) ===")
+				KEY_7:
+					wrapper.rotation_degrees = Vector3(-90, 90, 0)
+					print("=== Wrapper rotation: (-90, 90, 0) ===")
+				KEY_8:
+					wrapper.rotation_degrees = Vector3(-90, -90, 0)
+					print("=== Wrapper rotation: (-90, -90, 0) ===")
+				KEY_9:
+					wrapper.rotation_degrees = Vector3(90, 90, 0)
+					print("=== Wrapper rotation: (90, 90, 0) ===")
+				KEY_0:
+					wrapper.rotation_degrees = Vector3(90, -90, 0)
+					print("=== Wrapper rotation: (90, -90, 0) ===")
 
 
