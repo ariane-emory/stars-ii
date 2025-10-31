@@ -132,7 +132,7 @@ func get_ship_rotation(ship_identifier: String) -> Vector3:
 	# Ship-specific rotation overrides
 	# Some ship models have different default orientations in their GLB files
 	match ship_identifier:
-		"Pickax Mining Ship", "Luna Shuttle", "Cyclops Missile Boat":
+		"Pickax Mining Ship", "Luna Shuttle", "Cyclops Missile Boat", "Blood Eagle Fighter", "Vulture Gunship":
 			# These ships have a different default orientation in their GLB models
 			# They require this custom rotation to align nose forward and thrust correctly
 			return Vector3(0, 90, 0)
