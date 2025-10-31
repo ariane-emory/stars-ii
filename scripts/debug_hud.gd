@@ -18,11 +18,14 @@ func _process(_delta):
 		var speed = velocity.length()
 		var pos = player_ship.position
 		var rotation_angle = player_ship.rotation_angle
+		var ship_name = player_ship.ship_name if "ship_name" in player_ship else "Unknown"
 		
-		text = "Speed: %.0f units/s\n" % speed
+		text = "Ship: %s\n" % ship_name
+		text += "Speed: %.0f units/s\n" % speed
 		text += "Position: (%.0f, %.0f)\n" % [pos.x, pos.z]
 		text += "Rotation: %.2f rad (%.0f°)\n" % [rotation_angle, rad_to_deg(rotation_angle)]
 		text += "FPS: %d\n" % Engine.get_frames_per_second()
-		text += "\nControls: I/K thrust, J/L rotate, Space stop"
+		text += "\nControls: I/K or Up/Down thrust\n"
+		text += "J/L or Left/Right rotate, Space stop"
 	else:
 		text = "Player ship not found"

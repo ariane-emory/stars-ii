@@ -20,7 +20,7 @@ func _ready():
 	# Scale up the model MUCH larger
 	var model = get_node_or_null("Model")
 	if model:
-		model.scale = Vector3(50, 50, 50)
+		model.scale = Vector3(100, 100, 100)
 
 func _physics_process(delta):
 	wander_time += delta
