@@ -34,11 +34,45 @@ func _ready():
 		model.scale = Vector3(100, 100, 100)
 		print("Model scaled to: ", model.scale)
 		
+		# Convert all materials to unshaded
+		convert_to_unshaded(model)
+		
 		# Apply model-specific rotation corrections
 		print("Model initial rotation: ", model.rotation_degrees)
 		apply_model_rotation_fix(model, ship_name)
 	else:
 		print("ERROR: Model node not found!")
+
+func convert_to_unshaded(node: Node):
+	## Recursively convert all materials in this node and its children to unshaded
+	if node is MeshInstance3D:
+		var mesh_instance = node as MeshInstance3D
+		var surface_count = mesh_instance.get_surface_override_material_count()
+		
+		# Process each surface
+		for i in range(mesh_instance.mesh.get_surface_count()):
+			# Get the current material (either override or default)
+			var current_mat = mesh_instance.get_surface_override_material(i)
+			if not current_mat:
+				current_mat = mesh_instance.mesh.surface_get_material(i)
+			
+			if current_mat:
+				# Create a new unshaded material
+				var unshaded_mat = StandardMaterial3D.new()
+				unshaded_mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+				
+				# Copy the albedo color/texture from the original material
+				if current_mat is StandardMaterial3D:
+					unshaded_mat.albedo_color = current_mat.albedo_color
+					unshaded_mat.albedo_texture = current_mat.albedo_texture
+				
+				# Apply the unshaded material
+				mesh_instance.set_surface_override_material(i, unshaded_mat)
+				print("Converted material for surface ", i, " on ", mesh_instance.name)
+	
+	# Recursively process children
+	for child in node.get_children():
+		convert_to_unshaded(child)
 
 func apply_model_rotation_fix(model: Node3D, model_name: String):
 	# Different GLB models have different orientations
