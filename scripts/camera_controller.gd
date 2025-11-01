@@ -1,8 +1,7 @@
 extends Camera3D
 
-## Camera that follows the player ship
+## Camera that keeps the player ship centered on screen at all times
 
-@export var follow_speed: float = 5.0
 @export var camera_offset: Vector3 = Vector3(0, 424.3, 0)
 
 var player: Node3D
@@ -14,12 +13,14 @@ func _ready():
 	
 	if player:
 		print("Camera found player at: ", player.position)
+		# Position camera immediately at player position
+		position = player.position + camera_offset
 	else:
 		print("WARNING: Camera could not find player!")
 	
 	current = true
 
-func _process(delta):
+func _physics_process(_delta):
 	if player:
-		var target_pos = player.position + camera_offset
-		position = position.lerp(target_pos, follow_speed * delta)
+		# Keep player perfectly centered - no interpolation
+		position = player.position + camera_offset
