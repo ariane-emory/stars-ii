@@ -12,6 +12,9 @@ var wander_duration: float = 5.0
 var ship_name: String = ""
 var ship_name_label: Label = null
 
+# Reference to the model wrapper node for visual rotation
+var model_wrapper: Node3D = null
+
 func _ready():
 	# Add to npc_ships group for radar detection
 	add_to_group("npc_ships")
@@ -69,8 +72,8 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
-	# Update visual rotation
-	rotation.y = -rotation_angle
+	# Update visual rotation of the model wrapper
+	update_visual_rotation()
 	
 	# Update name label position if it exists
 	if ship_name_label:
@@ -120,9 +123,31 @@ func apply_standard_rotation_fix(model: Node3D):
 	parent.add_child(wrapper)
 	wrapper.add_child(model)
 	
-	# Get rotation from centralized ship data
-	var ship_rotation = ShipData.get_ship_rotation(self.ship_name)
-	wrapper.rotation_degrees = ship_rotation
+	# Store reference to wrapper for runtime rotation updates
+	model_wrapper = wrapper
+
+func update_visual_rotation():
+	## Update the visual rotation of the ship model to match movement direction
+	if not model_wrapper:
+		return
+	
+	# Get the ship-specific rotation correction from centralized data
+	var ship_correction = ShipData.get_ship_rotation(self.ship_name)
+	
+	# The rotation_angle represents the direction of movement in the XZ plane
+	# 0 = pointing right (+X), increases counter-clockwise
+	# We need to rotate the model around the Y-axis to point in this direction
+	# Use negative rotation_angle because Godot's Y-axis rotation is inverted
+	var y_rotation = -rotation_angle
+	
+	# Convert to degrees for the final rotation
+	var visual_rotation = Vector3(
+		ship_correction.x,  # Pitch (X-axis) from ship data
+		ship_correction.y + rad_to_deg(y_rotation),  # Yaw (Y-axis): ship correction + movement direction
+		ship_correction.z   # Roll (Z-axis) from ship data
+	)
+	
+	model_wrapper.rotation_degrees = visual_rotation
 
 func update_rotation_fix():
 	## Update rotation fix after ship name is set
@@ -173,14 +198,31 @@ func update_name_label_position():
 	if not camera:
 		return
 	
-	# Convert world position to screen coordinates
-	var screen_pos = camera.unproject_position(global_position)
+	# Check if ship is in front of camera (not behind it)
+	if not camera.is_position_in_frustum(global_position):
+		ship_name_label.visible = false
+		return
 	
-	# Set label position (centered on the ship)
+	# Create a 3D position above the ship (in world space, not screen space)
+	# This makes the label offset scale correctly with perspective
+	var label_3d_pos = global_position + Vector3(0, 75, 0)  # 75 units above ship
+	
+	# Convert the offset world position to screen coordinates
+	var screen_pos = camera.unproject_position(label_3d_pos)
+	
+	# Check if the screen position is within viewport bounds
+	var viewport_size = get_viewport().get_visible_rect().size
+	if screen_pos.x < -100 or screen_pos.x > viewport_size.x + 100 or \
+	   screen_pos.y < -100 or screen_pos.y > viewport_size.y + 100:
+		ship_name_label.visible = false
+		return
+	
+	# Ship is visible, show label and update position
+	ship_name_label.visible = true
 	var label_size = ship_name_label.get_size()
 	ship_name_label.position = Vector2(
 		screen_pos.x - label_size.x / 2,
-		screen_pos.y - label_size.y / 2 - 100  # Offset above ship
+		screen_pos.y - label_size.y / 2
 	)
 
 func _exit_tree():

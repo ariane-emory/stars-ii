@@ -42,8 +42,9 @@ func _initialize_ship_data():
 	var flip_rotation = Vector3(0, 180, 0)
 	
 	# Ships that need the old default rotation (90, 90, 0)
+	# NOTE: This rotation causes pitch which is visible in top-down view
+	# Keeping this list for reference but it should be empty for top-down gameplay
 	var old_default_ships = [
-		"Dart Scout"
 	]
 	
 	# Ships that need the alternative rotation (0, 90, 0)
@@ -76,18 +77,27 @@ func _initialize_ship_data():
 		"Falcon Scout",
 		"Pacer Gunship",
 		"Resolute Frigate",
-		"Dagger Fighter"
+		"Dagger Fighter",
+		"Wasp Fighter",
+		"Longhauler Freighter",
+		"Bulwark Battleship",
+		"Zephyr Scout",
+		"Nebula Battleship",
+		"Dart Scout"
 	]
 	
 	# Ships that need the reverse rotation (0, -90, 0) for right wingtip thrust
 	var reverse_rotation_ships = [
-		"Eclipse Battlleship",
-		"Stalwart Battleship"
+		"Stalwart Battleship",
+		"Horseman Gunship",
+		"Nova Battleship"
 	]
 	
 	# Ships that need 180 degree rotation (pointing backwards)
 	var flip_rotation_ships = [
-		"Prosperity Trader"
+		"Prosperity Trader",
+		"Belt Freighter",
+		"Eclipse Battlleship"
 	]
 	
 	# All ship models with their paths

@@ -3,7 +3,7 @@ extends Camera3D
 ## Camera that follows the player ship
 
 @export var follow_speed: float = 5.0
-@export var camera_offset: Vector3 = Vector3(0, 300, 300)
+@export var camera_offset: Vector3 = Vector3(0, 424.3, 0)
 
 var player: Node3D
 

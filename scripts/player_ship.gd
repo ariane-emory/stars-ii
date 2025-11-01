@@ -14,6 +14,9 @@ var rotation_angle: float = 0.0
 # Ship model name
 var ship_name: String = "Unknown"
 
+# Reference to the model wrapper node for visual rotation
+var model_wrapper: Node3D = null
+
 func _ready():
 	# Start with a random rotation
 	rotation_angle = randf_range(0, TAU)
@@ -87,10 +90,33 @@ func apply_standard_rotation_fix(model: Node3D):
 	parent.add_child(wrapper)
 	wrapper.add_child(model)
 	
-	# Get rotation from centralized ship data
-	var ship_rotation = ShipData.get_ship_rotation(ship_name)
-	wrapper.rotation_degrees = ship_rotation
-	print("Applied rotation fix using wrapper node: ", ship_rotation)
+	# Store reference to wrapper for runtime rotation updates
+	model_wrapper = wrapper
+	
+	print("Created model wrapper node for rotation control")
+
+func update_visual_rotation():
+	## Update the visual rotation of the ship model to match thrust direction
+	if not model_wrapper:
+		return
+	
+	# Get the ship-specific rotation correction from centralized data
+	var ship_correction = ShipData.get_ship_rotation(ship_name)
+	
+	# The rotation_angle represents the direction of thrust in the XZ plane
+	# 0 = pointing right (+X), increases counter-clockwise
+	# We need to rotate the model around the Y-axis to point in this direction
+	# Use negative rotation_angle because Godot's Y-axis rotation is inverted
+	var y_rotation = -rotation_angle
+	
+	# Convert to degrees for the final rotation
+	var visual_rotation = Vector3(
+		ship_correction.x,  # Pitch (X-axis) from ship data
+		ship_correction.y + rad_to_deg(y_rotation),  # Yaw (Y-axis): ship correction + thrust direction
+		ship_correction.z   # Roll (Z-axis) from ship data
+	)
+	
+	model_wrapper.rotation_degrees = visual_rotation
 
 # Debug function to test different rotations
 func test_rotation(x_deg: float, y_deg: float, z_deg: float):
@@ -108,8 +134,8 @@ func _physics_process(delta):
 	# Move the ship
 	move_and_slide()
 	
-	# Update visual rotation (rotate around Y axis for top-down view)
-	rotation.y = -rotation_angle
+	# Update visual rotation of the model wrapper
+	update_visual_rotation()
 
 func handle_rotation(delta):
 	# J or Left Arrow = rotate left (counter-clockwise)
