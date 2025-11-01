@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c07blrijqeodh"
+uid="uid://dn1cdkvy2wxsl"
 path.s3tc="res://.godot/imported/Hoplite Fighter_0.png-0fc76a2a411916a8d7d9848136e11f9f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "debf8fff8d4d5da08c707138cf71e9d2"
 }
 
 [deps]

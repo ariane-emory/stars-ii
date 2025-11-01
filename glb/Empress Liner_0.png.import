@@ -3,23 +3,19 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://csh5mwqov83vj"
-path.s3tc="res://.godot/imported/Empress Liner_0.png-13f23f838155f25d161ec5fb3973f491.s3tc.ctex"
+path="res://.godot/imported/Empress Liner_0.png-13f23f838155f25d161ec5fb3973f491.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
-generator_parameters={
-"md5": "0cf5f5a1a5d11c1c72e8a9ddf110a46e"
+"vram_texture": false
 }
 
 [deps]
 
 source_file="res://glb/Empress Liner_0.png"
-dest_files=["res://.godot/imported/Empress Liner_0.png-13f23f838155f25d161ec5fb3973f491.s3tc.ctex"]
+dest_files=["res://.godot/imported/Empress Liner_0.png-13f23f838155f25d161ec5fb3973f491.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -27,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -41,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
