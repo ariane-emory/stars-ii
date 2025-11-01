@@ -38,6 +38,9 @@ func _initialize_ship_data():
 	# Reverse rotation for ships with right wingtip thrust (opposite of alt_rotation)
 	var reverse_rotation = Vector3(0, -90, 0)
 	
+	# 180 degree rotation for ships pointing backwards
+	var flip_rotation = Vector3(0, 180, 0)
+	
 	# Ships that need the old default rotation (90, 90, 0)
 	var old_default_ships = [
 		"Dart Scout"
@@ -77,9 +80,13 @@ func _initialize_ship_data():
 	
 	# Ships that need the reverse rotation (0, -90, 0) for right wingtip thrust
 	var reverse_rotation_ships = [
-		"Prosperity Trader",
 		"Eclipse Battlleship",
 		"Stalwart Battleship"
+	]
+	
+	# Ships that need 180 degree rotation (pointing backwards)
+	var flip_rotation_ships = [
+		"Prosperity Trader"
 	]
 	
 	# All ship models with their paths
@@ -157,6 +164,8 @@ func _initialize_ship_data():
 			rotation = old_default_rotation
 		elif ship_name in reverse_rotation_ships:
 			rotation = reverse_rotation
+		elif ship_name in flip_rotation_ships:
+			rotation = flip_rotation
 		else:
 			rotation = default_rotation
 		
