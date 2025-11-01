@@ -93,7 +93,13 @@ func _initialize_ship_data():
 		"Stingray Fighter",
 		"Paladin Gunship",
 		"Nordic LIner",
-		"Empress Liner"
+		"Empress Liner",
+		"Overlook Gunship",
+		"Paragon Shuttle",
+		"Northerner Gunship",
+		"Dwarf Fighter",
+		"Gattler Frigate",
+		"Snowbird Gunship"
 	]
 	
 	# Ships that need the reverse rotation (0, -90, 0) for right wingtip thrust
@@ -155,8 +161,6 @@ func _initialize_ship_data():
 		"Longhauler Freighter",
 		"Longshoreman Hauler",
 		"Luna Shuttle",
-		"Missile 1",
-		"Missile 2",
 		"Mosquito Fighter",
 		"Myrmidon Gunship",
 		"Naos Shuttle",
