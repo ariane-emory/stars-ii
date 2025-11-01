@@ -70,7 +70,9 @@ func _initialize_ship_data():
 		"Shield Battleship",
 		"Breacher Assault Ship",
 		"Pacifica Liner",
-		"Falcon Scout"
+		"Falcon Scout",
+		"Pacer Gunship",
+		"Resolute Frigate"
 	]
 	
 	# Ships that need the reverse rotation (0, -90, 0) for right wingtip thrust
