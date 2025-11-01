@@ -87,7 +87,13 @@ func _initialize_ship_data():
 		"Sentry Patrol Ship",
 		"Secutor Patrol Ship",
 		"Viceroy Shuttle",
-		"Long Shot Gun Platform"
+		"Long Shot Gun Platform",
+		"Express Trader",
+		"Swordsman Gunship",
+		"Stingray Fighter",
+		"Paladin Gunship",
+		"Nordic LIner",
+		"Empress Liner"
 	]
 	
 	# Ships that need the reverse rotation (0, -90, 0) for right wingtip thrust
