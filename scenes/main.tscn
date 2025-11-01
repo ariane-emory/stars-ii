@@ -18,9 +18,9 @@ ambient_light_color = Color(0.5, 0.5, 0.5, 1)
 environment = SubResource("Environment_1")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 424.3, 0)
-size = 7200.0
-far = 8000.0
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 848.6, 0)
+size = 14400.0
+far = 16000.0
 script = ExtResource("5_camera")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]

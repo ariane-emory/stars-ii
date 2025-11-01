@@ -2,8 +2,8 @@ extends Node3D
 
 ## Generates a starfield background with glowing white dots
 
-@export var star_count: int = 2000
-@export var field_size: float = 20000.0
+@export var star_count: int = 4000
+@export var field_size: float = 40000.0
 @export var star_height: float = -100.0  # Below the action
 
 func _ready():

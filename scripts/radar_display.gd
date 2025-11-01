@@ -4,7 +4,7 @@ extends Control
 
 # Radar parameters
 @export var radar_radius: float = 150.0  # Pixel radius of the radar circle
-@export var detection_range: float = 6000.0  # World units for radar detection range
+@export var detection_range: float = 12000.0  # World units for radar detection range
 @export var background_color: Color = Color(0, 0, 0, 0.6)  # Semi-transparent black
 @export var border_color: Color = Color(0, 1, 0, 0.9)  # Green border
 @export var border_width: float = 3.0
