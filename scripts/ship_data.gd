@@ -79,7 +79,6 @@ func _initialize_ship_data():
 		"Dagger Fighter",
 		"Wasp Fighter",
 		"Longhauler Freighter",
-		"Bulwark Battleship",
 		"Zephyr Scout",
 		"Nebula Battleship",
 		"Dart Scout",
@@ -99,7 +98,9 @@ func _initialize_ship_data():
 		"Northerner Gunship",
 		"Dwarf Fighter",
 		"Gattler Frigate",
-		"Snowbird Gunship"
+		"Snowbird Gunship",
+		"Dolphin Trader",
+		"Sundown Cruiser"
 	]
 	
 	# Ships that need the reverse rotation (0, -90, 0) for right wingtip thrust
