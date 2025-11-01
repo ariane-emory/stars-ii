@@ -82,19 +82,24 @@ func _initialize_ship_data():
 		"Bulwark Battleship",
 		"Zephyr Scout",
 		"Nebula Battleship",
-		"Dart Scout"
+		"Dart Scout",
+		"Perimiter Patrol Ship",
+		"Sentry Patrol Ship",
+		"Secutor Patrol Ship",
+		"Viceroy Shuttle",
+		"Long Shot Gun Platform"
 	]
 	
 	# Ships that need the reverse rotation (0, -90, 0) for right wingtip thrust
 	var reverse_rotation_ships = [
 		"Stalwart Battleship",
 		"Horseman Gunship",
-		"Nova Battleship"
+		"Nova Battleship",
+		"Prosperity Trader"
 	]
 	
 	# Ships that need 180 degree rotation (pointing backwards)
 	var flip_rotation_ships = [
-		"Prosperity Trader",
 		"Belt Freighter",
 		"Eclipse Battlleship"
 	]
