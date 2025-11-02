@@ -1,7 +1,7 @@
 extends Node
 
 ## Centralized ship configuration data
-## This autoload provides ship-specific data like rotation corrections
+## This autoload provides ship-specific data like rotation corrections and scale multipliers
 
 # Ship configuration structure
 class ShipConfig:
@@ -16,188 +16,132 @@ class ShipConfig:
 		rotation_correction = p_rotation
 		scale_multiplier = p_scale
 
-# Dictionary of ship configurations indexed by ship name
-var ship_configs: Dictionary = {}
+# Complete ship configurations - single source of truth for all ship data
+# Each ship has its complete configuration defined here for easy maintenance
+var ship_configs: Dictionary = {
+	"Alpine Cruiser": ShipConfig.new("Alpine Cruiser", "res://glb/Alpine Cruiser.glb", Vector3(0, 90, 0), 1.25),
+	"Banshee Gunship": ShipConfig.new("Banshee Gunship", "res://glb/Banshee Gunship.glb", Vector3(0, 90, 0), 0.8),
+	"Barrier Frigate": ShipConfig.new("Barrier Frigate", "res://glb/Barrier Frigate.glb", Vector3(0, 90, 0), 1.1),
+	"Barricade Frigate": ShipConfig.new("Barricade Frigate", "res://glb/Barricade Frigate.glb", Vector3(0, 90, 0), 1.1),
+	"Batwing Gunship": ShipConfig.new("Batwing Gunship", "res://glb/Batwing Gunship.glb", Vector3(0, -90, 0), 1.1),
+	"Belt Freighter": ShipConfig.new("Belt Freighter", "res://glb/Belt Freighter.glb", Vector3(0, 180, 0), 1.5),
+	"Blood Eagle Fighter": ShipConfig.new("Blood Eagle Fighter", "res://glb/Blood Eagle Fighter.glb", Vector3(0, 90, 0), 0.5),
+	"Brawler Gunship": ShipConfig.new("Brawler Gunship", "res://glb/Brawler Gunship.glb", Vector3(0, 90, 0), 1.1),
+	"Brachiator Gun Platform": ShipConfig.new("Brachiator Gun Platform", "res://glb/Brachiator Gun Platform.glb", Vector3(0, 90, 0), 1.1),
+	"Breacher Assault Ship": ShipConfig.new("Breacher Assault Ship", "res://glb/Breacher Assault Ship.glb", Vector3(0, 90, 0), 1.25),
+	"Bulwark Battleship": ShipConfig.new("Bulwark Battleship", "res://glb/Bulwark Battleship.glb", Vector3(0, 90, 0), 1.1),
+	"Carp Trader": ShipConfig.new("Carp Trader", "res://glb/Carp Trader.glb", Vector3(0, 90, 0), 1.0),
+	"Cyclops Missile Boat": ShipConfig.new("Cyclops Missile Boat", "res://glb/Cyclops Missile Boat.glb", Vector3(0, 90, 0), 1.1),
+	"Dagger Fighter": ShipConfig.new("Dagger Fighter", "res://glb/Dagger Fighter.glb", Vector3(0, 90, 0), 0.8),
+	"Darkling Fighter": ShipConfig.new("Darkling Fighter", "res://glb/Darkling Fighter.glb", Vector3(0, 90, 0), 0.8),
+	"Dart Scout": ShipConfig.new("Dart Scout", "res://glb/Dart Scout.glb", Vector3(0, 90, 0), 0.8),
+	"Dispatch Shuttle": ShipConfig.new("Dispatch Shuttle", "res://glb/Dispatch Shuttle.glb", Vector3(0, 90, 0), 0.8),
+	"Dolphin Trader": ShipConfig.new("Dolphin Trader", "res://glb/Dolphin Trader.glb", Vector3(0, 90, 0), 1.0),
+	"Drushi Battleship": ShipConfig.new("Drushi Battleship", "res://glb/Drushi Battleship.glb", Vector3(0, 90, 0), 1.25),
+	"Dwarf Fighter": ShipConfig.new("Dwarf Fighter", "res://glb/Dwarf Fighter.glb", Vector3(0, 90, 0), 0.8),
+	"Eclipse Battlleship": ShipConfig.new("Eclipse Battlleship", "res://glb/Eclipse Battlleship.glb", Vector3(0, 90, 0), 2.0),
+	"Empress Liner": ShipConfig.new("Empress Liner", "res://glb/Empress Liner.glb", Vector3(0, 90, 0), 1.5),
+	"Executive Liner": ShipConfig.new("Executive Liner", "res://glb/Executive Liner.glb", Vector3(0, 90, 0), 1.1),
+	"Express Trader": ShipConfig.new("Express Trader", "res://glb/Express Trader.glb", Vector3(0, 90, 0), 1.0),
+	"Falcon Scout": ShipConfig.new("Falcon Scout", "res://glb/Falcon Scout.glb", Vector3(0, 90, 0), 0.8),
+	"Forefront Interceptor": ShipConfig.new("Forefront Interceptor", "res://glb/Forefront Interceptor.glb", Vector3(0, 90, 0), 0.9),
+	"Fortress Cruiser": ShipConfig.new("Fortress Cruiser", "res://glb/Fortress Cruiser.glb", Vector3(0, 90, 0), 1.1),
+	"Front Line Frigate": ShipConfig.new("Front Line Frigate", "res://glb/Front Line Frigate.glb", Vector3(0, -90, 0), 1.25),
+	"Frostbite Gunship": ShipConfig.new("Frostbite Gunship", "res://glb/Frostbite Gunship.glb", Vector3(0, 90, 0), 1.1),
+	"Fury Fighter": ShipConfig.new("Fury Fighter", "res://glb/Fury Fighter.glb", Vector3(0, 90, 0), 0.8),
+	"Gattler Frigate": ShipConfig.new("Gattler Frigate", "res://glb/Gattler Frigate.glb", Vector3(0, 90, 0), 1.1),
+	"Hoplite Fighter": ShipConfig.new("Hoplite Fighter", "res://glb/Hoplite Fighter.glb", Vector3(0, 90, 0), 0.8),
+	"Horseman Gunship": ShipConfig.new("Horseman Gunship", "res://glb/Horseman Gunship.glb", Vector3(0, -90, 0), 1.1),
+	"Icepick Fighter": ShipConfig.new("Icepick Fighter", "res://glb/Icepick Fighter.glb", Vector3(0, 90, 0), 0.8),
+	"Lineman Hauler": ShipConfig.new("Lineman Hauler", "res://glb/Lineman Hauler.glb", Vector3(0, 90, 0), 1.0),
+	"Long Shot Gun Platform": ShipConfig.new("Long Shot Gun Platform", "res://glb/Long Shot Gun Platform.glb", Vector3(0, 90, 0), 1.1),
+	"Longhauler Freighter": ShipConfig.new("Longhauler Freighter", "res://glb/Longhauler Freighter.glb", Vector3(0, 90, 0), 1.21),
+	"Longshoreman Hauler": ShipConfig.new("Longshoreman Hauler", "res://glb/Longshoreman Hauler.glb", Vector3(0, 90, 0), 1.25),
+	"Luna Shuttle": ShipConfig.new("Luna Shuttle", "res://glb/Luna Shuttle.glb", Vector3(0, 90, 0), 0.81),
+	"Mosquito Fighter": ShipConfig.new("Mosquito Fighter", "res://glb/Mosquito Fighter.glb", Vector3(0, 90, 0), 0.8),
+	"Myrmidon Gunship": ShipConfig.new("Myrmidon Gunship", "res://glb/Myrmidon Gunship.glb", Vector3(0, 180, 0), 1.1),
+	"Nebula Battleship": ShipConfig.new("Nebula Battleship", "res://glb/Nebula Battleship.glb", Vector3(0, 90, 0), 1.1),
+	"Nordic LIner": ShipConfig.new("Nordic LIner", "res://glb/Nordic LIner.glb", Vector3(0, 90, 0), 1.25),
+	"Northerner Gunship": ShipConfig.new("Northerner Gunship", "res://glb/Northerner Gunship.glb", Vector3(0, 90, 0), 1.1),
+	"Nova Battleship": ShipConfig.new("Nova Battleship", "res://glb/Nova Battleship.glb", Vector3(0, -90, 0), 1.1),
+	"Nubulous Scout": ShipConfig.new("Nubulous Scout", "res://glb/Nubulous Scout.glb", Vector3(0, 90, 0), 0.8),
+	"Occulus Gun Platform": ShipConfig.new("Occulus Gun Platform", "res://glb/Occulus Gun Platform.glb", Vector3(0, 90, 0), 1.1),
+	"Overlook Gunship": ShipConfig.new("Overlook Gunship", "res://glb/Overlook Gunship.glb", Vector3(0, 90, 0), 0.9),
+	"Pacifica Liner": ShipConfig.new("Pacifica Liner", "res://glb/Pacifica Liner.glb", Vector3(0, 90, 0), 1.2),
+	"Pacer Gunship": ShipConfig.new("Pacer Gunship", "res://glb/Pacer Gunship.glb", Vector3(0, 90, 0), 1.1),
+	"Paladin Gunship": ShipConfig.new("Paladin Gunship", "res://glb/Paladin Gunship.glb", Vector3(0, 90, 0), 1.1),
+	"Paragon Shuttle": ShipConfig.new("Paragon Shuttle", "res://glb/Paragon Shuttle.glb", Vector3(0, 90, 0), 0.8),
+	"Perimiter Patrol Ship": ShipConfig.new("Perimiter Patrol Ship", "res://glb/Perimiter Patrol Ship.glb", Vector3(0, 90, 0), 1.0),
+	"Pikeman Fighter": ShipConfig.new("Pikeman Fighter", "res://glb/Pikeman Fighter.glb", Vector3(0, 90, 0), 0.8),
+	"Pickax Mining Ship": ShipConfig.new("Pickax Mining Ship", "res://glb/Pickax Mining Ship.glb", Vector3(0, 90, 0), 1.0),
+	"Prosperity Trader": ShipConfig.new("Prosperity Trader", "res://glb/Prosperity Trader.glb", Vector3(0, 90, 0), 1.0),
+	"Quadrant Frigate": ShipConfig.new("Quadrant Frigate", "res://glb/Quadrant Frigate.glb", Vector3(0, 90, 0), 1.1),
+	"Rack Fighter": ShipConfig.new("Rack Fighter", "res://glb/Rack Fighter.glb", Vector3(0, 90, 0), 0.8),
+	"Railway Hauler": ShipConfig.new("Railway Hauler", "res://glb/Railway Hauler.glb", Vector3(0, 90, 0), 1.5),
+	"Raven Scout": ShipConfig.new("Raven Scout", "res://glb/Raven Scout.glb", Vector3(0, 90, 0), 0.8),
+	"Resolute Frigate": ShipConfig.new("Resolute Frigate", "res://glb/Resolute Frigate.glb", Vector3(0, 90, 0), 1.1),
+	"Rimward Freighter": ShipConfig.new("Rimward Freighter", "res://glb/Rimward Freighter.glb", Vector3(0, 90, 0), 1.0),
+	"Robin Gunship": ShipConfig.new("Robin Gunship", "res://glb/Robin Gunship.glb", Vector3(0, 90, 0), 1.1),
+	"Royal Standard Battleship": ShipConfig.new("Royal Standard Battleship", "res://glb/Royal Standard Battleship.glb", Vector3(0, 90, 0), 1.1),
+	"Sentry Patrol Ship": ShipConfig.new("Sentry Patrol Ship", "res://glb/Sentry Patrol Ship.glb", Vector3(0, 90, 0), 1.0),
+	"Secutor Patrol Ship": ShipConfig.new("Secutor Patrol Ship", "res://glb/Secutor Patrol Ship.glb", Vector3(0, 90, 0), 1.0),
+	"Shadowblade Fighter": ShipConfig.new("Shadowblade Fighter", "res://glb/Shadowblade Fighter.glb", Vector3(0, 90, 0), 0.8),
+	"Shark Gunship": ShipConfig.new("Shark Gunship", "res://glb/Shark Gunship.glb", Vector3(0, 90, 0), 1.1),
+	"Solar Empress Liner": ShipConfig.new("Solar Empress Liner", "res://glb/Solar Empress Liner.glb", Vector3(0, -90, 0), 1.2),
+	"Sparrow Fighter": ShipConfig.new("Sparrow Fighter", "res://glb/Sparrow Fighter.glb", Vector3(0, -90, 0), 0.8),
+	"Spear Frigate": ShipConfig.new("Spear Frigate", "res://glb/Spear Frigate.glb", Vector3(0, 90, 0), 1.1),
+	"Spike Patrol Ship": ShipConfig.new("Spike Patrol Ship", "res://glb/Spike Patrol Ship.glb", Vector3(0, -90, 0), 1.0),
+	"Stalwart Battleship": ShipConfig.new("Stalwart Battleship", "res://glb/Stalwart Battleship.glb", Vector3(0, 90, 0), 1.1),
+	"Star Eagle Fighter": ShipConfig.new("Star Eagle Fighter", "res://glb/Star Eagle Fighter.glb", Vector3(0, 90, 0), 0.9),
+	"Star Skipper Trader": ShipConfig.new("Star Skipper Trader", "res://glb/Star Skipper Trader.glb", Vector3(0, -90, 0), 1.0),
+	"Starways Hauler": ShipConfig.new("Starways Hauler", "res://glb/Starways Hauler.glb", Vector3(0, 90, 0), 1.0),
+	"Steadfast Frigate": ShipConfig.new("Steadfast Frigate", "res://glb/Steadfast Frigate.glb", Vector3(0, 180, 0), 1.1),
+	"Stiletto Fighter": ShipConfig.new("Stiletto Fighter", "res://glb/Stiletto Fighter.glb", Vector3(0, 90, 0), 0.8),
+	"Stingray Fighter": ShipConfig.new("Stingray Fighter", "res://glb/Stingray Fighter.glb", Vector3(0, 90, 0), 0.8),
+	"Strider Scout": ShipConfig.new("Strider Scout", "res://glb/Strider Scout.glb", Vector3(0, 90, 0), 0.9),
+	"Sundown Cruiser": ShipConfig.new("Sundown Cruiser", "res://glb/Sundown Cruiser.glb", Vector3(0, 90, 0), 1.1),
+	"Swordsman Gunship": ShipConfig.new("Swordsman Gunship", "res://glb/Swordsman Gunship.glb", Vector3(0, 90, 0), 1.1),
+	"Toad Assault Ship": ShipConfig.new("Toad Assault Ship", "res://glb/Toad Assault Ship.glb", Vector3(0, -90, 0), 1.25),
+	"Tortoise Gunship": ShipConfig.new("Tortoise Gunship", "res://glb/Tortoise Gunship.glb", Vector3(0, 90, 0), 1.1),
+	"Tropica Gunship": ShipConfig.new("Tropica Gunship", "res://glb/Tropica Gunship.glb", Vector3(0, 90, 0), 1.1),
+	"Vampire Fighter": ShipConfig.new("Vampire Fighter", "res://glb/Vampire Fighter.glb", Vector3(0, 90, 0), 0.8),
+	"Vector Battleship": ShipConfig.new("Vector Battleship", "res://glb/Vector Battleship.glb", Vector3(0, 90, 0), 1.1),
+	"Viceroy Shuttle": ShipConfig.new("Viceroy Shuttle", "res://glb/Viceroy Shuttle.glb", Vector3(0, 90, 0), 0.8),
+	"Viking Frigate": ShipConfig.new("Viking Frigate", "res://glb/Viking Frigate.glb", Vector3(0, -90, 0), 1.25),
+	"Void Hauler": ShipConfig.new("Void Hauler", "res://glb/Void Hauler.glb", Vector3(0, 90, 0), 1.5),
+	"Vulture Gunship": ShipConfig.new("Vulture Gunship", "res://glb/Vulture Gunship.glb", Vector3(0, 90, 0), 0.5),
+	"Wasp Fighter": ShipConfig.new("Wasp Fighter", "res://glb/Wasp Fighter.glb", Vector3(0, 90, 0), 0.8),
+	"Zephyr Scout": ShipConfig.new("Zephyr Scout", "res://glb/Zephyr Scout.glb", Vector3(0, 90, 0), 0.8),
+	"Equinox Battleship": ShipConfig.new("Equinox Battleship", "res://glb/Equinox Battleship.glb", Vector3(0, 90, 0), 1.1),
+	"Fleetfoot Scout": ShipConfig.new("Fleetfoot Scout", "res://glb/Fleetfoot Scout.glb", Vector3(0, 90, 0), 0.8),
+	"Guardian Battleship": ShipConfig.new("Guardian Battleship", "res://glb/Guardian Battleship.glb", Vector3(0, 90, 0), 1.1),
+	"Infernus Gunship": ShipConfig.new("Infernus Gunship", "res://glb/Infernus Gunship.glb", Vector3(0, 90, 0), 1.1),
+	"Naos Shuttle": ShipConfig.new("Naos Shuttle", "res://glb/Naos Shuttle.glb", Vector3(0, 90, 0), 0.8),
+	"Sea Turtle Shuttle": ShipConfig.new("Sea Turtle Shuttle", "res://glb/Sea Turtle Shuttle.glb", Vector3(0, -90, 0), 0.8),
+	"Shield Battleship": ShipConfig.new("Shield Battleship", "res://glb/Shield Battleship.glb", Vector3(0, 90, 0), 1.1),
+	"Snowbird Gunship": ShipConfig.new("Snowbird Gunship", "res://glb/Snowbird Gunship.glb", Vector3(0, 90, 0), 1.1),
+	"Spartan Gunship": ShipConfig.new("Spartan Gunship", "res://glb/Spartan Gunship.glb", Vector3(0, -90, 0), 1.1),
+	"Stinger Fighter": ShipConfig.new("Stinger Fighter", "res://glb/Stinger Fighter.glb", Vector3(0, 90, 0), 0.8),
+	"Sunbird Fighter": ShipConfig.new("Sunbird Fighter", "res://glb/Sunbird Fighter.glb", Vector3(0, 90, 0), 0.8),
+	"Unyielding Battleship": ShipConfig.new("Unyielding Battleship", "res://glb/Unyielding Battleship.glb", Vector3(0, 90, 0), 1.1),
+	"Valiant Gunship": ShipConfig.new("Valiant Gunship", "res://glb/Valiant Gunship.glb", Vector3(0, 90, 0), 1.1),
+	"Vampie Fighter": ShipConfig.new("Vampie Fighter", "res://glb/Vampie Fighter.glb", Vector3(0, 90, 0), 0.8)
+}
 
-# List of all ship model paths (for random selection)
+# List of all ship model paths (for random selection) - maintained for backward compatibility
 var all_ship_paths: Array[String] = []
 
-# Complete ship list (for validation)
+# Complete ship list (for validation) - maintained for backward compatibility
 var ship_list: Array[String] = []
-
-# Individual ship rotation configuration
-var ship_rotation_dict: Dictionary = {}
-
-# Individual ship scale configuration
-# Maps ship names to their specific scale multipliers
-# Ships not in this dictionary use class-based scaling rules
-var ship_scale_dict: Dictionary = {}
-
-# Default rotation for most ships
-var default_rotation: Vector3 = Vector3(0, 0, 0)
 
 func _ready():
 	_initialize_ship_data()
 
 func _initialize_ship_data():
-	## Initialize all ship configurations with their rotation corrections
+	## Initialize ship data by populating helper arrays for backward compatibility
+	## All actual ship configurations are now in the ship_configs dictionary above
 	
-	# Default rotation for most ships (the majority need this)
-	
-	# Individual ship rotation configuration - each ship has explicit rotation setting
-	ship_rotation_dict = {
-		# Alternative rotation (0, 90, 0) - right wingtip thrust
-		"Pickax Mining Ship": Vector3(0, 90, 0),
-		"Luna Shuttle": Vector3(0, 90, 0),
-		"Cyclops Missile Boat": Vector3(0, 90, 0),
-		"Blood Eagle Fighter": Vector3(0, 90, 0),
-		"Vulture Gunship": Vector3(0, 90, 0),
-		"Fury Fighter": Vector3(0, 90, 0),
-		"Lineman Hauler": Vector3(0, 90, 0),
-		"Rack Fighter": Vector3(0, 90, 0),
-		"Shark Gunship": Vector3(0, 90, 0),
-		"Fortress Cruiser": Vector3(0, 90, 0),
-		"Brachiator Gun Platform": Vector3(0, 90, 0),
-		"Brawler Gunship": Vector3(0, 90, 0),
-		"Starways Hauler": Vector3(0, 90, 0),
-		"Strider Scout": Vector3(0, 90, 0),
-		"Fleetfoot Scout": Vector3(0, 90, 0),
-		"Vector Battleship": Vector3(0, 90, 0),
-		"Equinox Battleship": Vector3(0, 90, 0),
-		"Tortoise Gunship": Vector3(0, 90, 0),
-		"Drushi Battleship": Vector3(0, 90, 0),
-		"Star Eagle Fighter": Vector3(0, 90, 0),
-		"Occulus Gun Platform": Vector3(0, 90, 0),
-		"Spear Frigate": Vector3(0, 90, 0),
-		"Shield Battleship": Vector3(0, 90, 0),
-		"Breacher Assault Ship": Vector3(0, 90, 0),
-		"Pacifica Liner": Vector3(0, 90, 0),
-		"Falcon Scout": Vector3(0, 90, 0),
-		"Pacer Gunship": Vector3(0, 90, 0),
-		"Resolute Frigate": Vector3(0, 90, 0),
-		"Dagger Fighter": Vector3(0, 90, 0),
-		"Wasp Fighter": Vector3(0, 90, 0),
-		"Longhauler Freighter": Vector3(0, 90, 0),
-		"Zephyr Scout": Vector3(0, 90, 0),
-		"Nebula Battleship": Vector3(0, 90, 0),
-		"Dart Scout": Vector3(0, 90, 0),
-		"Perimiter Patrol Ship": Vector3(0, 90, 0),
-		"Sentry Patrol Ship": Vector3(0, 90, 0),
-		"Secutor Patrol Ship": Vector3(0, 90, 0),
-		"Viceroy Shuttle": Vector3(0, 90, 0),
-		"Long Shot Gun Platform": Vector3(0, 90, 0),
-		"Express Trader": Vector3(0, 90, 0),
-		"Swordsman Gunship": Vector3(0, 90, 0),
-		"Stingray Fighter": Vector3(0, 90, 0),
-		"Paladin Gunship": Vector3(0, 90, 0),
-		"Nordic LIner": Vector3(0, 90, 0),
-		"Empress Liner": Vector3(0, 90, 0),
-		"Overlook Gunship": Vector3(0, 90, 0),
-		"Paragon Shuttle": Vector3(0, 90, 0),
-		"Northerner Gunship": Vector3(0, 90, 0),
-		"Dwarf Fighter": Vector3(0, 90, 0),
-		"Gattler Frigate": Vector3(0, 90, 0),
-		"Snowbird Gunship": Vector3(0, 90, 0),
-		"Dolphin Trader": Vector3(0, 90, 0),
-		"Sundown Cruiser": Vector3(0, 90, 0),
-		"Quadrant Frigate": Vector3(0, 90, 0),
-		"Rimward Freighter": Vector3(0, 90, 0),
-		"Nubulous Scout": Vector3(0, 90, 0),
-		"Hoplite Fighter": Vector3(0, 90, 0),
-		"Tropica Gunship": Vector3(0, 90, 0),
-		"Mosquito Fighter": Vector3(0, 90, 0),
-		"Railway Hauler": Vector3(0, 90, 0),
-		"Barrier Frigate": Vector3(0, 90, 0),
-		"Stiletto Fighter": Vector3(0, 90, 0),
-		"Star Skipper Trader": Vector3(0, -90, 0),
-		"Eclipse Battlleship": Vector3(0, 90, 0),
-		"Stinger Fighter": Vector3(0, 90, 0),
-		"Stalwart Battleship": Vector3(0, 90, 0),
-		"Bulwark Battleship": Vector3(0, 90, 0),
-		"Spike Patrol Ship": Vector3(0, -90, 0),
-		"Barricade Frigate": Vector3(0, 90, 0),
-		
-		# Reverse rotation (0, -90, 0) - left wingtip thrust
-		"Horseman Gunship": Vector3(0, -90, 0),
-		"Nova Battleship": Vector3(0, -90, 0),
-		"Batwing Gunship": Vector3(0, -90, 0),
-		"Front Line Frigate": Vector3(0, -90, 0),
-		"Viking Frigate": Vector3(0, -90, 0),
-		"Sea Turtle Shuttle": Vector3(0, -90, 0),
-		"Darkling Fighter": Vector3(0, 90, 0),
-		"Spartan Gunship": Vector3(0, -90, 0),
-		"Robin Gunship": Vector3(0, 90, 0),
-		"Carp Trader": Vector3(0, 90, 0),
-		"Solar Empress Liner": Vector3(0, -90, 0),
-		"Shadowblade Fighter": Vector3(0, 90, 0),
-		"Prosperity Trader": Vector3(0, 90, 0),
-		"Sparrow Fighter": Vector3(0, -90, 0),
-		"Frostbite Gunship": Vector3(0, 90, 0),
-		"Icepick Fighter": Vector3(0, 90, 0),
-		"Forefront Interceptor": Vector3(0, 90, 0),
-		"Dispatch Shuttle": Vector3(0, 90, 0),
-		"Toad Assault Ship": Vector3(0, -90, 0),
-		"Raven Scout": Vector3(0, 90, 0),
-		"Banshee Gunship": Vector3(0, 90, 0),
-		"Vampire Fighter": Vector3(0, 90, 0),
-		
-		# 180 degree rotation (0, 180, 0) - backward thrust
-		"Belt Freighter": Vector3(0, 180, 0),
-		"Myrmidon Gunship": Vector3(0, 180, 0),
-		"Executive Liner": Vector3(0, 90, 0),
-		"Pikeman Fighter": Vector3(0, 90, 0),
-		"Royal Standard Battleship": Vector3(0, 90, 0),
-		"Steadfast Frigate": Vector3(0, 180, 0)
-	}
-	
-	# Populate ship scale dictionary with specific ship configurations
-	# These ships have custom scale multipliers that override class-based rules
-	ship_scale_dict = {
-		"Railway Hauler": 1.5,
-		"Belt Freighter": 1.5,
-		"Blood Eagle Fighter": 0.5,
-		"Forefront Interceptor": 0.9,
-		"Alpine Cruiser": 1.25,
-		"Longhauler Freighter": 1.21,
-		"Long Shot Gun Platform": 1.1,
-		"Eclipse Battlleship": 2.0,
-		"Drushi Battleship": 1.25,
-		"Luna Shuttle": 0.81,
-		"Executive Liner": 1.1,
-		"Star Eagle Fighter": 0.9,
-		"Longshoreman Hauler": 1.25,
-		"Breacher Assault Ship": 1.25,
-		"Front Line Frigate": 1.25,
-		"Nordic LIner": 1.25,
-		"Void Hauler": 1.5,
-		"Strider Scout": 0.9,
-		"Vulture Gunship": 0.5,
-		"Overlook Gunship": 0.9,
-		"Empress Liner": 1.5,
-		"Viking Frigate": 1.25
-	}
-	
-	# Validate that all ships have defined rotations
-	_validate_ship_rotations()
-	
-	# Ship class categorization for scaling (reserved for future use)
-	# var fighters: Array[String] = []
-	# var gunships: Array[String] = []
-	# var freighters: Array[String] = []
-	# var cruisers: Array[String] = []
-	# var battleships: Array[String] = []
-	# var scouts: Array[String] = []
-	# var traders: Array[String] = []
-	# var patrol_ships: Array[String] = []
-	# var shuttles: Array[String] = []
-	# var gun_platforms: Array[String] = []
-	# var assault_ships: Array[String] = []
-	# var liners: Array[String] = []
-	# var haulers: Array[String] = []
-	# var frigates: Array[String] = []
-	# var interceptors: Array[String] = []
-	
-	# Populate ship lists from GLB files
+	# Populate ship lists from GLB files for backward compatibility
 	var dir = DirAccess.open("res://glb/")
 	if dir:
 		dir.list_dir_begin()
@@ -208,48 +152,6 @@ func _initialize_ship_data():
 				ship_list.append(ship_name)
 				all_ship_paths.append("res://glb/" + file_name)
 			file_name = dir.get_next()
-	
-	# Create ship configurations
-	for ship_name in ship_list:
-		var rotation = default_rotation
-		if ship_rotation_dict.has(ship_name):
-			rotation = ship_rotation_dict[ship_name]
-		
-		# Get scale multiplier using dictionary-based lookup
-	# This replaces the previous 70-line if/elif chain with a clean, maintainable approach
-		var scale_multiplier = _get_scale_for_ship(ship_name)
-		
-		var config = ShipConfig.new(
-			ship_name,
-			"res://glb/" + ship_name + ".glb",
-			rotation,
-			scale_multiplier
-		)
-		ship_configs[ship_name] = config
-
-func _get_scale_for_ship(ship_name: String) -> float:
-	## Get scale multiplier for a specific ship using dictionary lookup
-	# Check for specific ship scale first
-	if ship_scale_dict.has(ship_name):
-		return ship_scale_dict[ship_name]
-	
-	# Fall back to class-based scaling rules
-	if ship_name.ends_with("Fighter") or ship_name.ends_with("Scout") or ship_name.ends_with("Shuttle"):
-		return 0.8
-	elif ship_name.ends_with("Battleship") or ship_name.ends_with("Cruiser"):
-		return 1.1
-	elif ship_name.ends_with("Liner"):
-		return 1.2
-	
-	# Default scale
-	return 1.0
-
-func _validate_ship_rotations():
-	## Ensure all ships have defined rotations
-	for ship_name in ship_list:
-		if not ship_rotation_dict.has(ship_name):
-			push_warning("Ship '%s' missing from rotation dictionary, using default rotation" % ship_name)
-			ship_rotation_dict[ship_name] = default_rotation
 
 func get_ship_config(ship_name: String) -> ShipConfig:
 	## Get configuration for a specific ship
@@ -277,10 +179,11 @@ func get_ship_name_from_path(path: String) -> String:
 
 func get_ship_rotation(ship_name: String) -> Vector3:
 	## Get rotation correction for a specific ship
-	if ship_rotation_dict.has(ship_name):
-		return ship_rotation_dict[ship_name]
+	var config = get_ship_config(ship_name)
+	if config:
+		return config.rotation_correction
 	else:
-		return default_rotation
+		return Vector3(0, 0, 0)
 
 func get_random_ship_path() -> String:
 	## Get a random ship model path
