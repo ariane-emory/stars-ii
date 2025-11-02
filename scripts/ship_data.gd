@@ -132,9 +132,112 @@ func _initialize_ship_data():
 		"Star Skipper Trader"
 	]
 	
-	# Ships that need custom scale multipliers (default is 1.0)
+	# Ship class categorization for scaling
+	# Fighters: 0.9 (10% smaller)
+	var fighters = [
+		"Blood Eagle Fighter",
+		"Dagger Fighter",
+		"Darkling Fighter",
+		"Dwarf Fighter",
+		"Fury Fighter",
+		"Hoplite Fighter",
+		"Icepick Fighter",
+		"Mosquito Fighter",
+		"Pikeman Fighter",
+		"Rack Fighter",
+		"Shadoblade Fighter",
+		"Sparrow Fighter",
+		"Star Eagle Fighter",
+		"Stiletto Fighter",
+		"Stingr",
+		"Stingray Fighter",
+		"Sunbird Fighter",
+		"Vampie Fighter",
+		"Wasp Fighter"
+	]
+	
+	# Scouts: 0.9 (10% smaller)
+	var scouts = [
+		"Dart Scout",
+		"Falcon Scout",
+		"Fleetfoot Scout",
+		"Nubulous Scout",
+		"Raven Scout",
+		"Strider Scout",
+		"Zephyr Scout"
+	]
+	
+	# Shuttles: 0.9 (10% smaller)
+	var shuttles = [
+		"Dispatch Shuttle",
+		"Luna Shuttle",
+		"Naos Shuttle",
+		"Paragon Shuttle",
+		"Sea Turtle Shuttle",
+		"Viceroy Shuttle"
+	]
+	
+	# Battleships: 1.2 (20% larger)
+	var battleships = [
+		"Bulwark Battleship",
+		"Drushi Battleship",
+		"Eclipse Battlleship",
+		"Equinox Battleship",
+		"Guardian Battleship",
+		"Nebula Battleship",
+		"Nova Battleship",
+		"Royal Standard Battleship",
+		"Shield Battleship",
+		"Stalwart Battleship",
+		"Unyielding Battleship",
+		"Vector Battleship"
+	]
+	
+	# Frigates: 1.1 (10% larger)
+	var frigates = [
+		"Barricade Frigate",
+		"Barrier Frigate",
+		"Front Line Frigate",
+		"Gattler Frigate",
+		"Quadrant Frigate",
+		"Resolute Frigate",
+		"Spear Frigate",
+		"Steadfast Frigate",
+		"Viking Frigate"
+	]
+	
+	# Cruisers: 1.1 (10% larger)
+	var cruisers = [
+		"Alpine Cruiser",
+		"Fortress Cruiser",
+		"Sundown Cruiser"
+	]
+	
+	# Haulers, Freighters, Traders, Liners: 1.1 (10% larger)
+	var cargo_ships = [
+		"Belt Freighter",
+		"Carp Trader",
+		"Dolphin Trader",
+		"Empress Liner",
+		"Executive Liner",
+		"Express Trader",
+		"Lineman Hauler",
+		"Longhauler Freighter",
+		"Longshoreman Hauler",
+		"Nordic LIner",
+		"Pacifica Liner",
+		"Prosperity Trader",
+		"Railway Hauler",
+		"Rimward Freighter",
+		"Solar Empress Liner",
+		"Star Skipper Trader",
+		"Starways Hauler",
+		"Void Hauler"
+	]
+	
+	# Ships that need individual custom scale overrides (applied after class-based scaling)
 	var custom_scale_ships = {
-		"Nebula Battleship": 1.1  # 10% larger
+		# Add individual ship overrides here if needed
 	}
 	
 	# All ship models with their paths
@@ -265,7 +368,17 @@ func _initialize_ship_data():
 		else:
 			rotation = default_rotation
 		
-		# Determine custom scale if specified
+		# Determine scale based on ship class
+		if ship_name in fighters or ship_name in scouts or ship_name in shuttles:
+			scale_mult = 0.9  # 10% smaller
+		elif ship_name in battleships:
+			scale_mult = 1.2  # 20% larger
+		elif ship_name in frigates or ship_name in cruisers or ship_name in cargo_ships:
+			scale_mult = 1.1  # 10% larger
+		else:
+			scale_mult = 1.0  # Default size
+		
+		# Apply individual custom scale overrides if specified
 		if custom_scale_ships.has(ship_name):
 			scale_mult = custom_scale_ships[ship_name]
 		
@@ -281,6 +394,14 @@ func get_ship_rotation(ship_name: String) -> Vector3:
 		# Return default rotation if ship not found
 		push_warning("Ship '%s' not found in ship_data, using default rotation" % ship_name)
 		return Vector3(0, 0, 0)
+
+func get_ship_scale(ship_name: String) -> float:
+	## Get the scale multiplier for a specific ship by name
+	if ship_configs.has(ship_name):
+		return ship_configs[ship_name].scale_multiplier
+	else:
+		# Return default scale if ship not found
+		return 1.0
 
 func get_ship_config(ship_name: String) -> ShipConfig:
 	## Get the full configuration for a specific ship

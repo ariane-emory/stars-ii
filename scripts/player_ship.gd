@@ -33,8 +33,11 @@ func _ready():
 			ship_name = model.scene_file_path.get_file().get_basename()
 			print("Ship name: ", ship_name)
 		
-		# Scale up model MUCH larger
-		model.scale = Vector3(100, 100, 100)
+		# Scale up model with ship-specific scale multiplier
+		var base_scale = 100.0
+		var scale_multiplier = ShipData.get_ship_scale(ship_name)
+		var final_scale = base_scale * scale_multiplier
+		model.scale = Vector3(final_scale, final_scale, final_scale)
 		print("Model scaled to: ", model.scale)
 		
 		# Convert all materials to unshaded

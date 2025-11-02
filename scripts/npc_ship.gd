@@ -29,10 +29,13 @@ func _ready():
 	# Random wander duration
 	wander_duration = randf_range(3.0, 8.0)
 	
-	# Scale up the model MUCH larger
+	# Scale up the model with ship-specific scale multiplier
 	var model = get_node_or_null("Model")
 	if model:
-		model.scale = Vector3(100, 100, 100)
+		var base_scale = 100.0
+		var scale_multiplier = ShipData.get_ship_scale(ship_name)
+		var final_scale = base_scale * scale_multiplier
+		model.scale = Vector3(final_scale, final_scale, final_scale)
 		
 		# Convert all materials to unshaded
 		convert_to_unshaded(model)
