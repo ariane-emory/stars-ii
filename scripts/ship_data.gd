@@ -129,7 +129,7 @@ func _initialize_ship_data():
 		"Sparrow Fighter": Vector3(0, -90, 0),
 		"Frostbite Gunship": Vector3(0, 90, 0),
 		"Icepick Fighter": Vector3(0, -90, 0),
-		"Forefront Interceptor": Vector3(0, -90, 0),
+		"Forefront Interceptor": Vector3(0, 90, 0),
 		"Dispatch Shuttle": Vector3(0, -90, 0),
 		"Toad Assault Ship": Vector3(0, -90, 0),
 		"Raven Scout": Vector3(0, -90, 0),
@@ -170,7 +170,7 @@ func _initialize_ship_data():
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
-			if file_name.ends_with(".glb"):
+			if file_name.ends_with(".glb") and not file_name.begins_with("Missile"):
 				var ship_name = file_name.replace(".glb", "")
 				ship_list.append(ship_name)
 				all_ship_paths.append("res://glb/" + file_name)
@@ -190,6 +190,10 @@ func _initialize_ship_data():
 			scale_multiplier = 1.5
 		elif ship_name == "Belt Freighter":
 			scale_multiplier = 1.5
+		elif ship_name == "Blood Eagle Fighter":
+			scale_multiplier = 0.5
+		elif ship_name == "Forefront Interceptor":
+			scale_multiplier = 0.9
 		# Reduce fighters, scouts, and shuttles by 0.1
 		elif ship_name.ends_with("Fighter") or ship_name.ends_with("Scout") or ship_name.ends_with("Shuttle"):
 			scale_multiplier = 0.8
