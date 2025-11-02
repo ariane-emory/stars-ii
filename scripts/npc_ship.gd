@@ -50,6 +50,17 @@ func _ready():
 
 
 func _physics_process(delta):
+	# Check if NPC ships are paused
+	if GameState.npc_paused:
+		# When paused, set velocity to zero and skip all movement logic
+		velocity = Vector3.ZERO
+		move_and_slide()
+		
+		# Still update name label position even when paused
+		if ship_name_label:
+			update_name_label_position()
+		return
+	
 	wander_time += delta
 	
 	# Pick a new target direction periodically

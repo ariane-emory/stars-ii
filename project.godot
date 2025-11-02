@@ -18,3 +18,4 @@ config/icon="res://icon.svg"
 [autoload]
 
 ShipData="*res://scripts/ship_data.gd"
+GameState="*res://scripts/game_state.gd"

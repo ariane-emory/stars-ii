@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cy8ym4xp7kfw"]
 
-[ext_resource type="Script" path="res://scripts/debug_hud.gd" id="1_hud"]
-[ext_resource type="Script" path="res://scripts/radar_display.gd" id="2_radar"]
+[ext_resource type="Script" uid="uid://cafqei28nbkgw" path="res://scripts/debug_hud.gd" id="1_hud"]
+[ext_resource type="Script" uid="uid://dsm8kwp3xqy2j" path="res://scripts/radar_display.gd" id="2_radar"]
 
 [node name="HUD" type="CanvasLayer"]
 
