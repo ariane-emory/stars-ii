@@ -136,7 +136,9 @@ func _initialize_ship_data():
 		"Sparrow Fighter",
 		"Frostbite Gunship",
 		"Executive Liner",
-		"Icepick Fighter"
+		"Icepick Fighter",
+		"Forefront Interceptor",
+		"Royal Standard Battleship"
 	]
 	
 	# Ships that need 180 degree rotation (pointing backwards)
