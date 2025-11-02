@@ -111,7 +111,9 @@ func _initialize_ship_data():
 		"Tropica Gunship",
 		"Mosquito Fighter",
 		"Railway Hauler",
-		"Barrier Frigate"
+		"Barrier Frigate",
+		"Stiletto Fighter",
+		"Star Skipper Trader"
 	]
 	
 	# Ships that need the reverse rotation (0, -90, 0) for right wingtip thrust
@@ -132,7 +134,9 @@ func _initialize_ship_data():
 		"Solar Empress Liner",
 		"Shadowblade Fighter",
 		"Prosperity Trader",
-		"Sparrow Fighter"
+		"Sparrow Fighter",
+		"Frostbite Gunship",
+		"Stinger Fighter"
 	]
 	
 	# Ships that need 180 degree rotation (pointing backwards)
@@ -141,9 +145,7 @@ func _initialize_ship_data():
 		"Eclipse Battlleship",
 		"Bulwark Battleship",
 		"Myrmidon Gunship",
-		"Star Skipper Trader",
-		"Stalwart Battleship",
-		"Stiletto Fighter",
+	"Stalwart Battleship",
 		"Raven Scout",
 		"Barricade Frigate"
 	]
@@ -164,7 +166,7 @@ func _initialize_ship_data():
 		"Sparrow Fighter",
 		"Star Eagle Fighter",
 		"Stiletto Fighter",
-		"Stingr",
+		"Stinger Fighter",
 		"Stingray Fighter",
 		"Sunbird Fighter",
 		"Vampie Fighter",
@@ -285,7 +287,9 @@ func _initialize_ship_data():
 		# Star Eagle Fighter - reduced by 10% (0.9 * 0.9)
 		"Star Eagle Fighter": 0.81,
 		# Spartan Gunship - boosted by 10% (1.05 * 1.1)
-		"Spartan Gunship": 1.155
+		"Spartan Gunship": 1.155,
+		# Railway Hauler - boosted by 10% (1.15 * 1.1)
+		"Railway Hauler": 1.265
 	}
 	
 	# All ship models with their paths
@@ -377,7 +381,7 @@ func _initialize_ship_data():
 		"Starways Hauler",
 		"Steadfast Frigate",
 		"Stiletto Fighter",
-		"Stingr",
+		"Stinger Fighter",
 		"Stingray Fighter",
 		"Strider Scout",
 		"Sunbird Fighter",
