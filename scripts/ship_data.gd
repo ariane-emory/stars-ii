@@ -106,7 +106,9 @@ func _initialize_ship_data():
 		"Rimward Freighter",
 		"Nubulous Scout",
 		"Hoplite Fighter",
-		"Tropica Gunship"
+		"Tropica Gunship",
+		"Mosquito Fighter",
+		"Railway Hauler"
 	]
 	
 	# Ships that need the reverse rotation (0, -90, 0) for right wingtip thrust

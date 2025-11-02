@@ -219,7 +219,7 @@ func update_name_label_position():
 	
 	# Position the label above the ship in screen space
 	# "Above" means towards the top of the screen (negative Y direction in screen coordinates)
-	var offset_above_ship = 40  # pixels above the ship
+	var offset_above_ship = 40 + (label_size.y * 1.5)  # 40 pixels + 1.5x text height above the ship
 	ship_name_label.position = Vector2(
 		ship_screen_pos.x - label_size.x / 2,  # Center horizontally
 		ship_screen_pos.y - label_size.y - offset_above_ship  # Position above ship
