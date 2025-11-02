@@ -203,26 +203,26 @@ func update_name_label_position():
 		ship_name_label.visible = false
 		return
 	
-	# Create a 3D position above the ship (in world space, not screen space)
-	# This makes the label offset scale correctly with perspective
-	var label_3d_pos = global_position + Vector3(0, 180, 0)  # 180 units above ship (higher positioning for better visibility)
-	
-	# Convert the offset world position to screen coordinates
-	var screen_pos = camera.unproject_position(label_3d_pos)
+	# Convert the ship's world position to screen coordinates
+	var ship_screen_pos = camera.unproject_position(global_position)
 	
 	# Check if the screen position is within viewport bounds
 	var viewport_size = get_viewport().get_visible_rect().size
-	if screen_pos.x < -100 or screen_pos.x > viewport_size.x + 100 or \
-	   screen_pos.y < -100 or screen_pos.y > viewport_size.y + 100:
+	if ship_screen_pos.x < -100 or ship_screen_pos.x > viewport_size.x + 100 or \
+	   ship_screen_pos.y < -100 or ship_screen_pos.y > viewport_size.y + 100:
 		ship_name_label.visible = false
 		return
 	
 	# Ship is visible, show label and update position
 	ship_name_label.visible = true
 	var label_size = ship_name_label.get_size()
+	
+	# Position the label above the ship in screen space
+	# "Above" means towards the top of the screen (negative Y direction in screen coordinates)
+	var offset_above_ship = 40  # pixels above the ship
 	ship_name_label.position = Vector2(
-		screen_pos.x - label_size.x / 2,
-		screen_pos.y - label_size.y / 2
+		ship_screen_pos.x - label_size.x / 2,  # Center horizontally
+		ship_screen_pos.y - label_size.y - offset_above_ship  # Position above ship
 	)
 
 func _exit_tree():
