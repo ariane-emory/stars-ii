@@ -114,7 +114,8 @@ func _initialize_ship_data():
 		"Barrier Frigate",
 		"Stiletto Fighter",
 		"Star Skipper Trader",
-		"Eclipse Battlleship"
+		"Eclipse Battlleship",
+		"Stinger Fighter"
 	]
 	
 	# Ships that need the reverse rotation (0, -90, 0) for right wingtip thrust
@@ -148,8 +149,7 @@ func _initialize_ship_data():
 		"Myrmidon Gunship",
 		"Stalwart Battleship",
 		"Raven Scout",
-		"Barricade Frigate",
-		"Stinger Fighter"
+		"Barricade Frigate"
 	]
 	
 	# Ship class categorization for scaling
