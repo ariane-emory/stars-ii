@@ -3,8 +3,8 @@ extends Camera3D
 ## Camera that keeps the player ship centered on screen at all times
 
 @export var base_camera_offset: Vector3 = Vector3(0, 855.7, 0)  # Base zoom level (100%)
-@export var min_zoom: float = 0.5  # 50% zoom
-@export var max_zoom: float = 2.0  # 200% zoom
+@export var min_zoom: float = 0.25  # 25% zoom (zoomed out for wide view)
+@export var max_zoom: float = 2.0  # 200% zoom (zoomed in for close view)
 @export var zoom_speed: float = 0.1  # How much each scroll changes zoom
 @export var zoom_smoothing: float = 10.0  # Higher = faster interpolation
 

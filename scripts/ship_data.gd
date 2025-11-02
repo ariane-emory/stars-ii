@@ -8,11 +8,13 @@ class ShipConfig:
 	var name: String
 	var model_path: String
 	var rotation_correction: Vector3
+	var scale_multiplier: float
 	
-	func _init(p_name: String, p_model_path: String, p_rotation: Vector3):
+	func _init(p_name: String, p_model_path: String, p_rotation: Vector3, p_scale: float = 1.0):
 		name = p_name
 		model_path = p_model_path
 		rotation_correction = p_rotation
+		scale_multiplier = p_scale
 
 # Dictionary of ship configurations indexed by ship name
 var ship_configs: Dictionary = {}
@@ -130,6 +132,11 @@ func _initialize_ship_data():
 		"Star Skipper Trader"
 	]
 	
+	# Ships that need custom scale multipliers (default is 1.0)
+	var custom_scale_ships = {
+		"Nebula Battleship": 1.1  # 10% larger
+	}
+	
 	# All ship models with their paths
 	var ship_list = [
 		"Alpine Cruiser",
@@ -244,6 +251,7 @@ func _initialize_ship_data():
 	for ship_name in ship_list:
 		var model_path = "res://glb/" + ship_name + ".glb"
 		var rotation: Vector3
+		var scale_mult: float = 1.0
 		
 		# Determine which rotation to use
 		if ship_name in alt_rotation_ships:
@@ -257,7 +265,11 @@ func _initialize_ship_data():
 		else:
 			rotation = default_rotation
 		
-		var config = ShipConfig.new(ship_name, model_path, rotation)
+		# Determine custom scale if specified
+		if custom_scale_ships.has(ship_name):
+			scale_mult = custom_scale_ships[ship_name]
+		
+		var config = ShipConfig.new(ship_name, model_path, rotation, scale_mult)
 		ship_configs[ship_name] = config
 		all_ship_paths.append(model_path)
 
