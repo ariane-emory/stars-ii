@@ -110,7 +110,8 @@ func _initialize_ship_data():
 		"Hoplite Fighter",
 		"Tropica Gunship",
 		"Mosquito Fighter",
-		"Railway Hauler"
+		"Railway Hauler",
+		"Barrier Frigate"
 	]
 	
 	# Ships that need the reverse rotation (0, -90, 0) for right wingtip thrust
@@ -122,7 +123,12 @@ func _initialize_ship_data():
 		"Batwing Gunship",
 		"Front Line Frigate",
 		"Viking Frigate",
-		"Sea Turtle Shuttle"
+		"Sea Turtle Shuttle",
+		"Darkling Fighter",
+		"Barricade Frigate",
+		"Stiletto Fighter",
+		"Bulwark Battleship",
+		"Steadfast Frigate"
 	]
 	
 	# Ships that need 180 degree rotation (pointing backwards)
@@ -264,7 +270,12 @@ func _initialize_ship_data():
 	
 	# Ships that need individual custom scale overrides (applied after class-based scaling)
 	var custom_scale_ships = {
-		"Unyielding Battleship": 1.43  # 10% larger than standard battleship scale (1.3 * 1.1)
+		"Unyielding Battleship": 1.43,  # 10% larger than standard battleship scale (1.3 * 1.1)
+		# Patrol Ships - boosted by 10% to match gunship size (1.0 * 1.1)
+		"Perimiter Patrol Ship": 1.1,
+		"Sentry Patrol Ship": 1.1,
+		"Secutor Patrol Ship": 1.1,
+		"Spike Patrol Ship": 1.1
 	}
 	
 	# All ship models with their paths

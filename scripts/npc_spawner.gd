@@ -23,14 +23,23 @@ func spawn_npcs():
             sin(angle) * distance
         )
         
-        # Randomize ship model - select random GLB from ShipData
-        var ship_paths = ShipData.get_all_ship_paths()
-        var random_model_path = ship_paths[randi() % ship_paths.size()]
-        var model_scene = load(random_model_path)
+        # Force spawn specific ships for testing
+        var ship_name: String
+        var model_scene
+        var test_ships = ["Barricade Frigate", "Stiletto Fighter", "Bulwark Battleship", "Steadfast Frigate"]
+        if i < 4:
+            ship_name = test_ships[i]
+            model_scene = load("res://glb/" + ship_name + ".glb")
+        else:
+            # Randomize ship model - select random GLB from ShipData
+            var ship_paths = ShipData.get_all_ship_paths()
+            var random_model_path = ship_paths[randi() % ship_paths.size()]
+            model_scene = load(random_model_path)
+            # Extract ship name from path using ShipData helper
+            ship_name = ShipData.get_ship_name_from_path(random_model_path)
         
-        # Extract ship name from path using ShipData helper
-        var ship_name = ShipData.get_ship_name_from_path(random_model_path)
         npc.ship_name = ship_name
+        print("Testing ship: ", ship_name)
         
         # Remove the default Model node if it exists
         var old_model = npc.get_node_or_null("Model")
