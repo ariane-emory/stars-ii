@@ -119,18 +119,20 @@ func _initialize_ship_data():
 		"Stalwart Battleship",
 		"Horseman Gunship",
 		"Nova Battleship",
-		"Prosperity Trader",
 		"Batwing Gunship",
 		"Front Line Frigate",
 		"Viking Frigate",
 		"Sea Turtle Shuttle",
 		"Darkling Fighter",
-		"Barricade Frigate",
 		"Bulwark Battleship",
 		"Steadfast Frigate",
 		"Spartan Gunship",
-		"Raven Scout",
-		"Robin Gunship"
+		"Robin Gunship",
+		"Carp Trader",
+		"Solar Empress Liner",
+		"Shadowblade Fighter",
+		"Prosperity Trader",
+		"Sparrow Fighter"
 	]
 	
 	# Ships that need 180 degree rotation (pointing backwards)
@@ -141,7 +143,9 @@ func _initialize_ship_data():
 		"Myrmidon Gunship",
 		"Star Skipper Trader",
 		"Stalwart Battleship",
-		"Stiletto Fighter"
+		"Stiletto Fighter",
+		"Raven Scout",
+		"Barricade Frigate"
 	]
 	
 	# Ship class categorization for scaling
@@ -156,8 +160,7 @@ func _initialize_ship_data():
 		"Icepick Fighter",
 		"Mosquito Fighter",
 		"Pikeman Fighter",
-		"Rack Fighter",
-		"Shadoblade Fighter",
+		"Shadowblade Fighter",
 		"Sparrow Fighter",
 		"Star Eagle Fighter",
 		"Stiletto Fighter",
@@ -277,8 +280,10 @@ func _initialize_ship_data():
 		# Patrol Ships - boosted by 10% to match gunship size (1.0 * 1.1)
 		"Perimiter Patrol Ship": 1.1,
 		"Sentry Patrol Ship": 1.1,
-		"Secutor Patrol Ship": 1.1,
+		"Secutor Patrol Ship": 1.21,  # Additional 10% larger (1.1 * 1.1)
 		"Spike Patrol Ship": 1.1,
+		# Star Eagle Fighter - reduced by 10% (0.9 * 0.9)
+		"Star Eagle Fighter": 0.81,
 		# Spartan Gunship - boosted by 10% (1.05 * 1.1)
 		"Spartan Gunship": 1.155
 	}
@@ -357,7 +362,7 @@ func _initialize_ship_data():
 		"Sea Turtle Shuttle",
 		"Secutor Patrol Ship",
 		"Sentry Patrol Ship",
-		"Shadoblade Fighter",
+		"Shadowblade Fighter",
 		"Shark Gunship",
 		"Shield Battleship",
 		"Snowbird Gunship",
