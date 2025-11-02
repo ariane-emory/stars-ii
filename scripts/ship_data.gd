@@ -116,7 +116,7 @@ var ship_configs: Dictionary = {
 	"Fleetfoot Scout": ShipConfig.new("Fleetfoot Scout", "res://glb/Fleetfoot Scout.glb", Vector3(0, 90, 0), 0.8),
 	"Guardian Battleship": ShipConfig.new("Guardian Battleship", "res://glb/Guardian Battleship.glb", Vector3(0, 90, 0), 1.1),
 	"Infernus Gunship": ShipConfig.new("Infernus Gunship", "res://glb/Infernus Gunship.glb", Vector3(0, 90, 0), 1.1),
-	"Naos Shuttle": ShipConfig.new("Naos Shuttle", "res://glb/Naos Shuttle.glb", Vector3(0, 90, 0), 0.8),
+	"Naos Shuttle": ShipConfig.new("Naos Shuttle", "res://glb/Naos Shuttle.glb", Vector3(0, 180, 0), 0.8),
 	"Sea Turtle Shuttle": ShipConfig.new("Sea Turtle Shuttle", "res://glb/Sea Turtle Shuttle.glb", Vector3(0, -90, 0), 0.8),
 	"Shield Battleship": ShipConfig.new("Shield Battleship", "res://glb/Shield Battleship.glb", Vector3(0, 90, 0), 1.65),
 	"Snowbird Gunship": ShipConfig.new("Snowbird Gunship", "res://glb/Snowbird Gunship.glb", Vector3(0, 90, 0), 1.1),
