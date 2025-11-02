@@ -59,6 +59,8 @@ func _initialize_ship_data():
 		"Rack Fighter",
 		"Shark Gunship",
 		"Fortress Cruiser",
+		"Brachiator Gun Platform",
+		"Brawler Gunship",
 		"Starways Hauler",
 		"Strider Scout",
 		"Fleetfoot Scout",
