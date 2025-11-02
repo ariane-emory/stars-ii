@@ -120,7 +120,9 @@ func _initialize_ship_data():
 		"Nova Battleship",
 		"Prosperity Trader",
 		"Batwing Gunship",
-		"Front Line Frigate"
+		"Front Line Frigate",
+		"Viking Frigate",
+		"Sea Turtle Shuttle"
 	]
 	
 	# Ships that need 180 degree rotation (pointing backwards)
@@ -129,7 +131,8 @@ func _initialize_ship_data():
 		"Eclipse Battlleship",
 		"Bulwark Battleship",
 		"Myrmidon Gunship",
-		"Star Skipper Trader"
+		"Star Skipper Trader",
+		"Stalwart Battleship"
 	]
 	
 	# Ship class categorization for scaling
@@ -235,9 +238,33 @@ func _initialize_ship_data():
 		"Void Hauler"
 	]
 	
+	# Gunships: 1.05 (5% larger than default)
+	var gunships = [
+		"Banshee Gunship",
+		"Batwing Gunship",
+		"Brawler Gunship",
+		"Frostbite Gunship",
+		"Horseman Gunship",
+		"Infernus Gunship",
+		"Myrmidon Gunship",
+		"Northerner Gunship",
+		"Overlook Gunship",
+		"Pacer Gunship",
+		"Paladin Gunship",
+		"Robin Gunship",
+		"Shark Gunship",
+		"Snowbird Gunship",
+		"Spartan Gunship",
+		"Swordsman Gunship",
+		"Tortoise Gunship",
+		"Tropica Gunship",
+		"Valiant Gunship",
+		"Vulture Gunship"
+	]
+	
 	# Ships that need individual custom scale overrides (applied after class-based scaling)
 	var custom_scale_ships = {
-		# Add individual ship overrides here if needed
+		"Unyielding Battleship": 1.43  # 10% larger than standard battleship scale (1.3 * 1.1)
 	}
 	
 	# All ship models with their paths
@@ -370,11 +397,13 @@ func _initialize_ship_data():
 		
 		# Determine scale based on ship class
 		if ship_name in fighters or ship_name in scouts or ship_name in shuttles:
-			scale_mult = 0.9  # 10% smaller
+			scale_mult = 0.8  # 20% smaller total
 		elif ship_name in battleships:
-			scale_mult = 1.2  # 20% larger
+			scale_mult = 1.3  # 30% larger
 		elif ship_name in frigates or ship_name in cruisers or ship_name in cargo_ships:
-			scale_mult = 1.1  # 10% larger
+			scale_mult = 1.15  # 15% larger
+		elif ship_name in gunships:
+			scale_mult = 1.05  # 5% larger than default
 		else:
 			scale_mult = 1.0  # Default size
 		
