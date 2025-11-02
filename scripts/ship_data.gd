@@ -129,7 +129,8 @@ func _initialize_ship_data():
 		"Bulwark Battleship",
 		"Steadfast Frigate",
 		"Spartan Gunship",
-		"Raven Scout"
+		"Raven Scout",
+		"Robin Gunship"
 	]
 	
 	# Ships that need 180 degree rotation (pointing backwards)
