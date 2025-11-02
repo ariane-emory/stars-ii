@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b83l8acotwhxv"
-path="res://.godot/imported/Nordic LIner.glb-aebdfc0157bf020b6e155809823cf1d6.scn"
+uid="uid://djal2gwbrgwhx"
+path="res://.godot/imported/Nordic Liner.glb-5cf45108b90534e8613d74cca9f7a397.scn"
 
 [deps]
 
-source_file="res://glb/Nordic LIner.glb"
-dest_files=["res://.godot/imported/Nordic LIner.glb-aebdfc0157bf020b6e155809823cf1d6.scn"]
+source_file="res://glb/Nordic Liner.glb"
+dest_files=["res://.godot/imported/Nordic Liner.glb-5cf45108b90534e8613d74cca9f7a397.scn"]
 
 [params]
 
