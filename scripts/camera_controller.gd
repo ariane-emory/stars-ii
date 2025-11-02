@@ -2,7 +2,7 @@ extends Camera3D
 
 ## Camera that keeps the player ship centered on screen at all times
 
-@export var camera_offset: Vector3 = Vector3(0, 707.2, 0)
+@export var camera_offset: Vector3 = Vector3(0, 855.7, 0)  # 21% zoom out from original 707.2 (two 10% increases)
 
 var player: Node3D
 

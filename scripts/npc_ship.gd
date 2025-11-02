@@ -205,7 +205,7 @@ func update_name_label_position():
 	
 	# Create a 3D position above the ship (in world space, not screen space)
 	# This makes the label offset scale correctly with perspective
-	var label_3d_pos = global_position + Vector3(0, 75, 0)  # 75 units above ship
+	var label_3d_pos = global_position + Vector3(0, 180, 0)  # 180 units above ship (higher positioning for better visibility)
 	
 	# Convert the offset world position to screen coordinates
 	var screen_pos = camera.unproject_position(label_3d_pos)

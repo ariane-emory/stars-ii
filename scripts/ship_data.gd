@@ -58,7 +58,6 @@ func _initialize_ship_data():
 		"Lineman Hauler",
 		"Rack Fighter",
 		"Shark Gunship",
-		"Star Skipper Trader",
 		"Fortress Cruiser",
 		"Starways Hauler",
 		"Strider Scout",
@@ -113,14 +112,18 @@ func _initialize_ship_data():
 		"Stalwart Battleship",
 		"Horseman Gunship",
 		"Nova Battleship",
-		"Prosperity Trader"
+		"Prosperity Trader",
+		"Batwing Gunship",
+		"Front Line Frigate"
 	]
 	
 	# Ships that need 180 degree rotation (pointing backwards)
 	var flip_rotation_ships = [
 		"Belt Freighter",
 		"Eclipse Battlleship",
-		"Bulwark Battleship"
+		"Bulwark Battleship",
+		"Myrmidon Gunship",
+		"Star Skipper Trader"
 	]
 	
 	# All ship models with their paths
