@@ -109,7 +109,7 @@ func _initialize_ship_data():
 		"Stinger Fighter": Vector3(0, 90, 0),
 		"Stalwart Battleship": Vector3(0, 90, 0),
 		"Bulwark Battleship": Vector3(0, 90, 0),
-		"Spike Patrol Ship": Vector3(0, 90, 0),
+		"Spike Patrol Ship": Vector3(0, -90, 0),
 		"Barricade Frigate": Vector3(0, 90, 0),
 		
 		# Reverse rotation (0, -90, 0) - left wingtip thrust
@@ -122,18 +122,18 @@ func _initialize_ship_data():
 		"Darkling Fighter": Vector3(0, -90, 0),
 		"Spartan Gunship": Vector3(0, -90, 0),
 		"Robin Gunship": Vector3(0, 90, 0),
-		"Carp Trader": Vector3(0, -90, 0),
+		"Carp Trader": Vector3(0, 90, 0),
 		"Solar Empress Liner": Vector3(0, -90, 0),
-		"Shadowblade Fighter": Vector3(0, -90, 0),
+		"Shadowblade Fighter": Vector3(0, 90, 0),
 		"Prosperity Trader": Vector3(0, 90, 0),
 		"Sparrow Fighter": Vector3(0, -90, 0),
-		"Frostbite Gunship": Vector3(0, -90, 0),
+		"Frostbite Gunship": Vector3(0, 90, 0),
 		"Icepick Fighter": Vector3(0, -90, 0),
 		"Forefront Interceptor": Vector3(0, -90, 0),
 		"Dispatch Shuttle": Vector3(0, -90, 0),
 		"Toad Assault Ship": Vector3(0, -90, 0),
 		"Raven Scout": Vector3(0, -90, 0),
-		"Banshee Gunship": Vector3(0, -90, 0),
+		"Banshee Gunship": Vector3(0, 90, 0),
 		
 		# 180 degree rotation (0, 180, 0) - backward thrust
 		"Belt Freighter": Vector3(0, 180, 0),
@@ -182,11 +182,29 @@ func _initialize_ship_data():
 		if ship_rotation_dict.has(ship_name):
 			rotation = ship_rotation_dict[ship_name]
 		
+		# Set scale multiplier for specific ships
+		var scale_multiplier = 1.0
+		
+		# Special cases for haulers and freighters
+		if ship_name == "Railway Hauler":
+			scale_multiplier = 1.5
+		elif ship_name == "Belt Freighter":
+			scale_multiplier = 1.5
+		# Reduce fighters, scouts, and shuttles by 0.1
+		elif ship_name.ends_with("Fighter") or ship_name.ends_with("Scout") or ship_name.ends_with("Shuttle"):
+			scale_multiplier = 0.8
+		# Increase battleships and cruisers by 0.1
+		elif ship_name.ends_with("Battleship") or ship_name.ends_with("Cruiser"):
+			scale_multiplier = 1.1
+		# Increase liners by 0.2
+		elif ship_name.ends_with("Liner"):
+			scale_multiplier = 1.2
+		
 		var config = ShipConfig.new(
 			ship_name,
 			"res://glb/" + ship_name + ".glb",
 			rotation,
-			1.0
+			scale_multiplier
 		)
 		ship_configs[ship_name] = config
 
