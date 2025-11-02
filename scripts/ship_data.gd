@@ -221,6 +221,8 @@ func _initialize_ship_data():
 			scale_multiplier = 1.25
 		elif ship_name == "Void Hauler":
 			scale_multiplier = 1.5
+		elif ship_name == "Strider Scout":
+			scale_multiplier = 0.9
 		# Reduce fighters, scouts, and shuttles by 0.1
 		elif ship_name.ends_with("Fighter") or ship_name.ends_with("Scout") or ship_name.ends_with("Shuttle"):
 			scale_multiplier = 0.8
