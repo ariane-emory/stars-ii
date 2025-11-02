@@ -114,7 +114,7 @@ var ship_configs: Dictionary = {
 	"Zephyr Scout": ShipConfig.new("Zephyr Scout", "res://glb/Zephyr Scout.glb", Vector3(0, 90, 0), 0.8),
 	"Equinox Battleship": ShipConfig.new("Equinox Battleship", "res://glb/Equinox Battleship.glb", Vector3(0, 90, 0), 1.375),
 	"Fleetfoot Scout": ShipConfig.new("Fleetfoot Scout", "res://glb/Fleetfoot Scout.glb", Vector3(0, 90, 0), 0.8),
-	"Guardian Battleship": ShipConfig.new("Guardian Battleship", "res://glb/Guardian Battleship.glb", Vector3(0, 90, 0), 1.1),
+	"Guardian Battleship": ShipConfig.new("Guardian Battleship", "res://glb/Guardian Battleship.glb", Vector3(0, 90, 0), 2.2),
 	"Infernus Gunship": ShipConfig.new("Infernus Gunship", "res://glb/Infernus Gunship.glb", Vector3(0, 90, 0), 1.1),
 	"Naos Shuttle": ShipConfig.new("Naos Shuttle", "res://glb/Naos Shuttle.glb", Vector3(0, 180, 0), 0.8),
 	"Sea Turtle Shuttle": ShipConfig.new("Sea Turtle Shuttle", "res://glb/Sea Turtle Shuttle.glb", Vector3(0, -90, 0), 0.8),
@@ -122,7 +122,7 @@ var ship_configs: Dictionary = {
 	"Snowbird Gunship": ShipConfig.new("Snowbird Gunship", "res://glb/Snowbird Gunship.glb", Vector3(0, 90, 0), 1.1),
 	"Spartan Gunship": ShipConfig.new("Spartan Gunship", "res://glb/Spartan Gunship.glb", Vector3(0, -90, 0), 1.1),
 	"Stinger Fighter": ShipConfig.new("Stinger Fighter", "res://glb/Stinger Fighter.glb", Vector3(0, 90, 0), 0.72),
-	"Sunbird Fighter": ShipConfig.new("Sunbird Fighter", "res://glb/Sunbird Fighter.glb", Vector3(0, -90, 0), 0.4),
+	"Sunbird Fighter": ShipConfig.new("Sunbird Fighter", "res://glb/Sunbird Fighter.glb", Vector3(0, 0, 0), 0.4),
 	"Unyielding Battleship": ShipConfig.new("Unyielding Battleship", "res://glb/Unyielding Battleship.glb", Vector3(0, -90, 0), 1.1),
 	"Valiant Gunship": ShipConfig.new("Valiant Gunship", "res://glb/Valiant Gunship.glb", Vector3(0, 90, 0), 1.1),
 	"Vampie Fighter": ShipConfig.new("Vampie Fighter", "res://glb/Vampie Fighter.glb", Vector3(0, 90, 0), 0.8)
