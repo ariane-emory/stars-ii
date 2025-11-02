@@ -119,7 +119,7 @@ func _initialize_ship_data():
 		"Front Line Frigate": Vector3(0, -90, 0),
 		"Viking Frigate": Vector3(0, -90, 0),
 		"Sea Turtle Shuttle": Vector3(0, -90, 0),
-		"Darkling Fighter": Vector3(0, -90, 0),
+		"Darkling Fighter": Vector3(0, 90, 0),
 		"Spartan Gunship": Vector3(0, -90, 0),
 		"Robin Gunship": Vector3(0, 90, 0),
 		"Carp Trader": Vector3(0, 90, 0),
@@ -128,7 +128,7 @@ func _initialize_ship_data():
 		"Prosperity Trader": Vector3(0, 90, 0),
 		"Sparrow Fighter": Vector3(0, -90, 0),
 		"Frostbite Gunship": Vector3(0, 90, 0),
-		"Icepick Fighter": Vector3(0, -90, 0),
+		"Icepick Fighter": Vector3(0, 90, 0),
 		"Forefront Interceptor": Vector3(0, 90, 0),
 		"Dispatch Shuttle": Vector3(0, 90, 0),
 		"Toad Assault Ship": Vector3(0, -90, 0),
@@ -196,7 +196,7 @@ func _initialize_ship_data():
 		elif ship_name == "Forefront Interceptor":
 			scale_multiplier = 0.9
 		elif ship_name == "Alpine Cruiser":
-			scale_multiplier = 1.1
+			scale_multiplier = 1.25
 		elif ship_name == "Longhauler Freighter":
 			scale_multiplier = 1.21
 		elif ship_name == "Long Shot Gun Platform":
@@ -223,6 +223,14 @@ func _initialize_ship_data():
 			scale_multiplier = 1.5
 		elif ship_name == "Strider Scout":
 			scale_multiplier = 0.9
+		elif ship_name == "Vulture Gunship":
+			scale_multiplier = 0.5
+		elif ship_name == "Overlook Gunship":
+			scale_multiplier = 0.9
+		elif ship_name == "Empress Liner":
+			scale_multiplier = 1.5
+		elif ship_name == "Viking Frigate":
+			scale_multiplier = 1.25
 		# Reduce fighters, scouts, and shuttles by 0.1
 		elif ship_name.ends_with("Fighter") or ship_name.ends_with("Scout") or ship_name.ends_with("Shuttle"):
 			scale_multiplier = 0.8
