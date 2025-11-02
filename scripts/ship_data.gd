@@ -126,9 +126,10 @@ func _initialize_ship_data():
 		"Sea Turtle Shuttle",
 		"Darkling Fighter",
 		"Barricade Frigate",
-		"Stiletto Fighter",
 		"Bulwark Battleship",
-		"Steadfast Frigate"
+		"Steadfast Frigate",
+		"Spartan Gunship",
+		"Raven Scout"
 	]
 	
 	# Ships that need 180 degree rotation (pointing backwards)
@@ -138,7 +139,8 @@ func _initialize_ship_data():
 		"Bulwark Battleship",
 		"Myrmidon Gunship",
 		"Star Skipper Trader",
-		"Stalwart Battleship"
+		"Stalwart Battleship",
+		"Stiletto Fighter"
 	]
 	
 	# Ship class categorization for scaling
@@ -275,7 +277,9 @@ func _initialize_ship_data():
 		"Perimiter Patrol Ship": 1.1,
 		"Sentry Patrol Ship": 1.1,
 		"Secutor Patrol Ship": 1.1,
-		"Spike Patrol Ship": 1.1
+		"Spike Patrol Ship": 1.1,
+		# Spartan Gunship - boosted by 10% (1.05 * 1.1)
+		"Spartan Gunship": 1.155
 	}
 	
 	# All ship models with their paths

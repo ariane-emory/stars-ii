@@ -32,19 +32,16 @@ func _ready():
 	# Scale up the model with ship-specific scale multiplier
 	var model = get_node_or_null("Model")
 	if model:
-		print("Model found for ship: ", ship_name)
 		var base_scale = 100.0
 		var scale_multiplier = ShipData.get_ship_scale(ship_name)
 		var final_scale = base_scale * scale_multiplier
 		model.scale = Vector3(final_scale, final_scale, final_scale)
-		print("Ship ", ship_name, " scaled to: ", model.scale, " (multiplier: ", scale_multiplier, ")")
 		
 		# Convert all materials to unshaded
 		convert_to_unshaded(model)
 		
 		# Apply standard rotation fix for all ships
 		apply_standard_rotation_fix(model)
-		print("Applied rotation fix for: ", ship_name)
 	
 	# Create a 3D label to display the ship name
 	if ship_name != "":
