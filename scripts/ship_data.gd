@@ -113,7 +113,8 @@ func _initialize_ship_data():
 		"Railway Hauler",
 		"Barrier Frigate",
 		"Stiletto Fighter",
-		"Star Skipper Trader"
+		"Star Skipper Trader",
+		"Eclipse Battlleship"
 	]
 	
 	# Ships that need the reverse rotation (0, -90, 0) for right wingtip thrust
@@ -143,7 +144,6 @@ func _initialize_ship_data():
 	# Ships that need 180 degree rotation (pointing backwards)
 	var flip_rotation_ships = [
 		"Belt Freighter",
-		"Eclipse Battlleship",
 		"Bulwark Battleship",
 		"Myrmidon Gunship",
 		"Stalwart Battleship",
