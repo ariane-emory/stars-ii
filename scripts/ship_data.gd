@@ -22,6 +22,15 @@ var ship_configs: Dictionary = {}
 # List of all ship model paths (for random selection)
 var all_ship_paths: Array[String] = []
 
+# Complete ship list (for validation)
+var ship_list: Array[String] = []
+
+# Individual ship rotation configuration
+var ship_rotation_dict: Dictionary = {}
+
+# Default rotation for most ships
+var default_rotation: Vector3 = Vector3(0, 0, 0)
+
 func _ready():
 	_initialize_ship_data()
 
@@ -29,453 +38,200 @@ func _initialize_ship_data():
 	## Initialize all ship configurations with their rotation corrections
 	
 	# Default rotation for most ships (the majority need this)
-	var default_rotation = Vector3(0, 0, 0)
 	
-	# Old default rotation - some ships still need this
-	var old_default_rotation = Vector3(90, 90, 0)
-	
-	# Alternative rotation for ships with different GLB orientation (left wingtip thrust)
-	var alt_rotation = Vector3(0, 90, 0)
-	
-	# Reverse rotation for ships with right wingtip thrust (opposite of alt_rotation)
-	var reverse_rotation = Vector3(0, -90, 0)
-	
-	# 180 degree rotation for ships pointing backwards
-	var flip_rotation = Vector3(0, 180, 0)
-	
-	# Ships that need the old default rotation (90, 90, 0)
-	# NOTE: This rotation causes pitch which is visible in top-down view
-	# Keeping this list for reference but it should be empty for top-down gameplay
-	var old_default_ships = [
-	]
-	
-	# Ships that need the alternative rotation (0, 90, 0)
-	var alt_rotation_ships = [
-		"Pickax Mining Ship",
-		"Luna Shuttle",
-		"Cyclops Missile Boat",
-		"Blood Eagle Fighter",
-		"Vulture Gunship",
-		"Fury Fighter",
-		"Lineman Hauler",
-		"Rack Fighter",
-		"Shark Gunship",
-		"Fortress Cruiser",
-		"Brachiator Gun Platform",
-		"Brawler Gunship",
-		"Starways Hauler",
-		"Strider Scout",
-		"Fleetfoot Scout",
-		"Vector Battleship",
-		"Equinox Battleship",
-		"Tortoise Gunship",
-		"Drushi Battleship",
-		"Star Eagle Fighter",
-		"Occulus Gun Platform",
-		"Spear Frigate",
-		"Shield Battleship",
-		"Breacher Assault Ship",
-		"Pacifica Liner",
-		"Falcon Scout",
-		"Pacer Gunship",
-		"Resolute Frigate",
-		"Dagger Fighter",
-		"Wasp Fighter",
-		"Longhauler Freighter",
-		"Zephyr Scout",
-		"Nebula Battleship",
-		"Dart Scout",
-		"Perimiter Patrol Ship",
-		"Sentry Patrol Ship",
-		"Secutor Patrol Ship",
-		"Viceroy Shuttle",
-		"Long Shot Gun Platform",
-		"Express Trader",
-		"Swordsman Gunship",
-		"Stingray Fighter",
-		"Paladin Gunship",
-		"Nordic LIner",
-		"Empress Liner",
-		"Overlook Gunship",
-		"Paragon Shuttle",
-		"Northerner Gunship",
-		"Dwarf Fighter",
-		"Gattler Frigate",
-		"Snowbird Gunship",
-		"Dolphin Trader",
-		"Sundown Cruiser",
-		"Quadrant Frigate",
-		"Rimward Freighter",
-		"Nubulous Scout",
-		"Hoplite Fighter",
-		"Tropica Gunship",
-		"Mosquito Fighter",
-		"Railway Hauler",
-		"Barrier Frigate",
-		"Stiletto Fighter",
-		"Star Skipper Trader",
-		"Eclipse Battlleship",
-		"Stinger Fighter",
-		"Stalwart Battleship",
-		"Bulwark Battleship",
-		"Spike Patrol Ship",
-		"Barricade Frigate"
-	]
-	
-	# Ships that need the reverse rotation (0, -90, 0) for right wingtip thrust
-	var reverse_rotation_ships = [
-		"Horseman Gunship",
-		"Nova Battleship",
-		"Batwing Gunship",
-		"Front Line Frigate",
-		"Viking Frigate",
-		"Sea Turtle Shuttle",
-		"Darkling Fighter",
-		"Spartan Gunship",
-		"Robin Gunship",
-		"Carp Trader",
-		"Solar Empress Liner",
-		"Shadowblade Fighter",
-		"Prosperity Trader",
-		"Sparrow Fighter",
-		"Frostbite Gunship",
-		"Icepick Fighter",
-		"Forefront Interceptor",
-		"Dispatch Shuttle",
-		"Toad Assault Ship",
-		"Raven Scout",
-		"Banshee Gunship"
-	]
-	
-	# Ships that need 180 degree rotation (pointing backwards)
-	var flip_rotation_ships = [
-		"Belt Freighter",
-		"Myrmidon Gunship",
-		"Executive Liner",
-		"Pikeman Fighter",
-		"Royal Standard Battleship",
-		"Steadfast Frigate"
-	]
-	
-	# Ship class categorization for scaling
-	# Fighters: 0.9 (10% smaller)
-	var fighters = [
-		"Blood Eagle Fighter",
-		"Dagger Fighter",
-		"Darkling Fighter",
-		"Dwarf Fighter",
-		"Fury Fighter",
-		"Hoplite Fighter",
-		"Icepick Fighter",
-		"Mosquito Fighter",
-		"Pikeman Fighter",
-		"Shadowblade Fighter",
-		"Sparrow Fighter",
-		"Star Eagle Fighter",
-		"Stiletto Fighter",
-		"Stinger Fighter",
-		"Stingray Fighter",
-		"Sunbird Fighter",
-		"Vampie Fighter",
-		"Wasp Fighter"
-	]
-	
-	# Scouts: 0.9 (10% smaller)
-	var scouts = [
-		"Dart Scout",
-		"Falcon Scout",
-		"Fleetfoot Scout",
-		"Nubulous Scout",
-		"Raven Scout",
-		"Strider Scout",
-		"Zephyr Scout"
-	]
-	
-	# Shuttles: 0.9 (10% smaller)
-	var shuttles = [
-		"Dispatch Shuttle",
-		"Luna Shuttle",
-		"Naos Shuttle",
-		"Paragon Shuttle",
-		"Sea Turtle Shuttle",
-		"Viceroy Shuttle"
-	]
-	
-	# Battleships: 1.2 (20% larger)
-	var battleships = [
-		"Bulwark Battleship",
-		"Drushi Battleship",
-		"Eclipse Battlleship",
-		"Equinox Battleship",
-		"Guardian Battleship",
-		"Nebula Battleship",
-		"Nova Battleship",
-		"Royal Standard Battleship",
-		"Shield Battleship",
-		"Stalwart Battleship",
-		"Unyielding Battleship",
-		"Vector Battleship"
-	]
-	
-	# Frigates: 1.1 (10% larger)
-	var frigates = [
-		"Barricade Frigate",
-		"Barrier Frigate",
-		"Front Line Frigate",
-		"Gattler Frigate",
-		"Quadrant Frigate",
-		"Resolute Frigate",
-		"Spear Frigate",
-		"Steadfast Frigate",
-		"Viking Frigate"
-	]
-	
-	# Cruisers: 1.1 (10% larger)
-	var cruisers = [
-		"Alpine Cruiser",
-		"Fortress Cruiser",
-		"Sundown Cruiser"
-	]
-	
-	# Haulers, Freighters, Traders, Liners: 1.1 (10% larger)
-	var cargo_ships = [
-		"Belt Freighter",
-		"Carp Trader",
-		"Dolphin Trader",
-		"Empress Liner",
-		"Executive Liner",
-		"Express Trader",
-		"Lineman Hauler",
-		"Longhauler Freighter",
-		"Longshoreman Hauler",
-		"Nordic LIner",
-		"Pacifica Liner",
-		"Prosperity Trader",
-		"Railway Hauler",
-		"Rimward Freighter",
-		"Solar Empress Liner",
-		"Star Skipper Trader",
-		"Starways Hauler",
-		"Void Hauler"
-	]
-	
-	# Gunships: 1.05 (5% larger than default)
-	var gunships = [
-		"Banshee Gunship",
-		"Batwing Gunship",
-		"Brawler Gunship",
-		"Frostbite Gunship",
-		"Horseman Gunship",
-		"Infernus Gunship",
-		"Myrmidon Gunship",
-		"Northerner Gunship",
-		"Overlook Gunship",
-		"Pacer Gunship",
-		"Paladin Gunship",
-		"Robin Gunship",
-		"Shark Gunship",
-		"Snowbird Gunship",
-		"Spartan Gunship",
-		"Swordsman Gunship",
-		"Tortoise Gunship",
-		"Tropica Gunship",
-		"Valiant Gunship",
-		"Vulture Gunship"
-	]
-	
-	# Ships that need individual custom scale overrides (applied after class-based scaling)
-	var custom_scale_ships = {
-		"Unyielding Battleship": 1.43,  # 10% larger than standard battleship scale (1.3 * 1.1)
-		# Patrol Ships - boosted by 10% to match gunship size (1.0 * 1.1)
-		"Perimiter Patrol Ship": 1.1,
-		"Sentry Patrol Ship": 1.1,
-		"Secutor Patrol Ship": 1.21,  # Additional 10% larger (1.1 * 1.1)
-		"Spike Patrol Ship": 1.1,
-		# Star Eagle Fighter - reduced by 10% (0.9 * 0.9)
-		"Star Eagle Fighter": 0.81,
-		# Spartan Gunship - boosted by 10% (1.05 * 1.1)
-		"Spartan Gunship": 1.155,
-		# Railway Hauler - boosted by 10% (1.15 * 1.1)
-		"Railway Hauler": 1.265
+	# Individual ship rotation configuration - each ship has explicit rotation setting
+	ship_rotation_dict = {
+		# Alternative rotation (0, 90, 0) - right wingtip thrust
+		"Pickax Mining Ship": Vector3(0, 90, 0),
+		"Luna Shuttle": Vector3(0, 90, 0),
+		"Cyclops Missile Boat": Vector3(0, 90, 0),
+		"Blood Eagle Fighter": Vector3(0, 90, 0),
+		"Vulture Gunship": Vector3(0, 90, 0),
+		"Fury Fighter": Vector3(0, 90, 0),
+		"Lineman Hauler": Vector3(0, 90, 0),
+		"Rack Fighter": Vector3(0, 90, 0),
+		"Shark Gunship": Vector3(0, 90, 0),
+		"Fortress Cruiser": Vector3(0, 90, 0),
+		"Brachiator Gun Platform": Vector3(0, 90, 0),
+		"Brawler Gunship": Vector3(0, 90, 0),
+		"Starways Hauler": Vector3(0, 90, 0),
+		"Strider Scout": Vector3(0, 90, 0),
+		"Fleetfoot Scout": Vector3(0, 90, 0),
+		"Vector Battleship": Vector3(0, 90, 0),
+		"Equinox Battleship": Vector3(0, 90, 0),
+		"Tortoise Gunship": Vector3(0, 90, 0),
+		"Drushi Battleship": Vector3(0, 90, 0),
+		"Star Eagle Fighter": Vector3(0, 90, 0),
+		"Occulus Gun Platform": Vector3(0, 90, 0),
+		"Spear Frigate": Vector3(0, 90, 0),
+		"Shield Battleship": Vector3(0, 90, 0),
+		"Breacher Assault Ship": Vector3(0, 90, 0),
+		"Pacifica Liner": Vector3(0, 90, 0),
+		"Falcon Scout": Vector3(0, 90, 0),
+		"Pacer Gunship": Vector3(0, 90, 0),
+		"Resolute Frigate": Vector3(0, 90, 0),
+		"Dagger Fighter": Vector3(0, 90, 0),
+		"Wasp Fighter": Vector3(0, 90, 0),
+		"Longhauler Freighter": Vector3(0, 90, 0),
+		"Zephyr Scout": Vector3(0, 90, 0),
+		"Nebula Battleship": Vector3(0, 90, 0),
+		"Dart Scout": Vector3(0, 90, 0),
+		"Perimiter Patrol Ship": Vector3(0, 90, 0),
+		"Sentry Patrol Ship": Vector3(0, 90, 0),
+		"Secutor Patrol Ship": Vector3(0, 90, 0),
+		"Viceroy Shuttle": Vector3(0, 90, 0),
+		"Long Shot Gun Platform": Vector3(0, 90, 0),
+		"Express Trader": Vector3(0, 90, 0),
+		"Swordsman Gunship": Vector3(0, 90, 0),
+		"Stingray Fighter": Vector3(0, 90, 0),
+		"Paladin Gunship": Vector3(0, 90, 0),
+		"Nordic LIner": Vector3(0, 90, 0),
+		"Empress Liner": Vector3(0, 90, 0),
+		"Overlook Gunship": Vector3(0, 90, 0),
+		"Paragon Shuttle": Vector3(0, 90, 0),
+		"Northerner Gunship": Vector3(0, 90, 0),
+		"Dwarf Fighter": Vector3(0, 90, 0),
+		"Gattler Frigate": Vector3(0, 90, 0),
+		"Snowbird Gunship": Vector3(0, 90, 0),
+		"Dolphin Trader": Vector3(0, 90, 0),
+		"Sundown Cruiser": Vector3(0, 90, 0),
+		"Quadrant Frigate": Vector3(0, 90, 0),
+		"Rimward Freighter": Vector3(0, 90, 0),
+		"Nubulous Scout": Vector3(0, 90, 0),
+		"Hoplite Fighter": Vector3(0, 90, 0),
+		"Tropica Gunship": Vector3(0, 90, 0),
+		"Mosquito Fighter": Vector3(0, 90, 0),
+		"Railway Hauler": Vector3(0, 90, 0),
+		"Barrier Frigate": Vector3(0, 90, 0),
+		"Stiletto Fighter": Vector3(0, 90, 0),
+		"Star Skipper Trader": Vector3(0, 90, 0),
+		"Eclipse Battlleship": Vector3(0, 90, 0),
+		"Stinger Fighter": Vector3(0, 90, 0),
+		"Stalwart Battleship": Vector3(0, 90, 0),
+		"Bulwark Battleship": Vector3(0, 90, 0),
+		"Spike Patrol Ship": Vector3(0, 90, 0),
+		"Barricade Frigate": Vector3(0, 90, 0),
+		
+		# Reverse rotation (0, -90, 0) - left wingtip thrust
+		"Horseman Gunship": Vector3(0, -90, 0),
+		"Nova Battleship": Vector3(0, -90, 0),
+		"Batwing Gunship": Vector3(0, -90, 0),
+		"Front Line Frigate": Vector3(0, -90, 0),
+		"Viking Frigate": Vector3(0, -90, 0),
+		"Sea Turtle Shuttle": Vector3(0, -90, 0),
+		"Darkling Fighter": Vector3(0, -90, 0),
+		"Spartan Gunship": Vector3(0, -90, 0),
+		"Robin Gunship": Vector3(0, -90, 0),
+		"Carp Trader": Vector3(0, -90, 0),
+		"Solar Empress Liner": Vector3(0, -90, 0),
+		"Shadowblade Fighter": Vector3(0, -90, 0),
+		"Prosperity Trader": Vector3(0, -90, 0),
+		"Sparrow Fighter": Vector3(0, -90, 0),
+		"Frostbite Gunship": Vector3(0, -90, 0),
+		"Icepick Fighter": Vector3(0, -90, 0),
+		"Forefront Interceptor": Vector3(0, -90, 0),
+		"Dispatch Shuttle": Vector3(0, -90, 0),
+		"Toad Assault Ship": Vector3(0, -90, 0),
+		"Raven Scout": Vector3(0, -90, 0),
+		"Banshee Gunship": Vector3(0, -90, 0),
+		
+		# 180 degree rotation (0, 180, 0) - backward thrust
+		"Belt Freighter": Vector3(0, 180, 0),
+		"Myrmidon Gunship": Vector3(0, 180, 0),
+		"Executive Liner": Vector3(0, 180, 0),
+		"Pikeman Fighter": Vector3(0, 180, 0),
+		"Royal Standard Battleship": Vector3(0, 180, 0),
+		"Steadfast Frigate": Vector3(0, 180, 0)
 	}
 	
-	# All ship models with their paths
-	var ship_list = [
-		"Alpine Cruiser",
-		"Banshee Gunship",
-		"Barricade Frigate",
-		"Barrier Frigate",
-		"Batwing Gunship",
-		"Belt Freighter",
-		"Blood Eagle Fighter",
-		"Brachiator Gun Platform",
-		"Brawler Gunship",
-		"Breacher Assault Ship",
-		"Bulwark Battleship",
-		"Carp Trader",
-		"Cyclops Missile Boat",
-		"Dagger Fighter",
-		"Darkling Fighter",
-		"Dart Scout",
-		"Dispatch Shuttle",
-		"Dolphin Trader",
-		"Drushi Battleship",
-		"Dwarf Fighter",
-		"Eclipse Battlleship",
-		"Empress Liner",
-		"Equinox Battleship",
-		"Executive Liner",
-		"Express Trader",
-		"Falcon Scout",
-		"Fleetfoot Scout",
-		"Forefront Interceptor",
-		"Fortress Cruiser",
-		"Front Line Frigate",
-		"Frostbite Gunship",
-		"Fury Fighter",
-		"Gattler Frigate",
-		"Guardian Battleship",
-		"Hoplite Fighter",
-		"Horseman Gunship",
-		"Icepick Fighter",
-		"Infernus Gunship",
-		"Lineman Hauler",
-		"Long Shot Gun Platform",
-		"Longhauler Freighter",
-		"Longshoreman Hauler",
-		"Luna Shuttle",
-		"Mosquito Fighter",
-		"Myrmidon Gunship",
-		"Naos Shuttle",
-		"Nebula Battleship",
-		"Nordic LIner",
-		"Northerner Gunship",
-		"Nova Battleship",
-		"Nubulous Scout",
-		"Occulus Gun Platform",
-		"Overlook Gunship",
-		"Pacer Gunship",
-		"Pacifica Liner",
-		"Paladin Gunship",
-		"Paragon Shuttle",
-		"Perimiter Patrol Ship",
-		"Pickax Mining Ship",
-		"Pikeman Fighter",
-		"Prosperity Trader",
-		"Quadrant Frigate",
-		"Rack Fighter",
-		"Railway Hauler",
-		"Raven Scout",
-		"Resolute Frigate",
-		"Rimward Freighter",
-		"Robin Gunship",
-		"Royal Standard Battleship",
-		"Sea Turtle Shuttle",
-		"Secutor Patrol Ship",
-		"Sentry Patrol Ship",
-		"Shadowblade Fighter",
-		"Shark Gunship",
-		"Shield Battleship",
-		"Snowbird Gunship",
-		"Solar Empress Liner",
-		"Sparrow Fighter",
-		"Spartan Gunship",
-		"Spear Frigate",
-		"Spike Patrol Ship",
-		"Stalwart Battleship",
-		"Star Eagle Fighter",
-		"Star Skipper Trader",
-		"Starways Hauler",
-		"Steadfast Frigate",
-		"Stiletto Fighter",
-		"Stinger Fighter",
-		"Stingray Fighter",
-		"Strider Scout",
-		"Sunbird Fighter",
-		"Sundown Cruiser",
-		"Swordsman Gunship",
-		"Toad Assault Ship",
-		"Tortoise Gunship",
-		"Tropica Gunship",
-		"Unyielding Battleship",
-		"Valiant Gunship",
-		"Vampie Fighter",
-		"Vector Battleship",
-		"Viceroy Shuttle",
-		"Viking Frigate",
-		"Void Hauler",
-		"Vulture Gunship",
-		"Wasp Fighter",
-		"Zephyr Scout"
-	]
+	# Validate that all ships have defined rotations
+	_validate_ship_rotations()
 	
-	# Build ship configurations
+	# Ship class categorization for scaling (reserved for future use)
+	# var fighters: Array[String] = []
+	# var gunships: Array[String] = []
+	# var freighters: Array[String] = []
+	# var cruisers: Array[String] = []
+	# var battleships: Array[String] = []
+	# var scouts: Array[String] = []
+	# var traders: Array[String] = []
+	# var patrol_ships: Array[String] = []
+	# var shuttles: Array[String] = []
+	# var gun_platforms: Array[String] = []
+	# var assault_ships: Array[String] = []
+	# var liners: Array[String] = []
+	# var haulers: Array[String] = []
+	# var frigates: Array[String] = []
+	# var interceptors: Array[String] = []
+	
+	# Populate ship lists from GLB files
+	var dir = DirAccess.open("res://glb/")
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if file_name.ends_with(".glb"):
+				var ship_name = file_name.replace(".glb", "")
+				ship_list.append(ship_name)
+				all_ship_paths.append("res://glb/" + file_name)
+			file_name = dir.get_next()
+	
+	# Create ship configurations
 	for ship_name in ship_list:
-		var model_path = "res://glb/" + ship_name + ".glb"
-		var rotation: Vector3
-		var scale_mult: float = 1.0
+		var rotation = default_rotation
+		if ship_rotation_dict.has(ship_name):
+			rotation = ship_rotation_dict[ship_name]
 		
-		# Determine which rotation to use
-		if ship_name in alt_rotation_ships:
-			rotation = alt_rotation
-		elif ship_name in old_default_ships:
-			rotation = old_default_rotation
-		elif ship_name in reverse_rotation_ships:
-			rotation = reverse_rotation
-		elif ship_name in flip_rotation_ships:
-			rotation = flip_rotation
-		else:
-			rotation = default_rotation
-		
-		# Determine scale based on ship class
-		if ship_name in fighters or ship_name in scouts or ship_name in shuttles:
-			scale_mult = 0.8  # 20% smaller total
-		elif ship_name in battleships:
-			scale_mult = 1.3  # 30% larger
-		elif ship_name in frigates or ship_name in cruisers or ship_name in cargo_ships:
-			scale_mult = 1.15  # 15% larger
-		elif ship_name in gunships:
-			scale_mult = 1.05  # 5% larger than default
-		else:
-			scale_mult = 1.0  # Default size
-		
-		# Apply individual custom scale overrides if specified
-		if custom_scale_ships.has(ship_name):
-			scale_mult = custom_scale_ships[ship_name]
-		
-		var config = ShipConfig.new(ship_name, model_path, rotation, scale_mult)
+		var config = ShipConfig.new(
+			ship_name,
+			"res://glb/" + ship_name + ".glb",
+			rotation,
+			1.0
+		)
 		ship_configs[ship_name] = config
-		all_ship_paths.append(model_path)
 
-func get_ship_rotation(ship_name: String) -> Vector3:
-	## Get the rotation correction for a specific ship by name
-	if ship_configs.has(ship_name):
-		return ship_configs[ship_name].rotation_correction
-	else:
-		# Return default rotation if ship not found
-		push_warning("Ship '%s' not found in ship_data, using default rotation" % ship_name)
-		return Vector3(0, 0, 0)
-
-func get_ship_scale(ship_name: String) -> float:
-	## Get the scale multiplier for a specific ship by name
-	if ship_configs.has(ship_name):
-		return ship_configs[ship_name].scale_multiplier
-	else:
-		# Return default scale if ship not found
-		return 1.0
+func _validate_ship_rotations():
+	## Ensure all ships have defined rotations
+	for ship_name in ship_list:
+		if not ship_rotation_dict.has(ship_name):
+			push_warning("Ship '%s' missing from rotation dictionary, using default rotation" % ship_name)
+			ship_rotation_dict[ship_name] = default_rotation
 
 func get_ship_config(ship_name: String) -> ShipConfig:
-	## Get the full configuration for a specific ship
+	## Get configuration for a specific ship
 	if ship_configs.has(ship_name):
 		return ship_configs[ship_name]
 	else:
-		push_warning("Ship '%s' not found in ship_data" % ship_name)
+		push_error("Ship config not found: " + ship_name)
 		return null
 
+func get_ship_scale(ship_name: String) -> float:
+	## Get scale multiplier for a specific ship
+	var config = get_ship_config(ship_name)
+	if config:
+		return config.scale_multiplier
+	else:
+		return 1.0
+
 func get_all_ship_paths() -> Array[String]:
-	## Get list of all ship model paths for random selection
-	return all_ship_paths.duplicate()
+	## Get all available ship model paths
+	return all_ship_paths
 
 func get_ship_name_from_path(path: String) -> String:
-	## Extract ship name from GLB path
+	## Extract ship name from file path
 	return path.get_file().get_basename()
+
+func get_ship_rotation(ship_name: String) -> Vector3:
+	## Get rotation correction for a specific ship
+	if ship_rotation_dict.has(ship_name):
+		return ship_rotation_dict[ship_name]
+	else:
+		return default_rotation
+
+func get_random_ship_path() -> String:
+	## Get a random ship model path
+	if all_ship_paths.size() > 0:
+		return all_ship_paths[randi() % all_ship_paths.size()]
+	else:
+		push_error("No ship paths available")
+		return ""
