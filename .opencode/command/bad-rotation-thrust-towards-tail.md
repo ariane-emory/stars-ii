@@ -9,4 +9,4 @@ It looks like its direction of thrust/movement is currently towards the ship's t
 
 Their rotation needs to be adjusted to fix their orientation. Analyze this problem, diagnose its cause, and fix it. 
 
-The solution MUST ony alter the orientation of tha named ship(s), you MUST NOT alter the rotation of any other ships.
+The solution MUST be targeted to ony alter the orientation of tha named ship(s), NOT 'classes' or groups of ships, you MUST NOT alter the rotation of any other ships.

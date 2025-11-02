@@ -125,7 +125,6 @@ func _initialize_ship_data():
 		"Viking Frigate",
 		"Sea Turtle Shuttle",
 		"Darkling Fighter",
-		"Bulwark Battleship",
 		"Steadfast Frigate",
 		"Spartan Gunship",
 		"Robin Gunship",
