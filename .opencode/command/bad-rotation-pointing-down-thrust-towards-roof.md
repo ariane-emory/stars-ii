@@ -9,4 +9,4 @@ The ship's nose is pointed straight down, and thrust/movement is towards what sh
 
 Their rotation needs to be adjusted to fix their orientation. Analyze this problem, diagnose its cause, and fix it. 
 
-The solution must not alter the rotation of any other ships.
+The solution MUST NOT alter the rotation of any other ships.
