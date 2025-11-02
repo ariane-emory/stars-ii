@@ -115,7 +115,11 @@ func _initialize_ship_data():
 		"Stiletto Fighter",
 		"Star Skipper Trader",
 		"Eclipse Battlleship",
-		"Stinger Fighter"
+		"Stinger Fighter",
+		"Stalwart Battleship",
+		"Bulwark Battleship",
+		"Spike Patrol Ship",
+		"Barricade Frigate"
 	]
 	
 	# Ships that need the reverse rotation (0, -90, 0) for right wingtip thrust
@@ -127,7 +131,6 @@ func _initialize_ship_data():
 		"Viking Frigate",
 		"Sea Turtle Shuttle",
 		"Darkling Fighter",
-		"Steadfast Frigate",
 		"Spartan Gunship",
 		"Robin Gunship",
 		"Carp Trader",
@@ -136,20 +139,22 @@ func _initialize_ship_data():
 		"Prosperity Trader",
 		"Sparrow Fighter",
 		"Frostbite Gunship",
-		"Executive Liner",
 		"Icepick Fighter",
 		"Forefront Interceptor",
-		"Royal Standard Battleship"
+		"Dispatch Shuttle",
+		"Toad Assault Ship",
+		"Raven Scout",
+		"Banshee Gunship"
 	]
 	
 	# Ships that need 180 degree rotation (pointing backwards)
 	var flip_rotation_ships = [
 		"Belt Freighter",
-		"Bulwark Battleship",
 		"Myrmidon Gunship",
-		"Stalwart Battleship",
-		"Raven Scout",
-		"Barricade Frigate"
+		"Executive Liner",
+		"Pikeman Fighter",
+		"Royal Standard Battleship",
+		"Steadfast Frigate"
 	]
 	
 	# Ship class categorization for scaling
