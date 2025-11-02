@@ -28,6 +28,11 @@ var ship_list: Array[String] = []
 # Individual ship rotation configuration
 var ship_rotation_dict: Dictionary = {}
 
+# Individual ship scale configuration
+# Maps ship names to their specific scale multipliers
+# Ships not in this dictionary use class-based scaling rules
+var ship_scale_dict: Dictionary = {}
+
 # Default rotation for most ships
 var default_rotation: Vector3 = Vector3(0, 0, 0)
 
@@ -141,8 +146,35 @@ func _initialize_ship_data():
 		"Myrmidon Gunship": Vector3(0, 180, 0),
 		"Executive Liner": Vector3(0, 90, 0),
 		"Pikeman Fighter": Vector3(0, 90, 0),
-		"Royal Standard Battleship": Vector3(0, 180, 0),
+		"Royal Standard Battleship": Vector3(0, 90, 0),
 		"Steadfast Frigate": Vector3(0, 180, 0)
+	}
+	
+	# Populate ship scale dictionary with specific ship configurations
+	# These ships have custom scale multipliers that override class-based rules
+	ship_scale_dict = {
+		"Railway Hauler": 1.5,
+		"Belt Freighter": 1.5,
+		"Blood Eagle Fighter": 0.5,
+		"Forefront Interceptor": 0.9,
+		"Alpine Cruiser": 1.25,
+		"Longhauler Freighter": 1.21,
+		"Long Shot Gun Platform": 1.1,
+		"Eclipse Battlleship": 2.0,
+		"Drushi Battleship": 1.25,
+		"Luna Shuttle": 0.81,
+		"Executive Liner": 1.1,
+		"Star Eagle Fighter": 0.9,
+		"Longshoreman Hauler": 1.25,
+		"Breacher Assault Ship": 1.25,
+		"Front Line Frigate": 1.25,
+		"Nordic LIner": 1.25,
+		"Void Hauler": 1.5,
+		"Strider Scout": 0.9,
+		"Vulture Gunship": 0.5,
+		"Overlook Gunship": 0.9,
+		"Empress Liner": 1.5,
+		"Viking Frigate": 1.25
 	}
 	
 	# Validate that all ships have defined rotations
@@ -183,63 +215,9 @@ func _initialize_ship_data():
 		if ship_rotation_dict.has(ship_name):
 			rotation = ship_rotation_dict[ship_name]
 		
-		# Set scale multiplier for specific ships
-		var scale_multiplier = 1.0
-		
-		# Special cases for haulers and freighters
-		if ship_name == "Railway Hauler":
-			scale_multiplier = 1.5
-		elif ship_name == "Belt Freighter":
-			scale_multiplier = 1.5
-		elif ship_name == "Blood Eagle Fighter":
-			scale_multiplier = 0.5
-		elif ship_name == "Forefront Interceptor":
-			scale_multiplier = 0.9
-		elif ship_name == "Alpine Cruiser":
-			scale_multiplier = 1.25
-		elif ship_name == "Longhauler Freighter":
-			scale_multiplier = 1.21
-		elif ship_name == "Long Shot Gun Platform":
-			scale_multiplier = 1.1
-		elif ship_name == "Eclipse Battlleship":
-			scale_multiplier = 2.0
-		elif ship_name == "Drushi Battleship":
-			scale_multiplier = 1.25
-		elif ship_name == "Luna Shuttle":
-			scale_multiplier = 0.81
-		elif ship_name == "Executive Liner":
-			scale_multiplier = 1.1
-		elif ship_name == "Star Eagle Fighter":
-			scale_multiplier = 0.9
-		elif ship_name == "Longshoreman Hauler":
-			scale_multiplier = 1.25
-		elif ship_name == "Breacher Assault Ship":
-			scale_multiplier = 1.25
-		elif ship_name == "Front Line Frigate":
-			scale_multiplier = 1.25
-		elif ship_name == "Nordic LIner":
-			scale_multiplier = 1.25
-		elif ship_name == "Void Hauler":
-			scale_multiplier = 1.5
-		elif ship_name == "Strider Scout":
-			scale_multiplier = 0.9
-		elif ship_name == "Vulture Gunship":
-			scale_multiplier = 0.5
-		elif ship_name == "Overlook Gunship":
-			scale_multiplier = 0.9
-		elif ship_name == "Empress Liner":
-			scale_multiplier = 1.5
-		elif ship_name == "Viking Frigate":
-			scale_multiplier = 1.25
-		# Reduce fighters, scouts, and shuttles by 0.1
-		elif ship_name.ends_with("Fighter") or ship_name.ends_with("Scout") or ship_name.ends_with("Shuttle"):
-			scale_multiplier = 0.8
-		# Increase battleships and cruisers by 0.1
-		elif ship_name.ends_with("Battleship") or ship_name.ends_with("Cruiser"):
-			scale_multiplier = 1.1
-		# Increase liners by 0.2
-		elif ship_name.ends_with("Liner"):
-			scale_multiplier = 1.2
+		# Get scale multiplier using dictionary-based lookup
+	# This replaces the previous 70-line if/elif chain with a clean, maintainable approach
+		var scale_multiplier = _get_scale_for_ship(ship_name)
 		
 		var config = ShipConfig.new(
 			ship_name,
@@ -248,6 +226,23 @@ func _initialize_ship_data():
 			scale_multiplier
 		)
 		ship_configs[ship_name] = config
+
+func _get_scale_for_ship(ship_name: String) -> float:
+	## Get scale multiplier for a specific ship using dictionary lookup
+	# Check for specific ship scale first
+	if ship_scale_dict.has(ship_name):
+		return ship_scale_dict[ship_name]
+	
+	# Fall back to class-based scaling rules
+	if ship_name.ends_with("Fighter") or ship_name.ends_with("Scout") or ship_name.ends_with("Shuttle"):
+		return 0.8
+	elif ship_name.ends_with("Battleship") or ship_name.ends_with("Cruiser"):
+		return 1.1
+	elif ship_name.ends_with("Liner"):
+		return 1.2
+	
+	# Default scale
+	return 1.0
 
 func _validate_ship_rotations():
 	## Ensure all ships have defined rotations
