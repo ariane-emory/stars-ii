@@ -104,7 +104,7 @@ func _initialize_ship_data():
 		"Railway Hauler": Vector3(0, 90, 0),
 		"Barrier Frigate": Vector3(0, 90, 0),
 		"Stiletto Fighter": Vector3(0, 90, 0),
-		"Star Skipper Trader": Vector3(0, 90, 0),
+		"Star Skipper Trader": Vector3(0, -90, 0),
 		"Eclipse Battlleship": Vector3(0, 90, 0),
 		"Stinger Fighter": Vector3(0, 90, 0),
 		"Stalwart Battleship": Vector3(0, 90, 0),
@@ -129,7 +129,7 @@ func _initialize_ship_data():
 		"Sparrow Fighter": Vector3(0, -90, 0),
 		"Frostbite Gunship": Vector3(0, 90, 0),
 		"Icepick Fighter": Vector3(0, -90, 0),
-		"Forefront Interceptor": Vector3(0, 90, 0),
+		"Forefront Interceptor": Vector3(0, -90, 0),
 		"Dispatch Shuttle": Vector3(0, -90, 0),
 		"Toad Assault Ship": Vector3(0, -90, 0),
 		"Raven Scout": Vector3(0, -90, 0),
@@ -194,6 +194,10 @@ func _initialize_ship_data():
 			scale_multiplier = 0.5
 		elif ship_name == "Forefront Interceptor":
 			scale_multiplier = 0.9
+		elif ship_name == "Alpine Cruiser":
+			scale_multiplier = 1.1
+		elif ship_name == "Longhauler Freighter":
+			scale_multiplier = 1.1
 		# Reduce fighters, scouts, and shuttles by 0.1
 		elif ship_name.ends_with("Fighter") or ship_name.ends_with("Scout") or ship_name.ends_with("Shuttle"):
 			scale_multiplier = 0.8

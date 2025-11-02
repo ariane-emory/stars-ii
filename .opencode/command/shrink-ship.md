@@ -1,5 +1,5 @@
 ---
-description: Shring ship.
+description: Shrink a ship.
 agent: build
 ---
 
