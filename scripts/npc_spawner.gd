@@ -114,8 +114,7 @@ func spawn_verification_grid():
 			
 			spawn_ship_at_position(ship_name, spawn_pos)
 			
-			print("  " + ship_name)
-		
+			print("  " + ship_name)		
 		row_z_position += row_spacing
 	
 	print("\n=== Total ships spawned: " + str(ShipData.ship_list.size()) + " ===")
