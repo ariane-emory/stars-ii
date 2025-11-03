@@ -157,6 +157,7 @@ var ship_list: Array[String] = []
 
 func _ready():
 	_initialize_ship_data()
+	_validate_ship_models()
 
 func _initialize_ship_data():
 	## Initialize ship data by populating helper arrays for backward compatibility
@@ -173,6 +174,34 @@ func _initialize_ship_data():
 				ship_list.append(ship_name)
 				all_ship_paths.append("res://glb/" + file_name)
 			file_name = dir.get_next()
+	else:
+		push_error("ShipData: Failed to open res://glb/ directory")
+
+func _validate_ship_models():
+	## Validate ship models to detect duplicates or corruption
+	## This helps identify data issues like duplicate GLB files
+	var file_hashes = {}
+	var duplicate_found = false
+	
+	for ship_name in ship_list:
+		var config = get_ship_config(ship_name)
+		if not config:
+			continue
+			
+		var file_path = config.model_path.replace("res://", "")
+		var file = FileAccess.open(config.model_path, FileAccess.READ)
+		if file:
+			var file_hash = file.get_md5(file_path)
+			file.close()
+			
+			if file_hashes.has(file_hash):
+				push_warning("ShipData: Duplicate model detected! '" + ship_name + "' and '" + file_hashes[file_hash] + "' use identical GLB files. This may cause visual confusion.")
+				duplicate_found = true
+			else:
+				file_hashes[file_hash] = ship_name
+	
+	if duplicate_found:
+		push_warning("ShipData: Model validation found duplicate GLB files. Please check your asset files.")
 
 func get_ship_config(ship_name: String) -> ShipConfig:
 	## Get configuration for a specific ship

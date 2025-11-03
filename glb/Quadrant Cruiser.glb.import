@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://2nrfa1q3c6ys"
-path="res://.godot/imported/Rack Fighter.glb-01a7e5215fedabcf946234600976f033.scn"
+uid="uid://dijknq7ahrpt1"
+path="res://.godot/imported/Quadrant Cruiser.glb-b3619b9b660630d91df789eb7084caab.scn"
 
 [deps]
 
-source_file="res://glb/Rack Fighter.glb"
-dest_files=["res://.godot/imported/Rack Fighter.glb-01a7e5215fedabcf946234600976f033.scn"]
+source_file="res://glb/Quadrant Cruiser.glb"
+dest_files=["res://.godot/imported/Quadrant Cruiser.glb-b3619b9b660630d91df789eb7084caab.scn"]
 
 [params]
 

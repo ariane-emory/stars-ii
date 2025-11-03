@@ -35,6 +35,7 @@ func _ready():
 	
 	# Scale up the model with ship-specific scale multiplier
 	var model = get_node_or_null("Model")
+	
 	if model:
 		var base_scale = 100.0
 		var scale_multiplier = ShipData.get_ship_scale(ship_name)

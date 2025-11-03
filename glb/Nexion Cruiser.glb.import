@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://2nrfa1q3c6ys"
-path="res://.godot/imported/Rack Fighter.glb-01a7e5215fedabcf946234600976f033.scn"
+uid="uid://dqjxbdhmndio7"
+path="res://.godot/imported/Nexion Cruiser.glb-3363cf2bc9671487dd267421ce904528.scn"
 
 [deps]
 
-source_file="res://glb/Rack Fighter.glb"
-dest_files=["res://.godot/imported/Rack Fighter.glb-01a7e5215fedabcf946234600976f033.scn"]
+source_file="res://glb/Nexion Cruiser.glb"
+dest_files=["res://.godot/imported/Nexion Cruiser.glb-3363cf2bc9671487dd267421ce904528.scn"]
 
 [params]
 

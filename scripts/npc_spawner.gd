@@ -5,7 +5,7 @@ extends Node3D
 
 @export var npc_count: int = 8
 @export var spawn_radius: float = 1000.0
-@export var verification_mode: bool = false  # When true, spawns all ships in organized grid
+@export var verification_mode: bool = true  # When true, spawns all ships in organized grid
 
 var npc_ship_scene = preload("res://scenes/npc_ship.tscn")
 
@@ -84,6 +84,7 @@ func spawn_verification_grid():
 	for ship_name in ShipData.ship_list:
 		var ship_class = classify_ship(ship_name)
 		ship_classes[ship_class].append(ship_name)
+
 	
 	# Spawn ships in organized rows
 	var row_z_position = 0.0
@@ -109,8 +110,10 @@ func spawn_verification_grid():
 		for i in range(ships_in_class.size()):
 			var ship_name = ships_in_class[i]
 			var x_position = start_x + (i * current_ship_spacing)
+			var spawn_pos = Vector3(x_position, 0, row_z_position)
 			
-			spawn_ship_at_position(ship_name, Vector3(x_position, 0, row_z_position))
+			spawn_ship_at_position(ship_name, spawn_pos)
+			
 			print("  " + ship_name)
 		
 		row_z_position += row_spacing
@@ -130,15 +133,25 @@ func spawn_ship_at_position(ship_name: String, spawn_position: Vector3):
 		return
 	
 	var model_scene = load(config.model_path)
+	if not model_scene:
+		push_error("Failed to load model for ship: " + ship_name + " at path: " + config.model_path)
+		npc.queue_free()
+		return
+	
 	npc.ship_name = ship_name
 	
-	# Remove the default Model node if it exists
+	# Remove default Model node if it exists
 	var old_model = npc.get_node_or_null("Model")
 	if old_model:
 		old_model.free()
 	
-	# Instance and add the new model
+	# Instance and add to new model
 	var new_model = model_scene.instantiate()
+	if not new_model:
+		push_error("Failed to instantiate model for ship: " + ship_name)
+		npc.queue_free()
+		return
+	
 	new_model.name = "Model"
 	npc.add_child(new_model)
 	
@@ -150,7 +163,7 @@ func spawn_ship_at_position(ship_name: String, spawn_position: Vector3):
 	npc.rotation_angle = PI / 2  # Point downward
 	npc.target_rotation_angle = PI / 2  # Keep pointing downward
 	
-	# Update rotation fix /now that ship name is set
+	# Update rotation fix now that ship name is set
 	npc.update_rotation_fix()
 	
 	# Immediately apply visual rotation in verification mode (since ships start paused)
@@ -158,6 +171,7 @@ func spawn_ship_at_position(ship_name: String, spawn_position: Vector3):
 	
 	# Set position after adding to scene to ensure proper placement
 	npc.position = spawn_position
+
 
 func spawn_npcs():
 	## Original random spawn behavior
@@ -177,6 +191,11 @@ func spawn_npcs():
 		var ship_paths = ShipData.get_all_ship_paths()
 		var random_model_path = ship_paths[randi() % ship_paths.size()]
 		var model_scene = load(random_model_path)
+		if not model_scene:
+			push_error("Failed to load random model at path: " + random_model_path)
+			npc.queue_free()
+			continue
+		
 		# Extract ship name from path using ShipData helper
 		var ship_name = ShipData.get_ship_name_from_path(random_model_path)
 		
@@ -189,6 +208,10 @@ func spawn_npcs():
 		
 		# Instance and add the new random model
 		var new_model = model_scene.instantiate()
+		if not new_model:
+			push_error("Failed to instantiate random model for ship: " + ship_name)
+			npc.queue_free()
+			continue
 		new_model.name = "Model"
 		npc.add_child(new_model)
 		

@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b256o23i22mgx"
-path.s3tc="res://.godot/imported/Lineman Hauler_0.png-e3fb06e4baadd69255dd03860864b093.s3tc.ctex"
+uid="uid://yvw85naqarsm"
+path.s3tc="res://.godot/imported/Nexion Cruiser_0.png-3cf29205fc9e9bf1ee3335a86835fa0b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "e5c8ab3758f6158b2009928db829f5b2"
+}
 
 [deps]
 
-source_file="res://glb/Lineman Hauler_0.png"
-dest_files=["res://.godot/imported/Lineman Hauler_0.png-e3fb06e4baadd69255dd03860864b093.s3tc.ctex"]
+source_file="res://glb/Nexion Cruiser_0.png"
+dest_files=["res://.godot/imported/Nexion Cruiser_0.png-3cf29205fc9e9bf1ee3335a86835fa0b.s3tc.ctex"]
 
 [params]
 

@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b256o23i22mgx"
-path.s3tc="res://.godot/imported/Lineman Hauler_0.png-e3fb06e4baadd69255dd03860864b093.s3tc.ctex"
+uid="uid://yri16o1d0003"
+path.s3tc="res://.godot/imported/Quadrant Cruiser_0.png-4d4fa6fe9dfd181862180fde5d397282.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "424f8886f9dbc11aefe03c56b25549d6"
+}
 
 [deps]
 
-source_file="res://glb/Lineman Hauler_0.png"
-dest_files=["res://.godot/imported/Lineman Hauler_0.png-e3fb06e4baadd69255dd03860864b093.s3tc.ctex"]
+source_file="res://glb/Quadrant Cruiser_0.png"
+dest_files=["res://.godot/imported/Quadrant Cruiser_0.png-4d4fa6fe9dfd181862180fde5d397282.s3tc.ctex"]
 
 [params]
 

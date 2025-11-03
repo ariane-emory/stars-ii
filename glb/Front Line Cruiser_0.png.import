@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b256o23i22mgx"
-path.s3tc="res://.godot/imported/Lineman Hauler_0.png-e3fb06e4baadd69255dd03860864b093.s3tc.ctex"
+uid="uid://bbpq76lwb6k6x"
+path.s3tc="res://.godot/imported/Front Line Cruiser_0.png-9f850af2fb09718c2e4307a0795da2cc.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "ec1d407e7813f95b35546c3a2bfc32e3"
+}
 
 [deps]
 
-source_file="res://glb/Lineman Hauler_0.png"
-dest_files=["res://.godot/imported/Lineman Hauler_0.png-e3fb06e4baadd69255dd03860864b093.s3tc.ctex"]
+source_file="res://glb/Front Line Cruiser_0.png"
+dest_files=["res://.godot/imported/Front Line Cruiser_0.png-9f850af2fb09718c2e4307a0795da2cc.s3tc.ctex"]
 
 [params]
 
