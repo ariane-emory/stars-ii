@@ -35,5 +35,6 @@ script = ExtResource("1_starfield")
 
 [node name="NPCShips" type="Node3D" parent="."]
 script = ExtResource("3_spawner")
+verification_mode = true
 
 [node name="HUD" parent="." instance=ExtResource("4_hud")]
