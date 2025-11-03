@@ -5,7 +5,7 @@ extends Camera3D
 @export var camera_height: float = 707.2  # Fixed height above the world
 @export var base_ortho_size: float = 1200.0  # Base orthographic viewport size (100% zoom)
 @export var min_zoom: float = 0.5  # 50% zoom (zoomed out for wide view)
-@export var max_zoom: float = 3.0  # 300% zoom (zoomed in for close view)
+@export var max_zoom: float = 4.0  # 400% zoom (zoomed in for close view)
 @export var zoom_speed: float = 0.1  # How much each scroll changes zoom
 @export var zoom_smoothing: float = 10.0  # Higher = faster interpolation
 
