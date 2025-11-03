@@ -19,7 +19,7 @@ class ShipConfig:
 # Complete ship configurations - single source of truth for all ship data
 # Each ship has its complete configuration defined here for easy maintenance
 var ship_configs: Dictionary = {
-	"Alpine Cruiser": ShipConfig.new("Alpine Cruiser", "res://glb/Alpine Cruiser.glb", Vector3(0, 90, 0), 1.93359375),
+	"Alpine Cruiser": ShipConfig.new("Alpine Cruiser", "res://glb/Alpine Cruiser.glb", Vector3(0, -90, 0), 1.93359375),
 	"Arsenal Gunship": ShipConfig.new("Arsenal Gunship", "res://glb/Arsenal Gunship.glb", Vector3(0, 90, 0), 1.0),
 	"Audacious Patrol Ship": ShipConfig.new("Audacious Patrol Ship", "res://glb/Audacious Patrol Ship.glb", Vector3(0, 90, 0), 1.0),
 	"Banshee Gunship": ShipConfig.new("Banshee Gunship", "res://glb/Banshee Gunship.glb", Vector3(0, 90, 0), 0.924),
