@@ -20,8 +20,8 @@ var ship_classes = {
 	"Assault Ships": [],
 	"Frigates": [],
 	"Cruisers": [],
-	"Battleships": [],
 	"Freighters": [],
+	"Battleships": [],
 	"Haulers": [],
 	"Liners": [],
 	"Gun Platforms": [],
@@ -30,6 +30,28 @@ var ship_classes = {
 	"Interceptors": [],
 	"Other": []
 }
+
+# Define the order of ship classes for grid layout
+var ship_class_order = [
+	"Fighters",
+	"Scouts", 
+	"Shuttles",
+	"Gunships",
+	"Traders",
+	"Patrol Ships",
+	"Assault Ships",
+	"Frigates",
+	"Cruisers",
+	"Freighters",
+	"Battleships",
+	"Haulers",
+	"Liners",
+	"Gun Platforms",
+	"Mining/Construction",
+	"Missile Boats",
+	"Interceptors",
+	"Other"
+]
 
 func _ready():
 	if verification_mode:
@@ -91,7 +113,7 @@ func spawn_verification_grid():
 	var row_spacing = 400.0  # Space between class rows (100% increase from 200)
 	var ship_spacing = 300.0  # Space between ships in same row (100% increase from 150)
 	
-	for ship_class in ship_classes.keys():
+	for ship_class in ship_class_order:
 		var ships_in_class = ship_classes[ship_class]
 		if ships_in_class.size() == 0:
 			continue
