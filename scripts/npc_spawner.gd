@@ -139,7 +139,7 @@ func spawn_ship_at_position(ship_name: String, spawn_position: Vector3):
 	npc.rotation_angle = PI / 2  # Point downward
 	npc.target_rotation_angle = PI / 2  # Keep pointing downward
 	
-	# Update rotation fix now that ship name is set
+	# Update rotation fix /now that ship name is set
 	npc.update_rotation_fix()
 	
 	# Immediately apply visual rotation in verification mode (since ships start paused)
