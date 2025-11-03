@@ -11,6 +11,7 @@ var wander_time: float = 0.0
 var wander_duration: float = 5.0
 var ship_name: String = ""
 var ship_name_label: Label = null
+var skip_random_positioning: bool = false  # Set to true for verification mode
 
 # Reference to the model wrapper node for visual rotation
 var model_wrapper: Node3D = null
@@ -22,10 +23,13 @@ func _ready():
 	# Random starting rotation
 	rotation_angle = randf_range(0, TAU)
 	target_rotation_angle = rotation_angle
-	# Random starting position offset (including altitude)
-	# Randomly place ships either above or below the player plane
-	var altitude = randf_range(50, 150) * (1 if randf() > 0.5 else -1)
-	position += Vector3(randf_range(-500, 500), altitude, randf_range(-500, 500))
+	
+	# Skip random positioning if in verification mode
+	if not skip_random_positioning:
+		# Random starting position offset (including altitude)
+		# Randomly place ships either above or below the player plane
+		var altitude = randf_range(50, 150) * (1 if randf() > 0.5 else -1)
+		position += Vector3(randf_range(-500, 500), altitude, randf_range(-500, 500))
 	# Random wander duration
 	wander_duration = randf_range(3.0, 8.0)
 	

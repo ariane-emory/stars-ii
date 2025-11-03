@@ -109,7 +109,9 @@ func spawn_verification_grid():
 func spawn_ship_at_position(ship_name: String, spawn_position: Vector3):
 	## Spawn a specific ship at a specific position
 	var npc = npc_ship_scene.instantiate()
-	npc.position = spawn_position
+	
+	# Set flag to skip random positioning in verification mode
+	npc.skip_random_positioning = true
 	
 	var config = ShipData.get_ship_config(ship_name)
 	if not config:
@@ -132,8 +134,19 @@ func spawn_ship_at_position(ship_name: String, spawn_position: Vector3):
 	# Add NPC to scene
 	add_child(npc)
 	
+	# In verification mode, set all ships to point downward (towards +Z / bottom of screen)
+	# rotation_angle: 0 = right (+X), PI/2 = down (+Z), PI = left (-X), 3*PI/2 = up (-Z)
+	npc.rotation_angle = PI / 2  # Point downward
+	npc.target_rotation_angle = PI / 2  # Keep pointing downward
+	
 	# Update rotation fix now that ship name is set
 	npc.update_rotation_fix()
+	
+	# Immediately apply visual rotation in verification mode (since ships start paused)
+	npc.update_visual_rotation()
+	
+	# Set position after adding to scene to ensure proper placement
+	npc.position = spawn_position
 
 func spawn_npcs():
 	## Original random spawn behavior

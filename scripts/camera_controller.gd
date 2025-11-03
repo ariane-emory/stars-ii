@@ -1,10 +1,11 @@
 extends Camera3D
 
-## Camera that keeps the player ship centered on screen at all times
+## Orthographic camera that follows the player ship with zoom control
 
-@export var base_camera_offset: Vector3 = Vector3(0, 855.7, 0)  # Base zoom level (100%)
-@export var min_zoom: float = 0.25  # 25% zoom (zoomed out for wide view)
-@export var max_zoom: float = 2.0  # 200% zoom (zoomed in for close view)
+@export var camera_height: float = 707.2  # Fixed height above the world
+@export var base_ortho_size: float = 1200.0  # Base orthographic viewport size (100% zoom)
+@export var min_zoom: float = 0.5  # 50% zoom (zoomed out for wide view)
+@export var max_zoom: float = 3.0  # 300% zoom (zoomed in for close view)
 @export var zoom_speed: float = 0.1  # How much each scroll changes zoom
 @export var zoom_smoothing: float = 10.0  # Higher = faster interpolation
 
@@ -19,10 +20,14 @@ func _ready():
 	
 	if player:
 		print("Camera found player at: ", player.position)
-		# Position camera immediately at player position
-		position = player.position + get_camera_offset()
+		# Position camera above player
+		position = Vector3(player.position.x, camera_height, player.position.z)
 	else:
 		print("WARNING: Camera could not find player!")
+	
+	# Set up orthographic projection
+	projection = PROJECTION_ORTHOGONAL
+	size = base_ortho_size
 	
 	current = true
 
@@ -30,20 +35,19 @@ func _unhandled_input(event):
 	# Handle mouse wheel zoom
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_WHEEL_UP and event.pressed:
-			# Zoom in (decrease camera distance)
-			target_zoom = clamp(target_zoom - zoom_speed, min_zoom, max_zoom)
-		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
-			# Zoom out (increase camera distance)
+			# Zoom in (smaller ortho size = more zoomed in)
 			target_zoom = clamp(target_zoom + zoom_speed, min_zoom, max_zoom)
+		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN and event.pressed:
+			# Zoom out (larger ortho size = more zoomed out)
+			target_zoom = clamp(target_zoom - zoom_speed, min_zoom, max_zoom)
 
 func _physics_process(delta):
 	# Smoothly interpolate current zoom toward target zoom
 	current_zoom = lerp(current_zoom, target_zoom, zoom_smoothing * delta)
 	
+	# Update orthographic size based on zoom (smaller size = more zoomed in)
+	size = base_ortho_size / current_zoom
+	
 	if player:
-		# Keep player perfectly centered with current zoom level
-		position = player.position + get_camera_offset()
-
-func get_camera_offset() -> Vector3:
-	## Calculate camera offset based on current zoom level
-	return base_camera_offset * current_zoom
+		# Keep player perfectly centered - follow player's XZ position, maintain height
+		position = Vector3(player.position.x, camera_height, player.position.z)
