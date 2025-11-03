@@ -20,7 +20,9 @@ var ship_classes = {
 	"Frigates": [],
 	"Cruisers": [],
 	"Battleships": [],
-	"Traders/Haulers/Freighters": [],
+	"Traders": [],
+	"Freighters": [],
+	"Haulers": [],
 	"Liners": [],
 	"Gun Platforms": [],
 	"Mining/Construction": [],
@@ -55,8 +57,12 @@ func classify_ship(ship_name: String) -> String:
 		return "Cruisers"
 	elif ship_name.ends_with("Battleship"):
 		return "Battleship" if ship_name.contains("Battlleship") else "Battleships"
-	elif ship_name.ends_with("Trader") or ship_name.ends_with("Hauler") or ship_name.ends_with("Freighter"):
-		return "Traders/Haulers/Freighters"
+	elif ship_name.ends_with("Trader"):
+		return "Traders"
+	elif ship_name.ends_with("Freighter"):
+		return "Freighters"
+	elif ship_name.ends_with("Hauler"):
+		return "Haulers"
 	elif ship_name.ends_with("Liner"):
 		return "Liners"
 	elif ship_name.ends_with("Gun Platform"):
@@ -81,8 +87,8 @@ func spawn_verification_grid():
 	
 	# Spawn ships in organized rows
 	var row_z_position = 0.0
-	var row_spacing = 300.0  # Space between class rows (50% increase from 200)
-	var ship_spacing = 225.0  # Space between ships in same row (50% increase from 150)
+	var row_spacing = 400.0  # Space between class rows (100% increase from 200)
+	var ship_spacing = 300.0  # Space between ships in same row (100% increase from 150)
 	
 	for ship_class in ship_classes.keys():
 		var ships_in_class = ship_classes[ship_class]
@@ -91,13 +97,18 @@ func spawn_verification_grid():
 		
 		print("\n--- " + ship_class + " (" + str(ships_in_class.size()) + " ships) ---")
 		
+		# Use doubled spacing for battleships to prevent text overlap
+		var current_ship_spacing = ship_spacing
+		if ship_class == "Battleships":
+			current_ship_spacing = ship_spacing * 2.0
+		
 		# Calculate starting X position to center the row
-		var row_width = (ships_in_class.size() - 1) * ship_spacing
+		var row_width = (ships_in_class.size() - 1) * current_ship_spacing
 		var start_x = -row_width / 2.0
 		
 		for i in range(ships_in_class.size()):
 			var ship_name = ships_in_class[i]
-			var x_position = start_x + (i * ship_spacing)
+			var x_position = start_x + (i * current_ship_spacing)
 			
 			spawn_ship_at_position(ship_name, Vector3(x_position, 0, row_z_position))
 			print("  " + ship_name)

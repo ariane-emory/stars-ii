@@ -69,7 +69,7 @@ var ship_configs: Dictionary = {
 	"Moth Scout": ShipConfig.new("Moth Scout", "res://glb/Moth Scout.glb", Vector3(0, 90, 0), 0.8),
 	"Motorcade Shuttle": ShipConfig.new("Motorcade Shuttle", "res://glb/Motorcade Shuttle.glb", Vector3(0, 90, 0), 0.81225),
 	"Myrmidon Gunship": ShipConfig.new("Myrmidon Gunship", "res://glb/Myrmidon Gunship.glb", Vector3(0, -90, 0), 0.99),
-	"Nebula Battleship": ShipConfig.new("Nebula Battleship", "res://glb/Nebula Battleship.glb", Vector3(0, 90, 0), 1.1),
+	"Nebula Battleship": ShipConfig.new("Nebula Battleship", "res://glb/Nebula Battleship.glb", Vector3(0, 90, 0), 2.2),
 	"Nexion Frigate": ShipConfig.new("Nexion Frigate", "res://glb/Nexion Frigate.glb", Vector3(0, 90, 0), 1.53065),
 	"Nightgaunt Gunship": ShipConfig.new("Nightgaunt Gunship", "res://glb/Nightgaunt Gunship.glb", Vector3(0, 90, 0), 1.05),
 	"Nordic Liner": ShipConfig.new("Nordic Liner", "res://glb/Nordic Liner.glb", Vector3(0, 90, 0), 2.25),
@@ -110,7 +110,7 @@ var ship_configs: Dictionary = {
 	"Sparrow Fighter": ShipConfig.new("Sparrow Fighter", "res://glb/Sparrow Fighter.glb", Vector3(0, 90, 0), 0.8),
 	"Spear Frigate": ShipConfig.new("Spear Frigate", "res://glb/Spear Frigate.glb", Vector3(0, 90, 0), 1.815),
 	"Spike Patrol Ship": ShipConfig.new("Spike Patrol Ship", "res://glb/Spike Patrol Ship.glb", Vector3(0, -90, 0), 0.924),
-	"Stalwart Battleship": ShipConfig.new("Stalwart Battleship", "res://glb/Stalwart Battleship.glb", Vector3(0, 90, 0), 1.1),
+	"Stalwart Battleship": ShipConfig.new("Stalwart Battleship", "res://glb/Stalwart Battleship.glb", Vector3(0, 90, 0), 2.2),
 	"Star Eagle Fighter": ShipConfig.new("Star Eagle Fighter", "res://glb/Star Eagle Fighter.glb", Vector3(0, 90, 0), 0.45),
 	"Star Skipper Trader": ShipConfig.new("Star Skipper Trader", "res://glb/Star Skipper Trader.glb", Vector3(0, -90, 0), 1.089),
 	"Starways Hauler": ShipConfig.new("Starways Hauler", "res://glb/Starways Hauler.glb", Vector3(0, 90, 0), 1.875),
@@ -129,7 +129,7 @@ var ship_configs: Dictionary = {
 	"Vector Battleship": ShipConfig.new("Vector Battleship", "res://glb/Vector Battleship.glb", Vector3(0, 90, 0), 1.65),
 	"Viceroy Shuttle": ShipConfig.new("Viceroy Shuttle", "res://glb/Viceroy Shuttle.glb", Vector3(0, 90, 0), 0.84),
 	"Viking Frigate": ShipConfig.new("Viking Frigate", "res://glb/Viking Frigate.glb", Vector3(0, -90, 0), 1.65),
-	"Void Hauler": ShipConfig.new("Void Hauler", "res://glb/Void Hauler.glb", Vector3(0, -90, 0), 4.05),
+	"Void Hauler": ShipConfig.new("Void Hauler", "res://glb/Void Hauler.glb", Vector3(0, 0, 0), 4.05),
 	"Vulture Gunship": ShipConfig.new("Vulture Gunship", "res://glb/Vulture Gunship.glb", Vector3(0, 90, 0), 0.55),
 	"Wasp Fighter": ShipConfig.new("Wasp Fighter", "res://glb/Wasp Fighter.glb", Vector3(0, 90, 0), 0.6),
 	"Watchman Gunship": ShipConfig.new("Watchman Gunship", "res://glb/Watchman Gunship.glb", Vector3(0, 90, 0), 1.0),
@@ -145,7 +145,7 @@ var ship_configs: Dictionary = {
 	"Spartan Gunship": ShipConfig.new("Spartan Gunship", "res://glb/Spartan Gunship.glb", Vector3(0, 90, 0), 1.1),
 	"Stinger Fighter": ShipConfig.new("Stinger Fighter", "res://glb/Stinger Fighter.glb", Vector3(0, 90, 0), 0.72),
 	"Sunbird Fighter": ShipConfig.new("Sunbird Fighter", "res://glb/Sunbird Fighter.glb", Vector3(0, 0, 0), 0.36),
-	"Unyielding Battleship": ShipConfig.new("Unyielding Battleship", "res://glb/Unyielding Battleship.glb", Vector3(0, 0, 0), 1.1),
+	"Unyielding Battleship": ShipConfig.new("Unyielding Battleship", "res://glb/Unyielding Battleship.glb", Vector3(0, 0, 0), 2.2),
 	"Valiant Gunship": ShipConfig.new("Valiant Gunship", "res://glb/Valiant Gunship.glb", Vector3(0, 90, 0), 0.99)
 }
 
