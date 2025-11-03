@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cj4yal2uhewa6"
-path="res://.godot/imported/Rack Fighter.glb-01a7e5215fedabcf946234600976f033.scn"
+uid="uid://upeybk4bcxn5"
+path="res://.godot/imported/Rack-Fighter.glb-a09793b1d80a45154cd6667ca01b9d59.scn"
 
 [deps]
 
-source_file="res://glb/Rack Fighter.glb"
-dest_files=["res://.godot/imported/Rack Fighter.glb-01a7e5215fedabcf946234600976f033.scn"]
+source_file="res://Rack-Fighter.glb"
+dest_files=["res://.godot/imported/Rack-Fighter.glb-a09793b1d80a45154cd6667ca01b9d59.scn"]
 
 [params]
 
