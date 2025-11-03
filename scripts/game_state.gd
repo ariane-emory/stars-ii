@@ -3,7 +3,7 @@ extends Node
 ## Global game state manager
 ## Handles game-wide state like NPC pause
 
-var npc_paused: bool = false
+var npc_paused: bool = true
 
 func _input(event):
 	# Toggle NPC pause with P key
