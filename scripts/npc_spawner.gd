@@ -78,7 +78,7 @@ func classify_ship(ship_name: String) -> String:
 	elif ship_name.ends_with("Cruiser"):
 		return "Cruisers"
 	elif ship_name.ends_with("Battleship"):
-		return "Battleship" if ship_name.contains("Battlleship") else "Battleships"
+		return "Battleships"
 	elif ship_name.ends_with("Trader"):
 		return "Traders"
 	elif ship_name.ends_with("Freighter"):

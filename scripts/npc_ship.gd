@@ -20,6 +20,11 @@ func _ready():
 	# Add to npc_ships group for radar detection
 	add_to_group("npc_ships")
 	
+	# Set collision layers to prevent ship-to-ship collisions
+	# Layer 1: Player ship, Layer 2: NPC ships, Layer 3: Other objects
+	collision_layer = 2  # NPC ships are on layer 2
+	collision_mask = 4   # Only collide with layer 3 (not with any ships)
+	
 	# Random starting rotation
 	rotation_angle = randf_range(0, TAU)
 	target_rotation_angle = rotation_angle

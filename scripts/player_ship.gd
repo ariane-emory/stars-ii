@@ -22,6 +22,11 @@ func _ready():
 	rotation_angle = randf_range(0, TAU)
 	print("Player ship initialized at position: ", position)
 	
+	# Set collision layers to prevent ship-to-ship collisions
+	# Layer 1: Player ship, Layer 2: NPC ships, Layer 3: Other objects
+	collision_layer = 1  # Player ship is on layer 1
+	collision_mask = 4   # Only collide with layer 3 (not with any ships)
+	
 	# Check if model loaded
 	var model = get_node_or_null("Model")
 	if model:
