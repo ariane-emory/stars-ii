@@ -33,6 +33,7 @@ var ship_classes = {
 
 # Define the order of ship classes for grid layout
 var ship_class_order = [
+	"Interceptors",
 	"Fighters",
 	"Scouts", 
 	"Shuttles",
@@ -49,7 +50,6 @@ var ship_class_order = [
 	"Gun Platforms",
 	"Mining/Construction",
 	"Missile Boats",
-	"Interceptors",
 	"Other"
 ]
 
