@@ -114,7 +114,7 @@ func spawn_verification_grid():
 	var ship_spacing = 300.0  # Space between ships in same row (100% increase from 150)
 	
 	for ship_class in ship_class_order:
-		var ships_in_class = shi/p_classes[ship_class]
+		var ships_in_class = ship_classes[ship_class]
 		if ships_in_class.size() == 0:
 			continue
 		
