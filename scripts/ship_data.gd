@@ -3,6 +3,10 @@ extends Node
 ## Centralized ship configuration data
 ## This autoload provides ship-specific data like rotation corrections and scale multipliers
 
+# Configuration: Sort ships by modification time (newest first) or alphabetical
+# Set to false for alphabetical order, true for modification time order
+var sort_by_mod_time: bool = false
+
 # Ship configuration structure
 class ShipConfig:
 	var name: String
@@ -44,7 +48,7 @@ var ship_configs: Dictionary = {
 	"Cyclops Missile Boat": ShipConfig.new("Cyclops Missile Boat", "res://glb/Cyclops Missile Boat.glb", Vector3(0, 90, 0), 1.36),
 	"Dagger Fighter": ShipConfig.new("Dagger Fighter", "res://glb/Dagger Fighter.glb", Vector3(0, 90, 0), 0.77),
 	"Darkling Fighter": ShipConfig.new("Darkling Fighter", "res://glb/Darkling Fighter.glb", Vector3(0, 270, 0), 0.906),
-	"Dart Scout": ShipConfig.new("Dart Scout", "res://glb/Dart Scout.glb", Vector3(0, 90, 0), 0.8),
+	"Dart Scout": ShipConfig.new("Dart Scout", "res://glb/Dart Scout.glb", Vector3(0, 90, 0), 0.75),
 	"Dispatch Shuttle": ShipConfig.new("Dispatch Shuttle", "res://glb/Dispatch Shuttle.glb", Vector3(0, 90, 0), 0.81),
 	"Dolphin Trader": ShipConfig.new("Dolphin Trader", "res://glb/Dolphin Trader.glb", Vector3(0, 90, 0), 1.2),
 	"Drushi Battleship": ShipConfig.new("Drushi Battleship", "res://glb/Drushi Battleship.glb", Vector3(0, 90, 0), 2.08625),
@@ -127,7 +131,7 @@ var ship_configs: Dictionary = {
 	"Swordsman Gunship": ShipConfig.new("Swordsman Gunship", "res://glb/Swordsman Gunship.glb", Vector3(0, 90, 0), 1.15),
 	"Toad Assault Ship": ShipConfig.new("Toad Assault Ship", "res://glb/Toad Assault Ship.glb", Vector3(0, -90, 0), 1.473),
 	"Tortoise Gunship": ShipConfig.new("Tortoise Gunship", "res://glb/Tortoise Gunship.glb", Vector3(0, 90, 0), 1.15),
-	"Tropica Gunship": ShipConfig.new("Tropica Gunship", "res://glb/Tropica Gunship.glb", Vector3(0, 90, 0), 1.090),
+	"Tropica Gunship": ShipConfig.new("Tropica Gunship", "res://glb/Tropica Gunship.glb", Vector3(0, 90, 0), 1.140),
 	"Twinstrike Gunship": ShipConfig.new("Twinstrike Gunship", "res://glb/Twinstrike Gunship.glb", Vector3(0, 90, 0), 1.15),
 
 	"Vector Battleship": ShipConfig.new("Vector Battleship", "res://glb/Vector Battleship.glb", Vector3(0, 90, 0), 1.85),
@@ -165,21 +169,42 @@ func _ready():
 
 func _initialize_ship_data():
 	## Initialize ship data by populating helper arrays for backward compatibility
-	## All actual ship configurations are now in the ship_configs dictionary above
+	## Ships are sorted by file modification time (newest first)
+	## This helps identify recently added/modified ships in verification mode
+	## Newest ships will appear on the left side of each class row
 	
-	# Populate ship lists from GLB files for backward compatibility
+	# Collect ship files with their modification times
+	var ship_files_with_time = []
 	var dir = DirAccess.open("res://glb/")
 	if dir:
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
 		while file_name != "":
 			if file_name.ends_with(".glb") and not file_name.begins_with("Missile") and not file_name.begins_with("Asteroid"):
-				var ship_name = file_name.replace(".glb", "")
-				ship_list.append(ship_name)
-				all_ship_paths.append("res://glb/" + file_name)
+				var file_path = "res://glb/" + file_name
+				var mod_time = FileAccess.get_modified_time(file_path)
+				ship_files_with_time.append({
+					"name": file_name.replace(".glb", ""),
+					"path": file_path,
+					"mod_time": mod_time
+				})
 			file_name = dir.get_next()
 	else:
 		push_error("ShipData: Failed to open res://glb/ directory")
+	
+	# Sort ships based on configuration
+	if sort_by_mod_time:
+		# Sort by modification time (newest first - use > for descending)
+		# This ensures recently modified ships (like renamed ones) appear on the left side
+		ship_files_with_time.sort_custom(func(a, b): return a.mod_time > b.mod_time)
+	else:
+		# Sort alphabetically by ship name (original behavior)
+		ship_files_with_time.sort_custom(func(a, b): return a.name < b.name)
+	
+	# Populate ship lists in sorted order
+	for ship_data in ship_files_with_time:
+		ship_list.append(ship_data.name)
+		all_ship_paths.append(ship_data.path)
 
 func _validate_ship_models():
 	## Validate ship models to detect duplicates or corruption
@@ -195,7 +220,7 @@ func _validate_ship_models():
 		var file_path = config.model_path.replace("res://", "")
 		var file = FileAccess.open(config.model_path, FileAccess.READ)
 		if file:
-			var file_hash = file.get_md5(file_path)
+			var file_hash = FileAccess.get_md5(file_path)
 			file.close()
 			
 			if file_hashes.has(file_hash):
