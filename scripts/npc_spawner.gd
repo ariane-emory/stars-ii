@@ -119,7 +119,7 @@ func spawn_verification_grid():
 			continue
 		
 		print("-\n--- " + ship_class + " (" + str(ships_in_class.size()) + " ships) ---")
-		
+	
 		# Use doubled spacing for battleships to prevent text overlap
 		var current_ship_spacing = ship_spacing
 		if ship_class == "Battleships":
