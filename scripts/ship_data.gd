@@ -30,7 +30,7 @@ var ship_configs: Dictionary = {
 	"Barrier Frigate": ShipConfig.new("Barrier Frigate", "res://glb/Barrier Frigate.glb", Vector3(0, 90, 0), 1.865),
 	"Barricade Frigate": ShipConfig.new("Barricade Frigate", "res://glb/Barricade Frigate.glb", Vector3(0, 90, 0), 1.906),
 	"Batwing Gunship": ShipConfig.new("Batwing Gunship", "res://glb/Batwing Gunship.glb", Vector3(0, 90, 0), 1.04),
-	"Bearclaw Frigate": ShipConfig.new("Bearclaw Frigate", "res://glb/Bearclaw Frigate.glb", Vector3(0, 90, 0), 1.571),
+	"Bearclaw Frigate": ShipConfig.new("Bearclaw Frigate", "res://glb/Bearclaw Frigate.glb", Vector3(0, 90, 0), 1.621),
 	"Belt Freighter": ShipConfig.new("Belt Freighter", "res://glb/Belt Freighter.glb", Vector3(0, 180, 0), 2.15),
 	"Dwarf Interceptor": ShipConfig.new("Dwarf Interceptor", "res://glb/Dwarf Interceptor.glb", Vector3(0, 90, 0), 0.66),
 	"Fireball Interceptor": ShipConfig.new("Fireball Interceptor", "res://glb/Fireball Interceptor.glb", Vector3(0, 90, 0), 0.75),
@@ -76,7 +76,7 @@ var ship_configs: Dictionary = {
 	"Mosquito Fighter": ShipConfig.new("Mosquito Fighter", "res://glb/Mosquito Fighter.glb", Vector3(0, 90, 0), 0.91),
 	"Moth Scout": ShipConfig.new("Moth Scout", "res://glb/Moth Scout.glb", Vector3(0, 90, 0), 0.8),
 
-	"Myrmidon Gunship": ShipConfig.new("Myrmidon Gunship", "res://glb/Myrmidon Gunship.glb", Vector3(0, -90, 0), 1.04),
+	"Myrmidon Gunship": ShipConfig.new("Myrmidon Gunship", "res://glb/Myrmidon Gunship.glb", Vector3(0, 0, 0), 1.04),
 	"Nebula Battleship": ShipConfig.new("Nebula Battleship", "res://glb/Nebula Battleship.glb", Vector3(0, 90, 0), 2.85),
 	"Nexion Cruiser": ShipConfig.new("Nexion Cruiser", "res://glb/Nexion Cruiser.glb", Vector3(0, 270, 0), 1.931),
 	"Nightgaunt Gunship": ShipConfig.new("Nightgaunt Gunship", "res://glb/Nightgaunt Gunship.glb", Vector3(0, 90, 0), 1.1),
@@ -133,6 +133,8 @@ var ship_configs: Dictionary = {
 	"Tortoise Gunship": ShipConfig.new("Tortoise Gunship", "res://glb/Tortoise Gunship.glb", Vector3(0, 90, 0), 1.15),
 	"Tropica Gunship": ShipConfig.new("Tropica Gunship", "res://glb/Tropica Gunship.glb", Vector3(0, 90, 0), 1.140),
 	"Twinstrike Gunship": ShipConfig.new("Twinstrike Gunship", "res://glb/Twinstrike Gunship.glb", Vector3(0, 90, 0), 1.15),
+	"Termite Gunship": ShipConfig.new("Termite Gunship", "res://glb/Termite Gunship.glb", Vector3(0, 90, 0), 1.068),
+	"Trident Gunship": ShipConfig.new("Trident Gunship", "res://glb/Trident Gunship.glb", Vector3(0, 90, 0), 1.068),
 
 	"Vector Battleship": ShipConfig.new("Vector Battleship", "res://glb/Vector Battleship.glb", Vector3(0, 90, 0), 1.85),
 	"Viceroy Shuttle": ShipConfig.new("Viceroy Shuttle", "res://glb/Viceroy Shuttle.glb", Vector3(0, 90, 0), 0.84),
@@ -162,7 +164,7 @@ var ship_configs: Dictionary = {
 	"Aphid Construction Ship": ShipConfig.new("Aphid Construction Ship", "res://glb/Aphid Construction Ship.glb", Vector3(0, 90, 0), 1.550),
 	"Beluga Freighter": ShipConfig.new("Beluga Freighter", "res://glb/Beluga Freighter.glb", Vector3(0, 90, 0), 1.947),
 	"Butterfly Shuttle": ShipConfig.new("Butterfly Shuttle", "res://glb/Butterfly Shuttle.glb", Vector3(0, 90, 0), 0.778),
-	"Choronzom Frigate": ShipConfig.new("Choronzom Frigate", "res://glb/Choronzom Frigate.glb", Vector3(0, 90, 0), 1.689),
+	"Choronzom Frigate": ShipConfig.new("Choronzom Frigate", "res://glb/Choronzom Frigate.glb", Vector3(0, 90, 0), 1.639),
 	"Diabolus Gunship": ShipConfig.new("Diabolus Gunship", "res://glb/Diabolus Gunship.glb", Vector3(0, 90, 0), 1.068),
 	"Drake Fighter": ShipConfig.new("Drake Fighter", "res://glb/Drake Fighter.glb", Vector3(0, 270, 0), 0.919),
 	"Firefly Fighter": ShipConfig.new("Firefly Fighter", "res://glb/Firefly Fighter.glb", Vector3(0, 90, 0), 0.969),
@@ -172,7 +174,7 @@ var ship_configs: Dictionary = {
 	"Jetsam Trader": ShipConfig.new("Jetsam Trader", "res://glb/Jetsam Trader.glb", Vector3(0, 90, 0), 1.280),
 	"Locust Gunship": ShipConfig.new("Locust Gunship", "res://glb/Locust Gunship.glb", Vector3(0, 90, 0), 1.168),
 	"Merkara Trader": ShipConfig.new("Merkara Trader", "res://glb/Merkara Trader.glb", Vector3(0, 90, 0), 1.280),
-	"Migo Frigate": ShipConfig.new("Migo Frigate", "res://glb/Migo Frigate.glb", Vector3(0, 90, 0), 1.689),
+	"Migo Frigate": ShipConfig.new("Migo Frigate", "res://glb/Migo Frigate.glb", Vector3(0, 90, 0), 1.789),
 	"Noseeum Gunship": ShipConfig.new("Noseeum Gunship", "res://glb/Noseeum Gunship.glb", Vector3(0, 90, 0), 1.068),
 	"Packet Trader": ShipConfig.new("Packet Trader", "res://glb/Packet Trader.glb", Vector3(0, 90, 0), 1.280),
 	"Panoptic Gun Platform": ShipConfig.new("Panoptic Gun Platform", "res://glb/Panoptic Gun Platform.glb", Vector3(0, 90, 0), 1.178),
@@ -180,16 +182,12 @@ var ship_configs: Dictionary = {
 	"Princess Shuttle": ShipConfig.new("Princess Shuttle", "res://glb/Princess Shuttle.glb", Vector3(0, 90, 0), 0.778),
 	"Redwing Fighter": ShipConfig.new("Redwing Fighter", "res://glb/Redwing Fighter.glb", Vector3(0, 90, 0), 0.769),
 	"Samurai Gunship": ShipConfig.new("Samurai Gunship", "res://glb/Samurai Gunship.glb", Vector3(0, 90, 0), 1.068),
-	"Silverfish Fighter": ShipConfig.new("Silverfish Fighter", "res://glb/Silverfish Fighter.glb", Vector3(0, 270, 0), 1.069),
-	"Smiler Frigate": ShipConfig.new("Smiler Frigate", "res://glb/Smiler Frigate.glb", Vector3(0, 90, 0), 1.689),
-	"Specter Gunship": ShipConfig.new("Specter Gunship", "res://glb/Specter Gunship.glb", Vector3(0, 90, 0), 1.068),
 	"Squid Gunship": ShipConfig.new("Squid Gunship", "res://glb/Squid Gunship.glb", Vector3(0, 90, 0), 1.168),
-	"Termite Gunship": ShipConfig.new("Termite Gunship", "res://glb/Termite Gunship.glb", Vector3(0, 90, 0), 1.068),
-	"Trident Gunship": ShipConfig.new("Trident Gunship", "res://glb/Trident Gunship.glb", Vector3(0, 90, 0), 1.068),
-
+	"Silverfish Fighter": ShipConfig.new("Silverfish Fighter", "res://glb/Silverfish Fighter.glb", Vector3(0, 270, 0), 1.069),
+	"Smiler Frigate": ShipConfig.new("Smiler Frigate", "res://glb/Smiler Frigate.glb", Vector3(0, 90, 0), 1.639),
 	"Victorious Frigate": ShipConfig.new("Victorious Frigate", "res://glb/Victorious Frigate.glb", Vector3(0, 90, 0), 1.689),
-	"Vixtrix Frigate": ShipConfig.new("Vixtrix Frigate", "res://glb/Vixtrix Frigate.glb", Vector3(0, 90, 0), 1.689),
-	"Yogoloth Cruiser": ShipConfig.new("Yogoloth Cruiser", "res://glb/Yogoloth Cruiser.glb", Vector3(0, 90, 0), 2.153)
+	"Victrix Frigate": ShipConfig.new("Victrix Frigate", "res://glb/Victrix Frigate.glb", Vector3(0, 90, 0), 1.639),
+	"Yogoloth Cruiser": ShipConfig.new("Yogoloth Cruiser", "res://glb/Yogoloth Cruiser.glb", Vector3(0, 270, 0), 2.153)
 }
 
 # List of all ship model paths (for random selection) - maintained for backward compatibility
