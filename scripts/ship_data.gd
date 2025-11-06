@@ -158,7 +158,6 @@ var ship_configs: Dictionary = {
 	"Firefly Fighter": ShipConfig.new("Firefly Fighter", "res://glb/Firefly Fighter.glb", Vector3(0, 90, 0), 1.019),
 	"Gladius Gunship": ShipConfig.new("Gladius Gunship", "res://glb/Gladius Gunship.glb", Vector3(0, 90, 0), 1.068),
 	"Guardsman Patrol Ship": ShipConfig.new("Guardsman Patrol Ship", "res://glb/Guardsman Patrol Ship.glb", Vector3(0, 90, 0), 1.223),
-	"Imp Fighter": ShipConfig.new("Imp Fighter", "res://glb/Imp Fighter.glb", Vector3(0, 90, 0), 0.769),
 	"Jetsam Trader": ShipConfig.new("Jetsam Trader", "res://glb/Jetsam Trader.glb", Vector3(0, 90, 0), 1.230),
 	"Locust Gunship": ShipConfig.new("Locust Gunship", "res://glb/Locust Gunship.glb", Vector3(0, 270, 0), 1.168),
 	"Merkara Trader": ShipConfig.new("Merkara Trader", "res://glb/Merkara Trader.glb", Vector3(0, 90, 0), 1.280),
