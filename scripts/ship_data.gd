@@ -190,14 +190,14 @@ var ship_configs: Dictionary = {
 	"Victorious Frigate": ShipConfig.new("Victorious Frigate", "res://glb/Victorious Frigate.glb", Vector3(0, 90, 0), 1.639),
 	
 	# New ships added from new-glbs folder (batch 2)
-	"Arctic Tader": ShipConfig.new("Arctic Tader", "res://glb/Arctic Tader.glb", Vector3(0, 90, 0), 1.28),
+	"Arctic Trader": ShipConfig.new("Arctic Trader", "res://glb/Arctic Trader.glb", Vector3(0, 90, 0), 1.28),
 	"Compass Freighter": ShipConfig.new("Compass Freighter", "res://glb/Compass Freighter.glb", Vector3(0, 135, 0), 2.15),
 	"First Class Trader": ShipConfig.new("First Class Trader", "res://glb/First Class Trader.glb", Vector3(0, 90, 0), 1.23),
 	"Frostfall Trader": ShipConfig.new("Frostfall Trader", "res://glb/Frostfall Trader.glb", Vector3(0, 90, 0), 1.28),
 	"Priority Trader": ShipConfig.new("Priority Trader", "res://glb/Priority Trader.glb", Vector3(0, 90, 0), 1.23),
 	"Silk Road Trader": ShipConfig.new("Silk Road Trader", "res://glb/Silk Road Trader.glb", Vector3(0, 270, 0), 1.28),
 	"Snowdrift Freighter": ShipConfig.new("Snowdrift Freighter", "res://glb/Snowdrift Freighter.glb", Vector3(0, 90, 0), 1.65),
-	"Snowman Traderr": ShipConfig.new("Snowman Traderr", "res://glb/Snowman Traderr.glb", Vector3(0, 90, 0), 1.28),
+	"Snowman Trader": ShipConfig.new("Snowman Trader", "res://glb/Snowman Trader.glb", Vector3(0, 90, 0), 1.28),
 	"Xfer Trader": ShipConfig.new("Xfer Trader", "res://glb/Xfer Trader.glb", Vector3(0, 90, 0), 1.28)
 
 
