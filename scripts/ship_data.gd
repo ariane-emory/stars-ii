@@ -37,7 +37,7 @@ var ship_configs: Dictionary = {
 	"Barricade Frigate": ShipConfig.new("Barricade Frigate", "res://glb/Barricade Frigate.glb", Vector3(0, 90, 0), 1.906),
 	"Batwing Gunship": ShipConfig.new("Batwing Gunship", "res://glb/Batwing Gunship.glb", Vector3(0, 90, 0), 1.04),
 	"Bearclaw Frigate": ShipConfig.new("Bearclaw Frigate", "res://glb/Bearclaw Frigate.glb", Vector3(0, 90, 0), 1.621),
-	"Belt Freighter": ShipConfig.new("Belt Freighter", "res://glb/Belt Freighter.glb", Vector3(0, 180, 0), 2.15),
+	"Belt Freighter": ShipConfig.new("Belt Freighter", "res://glb/Belt Freighter.glb", Vector3(0, 180, 0), 2.30),
 
 	
 	"Blood Eagle Fighter": ShipConfig.new("Blood Eagle Fighter", "res://glb/Blood Eagle Fighter.glb", Vector3(0, 90, 0), 0.45),
@@ -81,7 +81,7 @@ var ship_configs: Dictionary = {
 	"Nebula Battleship": ShipConfig.new("Nebula Battleship", "res://glb/Nebula Battleship.glb", Vector3(0, 90, 0), 2.85),
 	"Nexion Cruiser": ShipConfig.new("Nexion Cruiser", "res://glb/Nexion Cruiser.glb", Vector3(0, 270, 0), 1.931),
 	"Nightgaunt Gunship": ShipConfig.new("Nightgaunt Gunship", "res://glb/Nightgaunt Gunship.glb", Vector3(0, 90, 0), 1.15),
-	"Nordic Liner": ShipConfig.new("Nordic Liner", "res://glb/Nordic Liner.glb", Vector3(0, 90, 0), 2.25),
+	"Nordic Liner": ShipConfig.new("Nordic Liner", "res://glb/Nordic Liner.glb", Vector3(0, 90, 0), 2.20),
 	"Northerner Gunship": ShipConfig.new("Northerner Gunship", "res://glb/Northerner Gunship.glb", Vector3(0, 90, 0), 1.04),
 	"Nova Battleship": ShipConfig.new("Nova Battleship", "res://glb/Nova Battleship.glb", Vector3(0, -90, 0), 1.45),
 	"Nubulous Scout": ShipConfig.new("Nubulous Scout", "res://glb/Nubulous Scout.glb", Vector3(0, 90, 0), 0.72),
@@ -105,7 +105,7 @@ var ship_configs: Dictionary = {
 	"Raven Scout": ShipConfig.new("Raven Scout", "res://glb/Raven Scout.glb", Vector3(0, 90, 0), 0.85),
 	"Redeye Gun Platform": ShipConfig.new("Redeye Gun Platform", "res://glb/Redeye Gun Platform.glb", Vector3(0, 0, 0), 1.1),
 	"Resolute Frigate": ShipConfig.new("Resolute Frigate", "res://glb/Resolute Frigate.glb", Vector3(0, 90, 0), 1.563),
-	"Rimward Freighter": ShipConfig.new("Rimward Freighter", "res://glb/Rimward Freighter.glb", Vector3(0, 90, 0), 1.225),
+	"Rimward Freighter": ShipConfig.new("Rimward Freighter", "res://glb/Rimward Freighter.glb", Vector3(0, 90, 0), 1.375),
 	"Robin Gunship": ShipConfig.new("Robin Gunship", "res://glb/Robin Gunship.glb", Vector3(0, 90, 0), 1.15),
 	"Royal Standard Battleship": ShipConfig.new("Royal Standard Battleship", "res://glb/Royal Standard Battleship.glb", Vector3(0, 90, 0), 2.87),
 	"Sai Fighter": ShipConfig.new("Sai Fighter", "res://glb/Sai Fighter.glb", Vector3(0, 90, 0), 0.8),
@@ -115,7 +115,7 @@ var ship_configs: Dictionary = {
 	"Shadowblade Fighter": ShipConfig.new("Shadowblade Fighter", "res://glb/Shadowblade Fighter.glb", Vector3(0, 90, 0), 0.8),
 	"Shark Gunship": ShipConfig.new("Shark Gunship", "res://glb/Shark Gunship.glb", Vector3(0, 90, 0), 0.991),
 	"Sokoly Fighter": ShipConfig.new("Sokoly Fighter", "res://glb/Sokoly Fighter.glb", Vector3(0, 90, 0), 0.95),
-	"Solar Empress Liner": ShipConfig.new("Solar Empress Liner", "res://glb/Solar Empress Liner.glb", Vector3(0, -90, 0), 2.4),
+	"Solar Empress Liner": ShipConfig.new("Solar Empress Liner", "res://glb/Solar Empress Liner.glb", Vector3(0, 90, 0), 2.4),
 	"Sparrow Fighter": ShipConfig.new("Sparrow Fighter", "res://glb/Sparrow Fighter.glb", Vector3(0, 90, 0), 0.8),
 	"Spear Frigate": ShipConfig.new("Spear Frigate", "res://glb/Spear Frigate.glb", Vector3(0, 90, 0), 1.915),
 	"Spike Patrol Ship": ShipConfig.new("Spike Patrol Ship", "res://glb/Spike Patrol Ship.glb", Vector3(0, -90, 0), 1.216),
@@ -163,7 +163,7 @@ var ship_configs: Dictionary = {
 	# New ships added from new-glbs folder
 	"Albino Gunship": ShipConfig.new("Albino Gunship", "res://glb/Albino Gunship.glb", Vector3(0, 90, 0), 1.068),
 
-	"Beluga Freighter": ShipConfig.new("Beluga Freighter", "res://glb/Beluga Freighter.glb", Vector3(0, 90, 0), 1.947),
+	"Beluga Freighter": ShipConfig.new("Beluga Freighter", "res://glb/Beluga Freighter.glb", Vector3(0, 90, 0), 1.847),
 	"Butterfly Shuttle": ShipConfig.new("Butterfly Shuttle", "res://glb/Butterfly Shuttle.glb", Vector3(0, 90, 0), 0.628),
 	"Choronzom Frigate": ShipConfig.new("Choronzom Frigate", "res://glb/Choronzom Frigate.glb", Vector3(0, 90, 0), 1.639),
 	"Diabolus Gunship": ShipConfig.new("Diabolus Gunship", "res://glb/Diabolus Gunship.glb", Vector3(0, 90, 0), 1.118),
@@ -186,8 +186,19 @@ var ship_configs: Dictionary = {
 
 
 	"Silverfish Fighter": ShipConfig.new("Silverfish Fighter", "res://glb/Silverfish Fighter.glb", Vector3(0, 270, 0), 1.069),
-	"Smiler Frigate": ShipConfig.new("Smiler Frigate", "res://glb/Smiler Frigate.glb", Vector3(0, 90, 0), 1.639),
+	"Smiler Frigate": ShipConfig.new("Smiler Frigate", "res://glb/Smiler Frigate.glb", Vector3(0, 90, 0), 1.539),
 	"Victorious Frigate": ShipConfig.new("Victorious Frigate", "res://glb/Victorious Frigate.glb", Vector3(0, 90, 0), 1.639),
+	
+	# New ships added from new-glbs folder (batch 2)
+	"Arctic Tader": ShipConfig.new("Arctic Tader", "res://glb/Arctic Tader.glb", Vector3(0, 90, 0), 1.28),
+	"Compass Freighter": ShipConfig.new("Compass Freighter", "res://glb/Compass Freighter.glb", Vector3(0, 135, 0), 2.15),
+	"First Class Trader": ShipConfig.new("First Class Trader", "res://glb/First Class Trader.glb", Vector3(0, 90, 0), 1.23),
+	"Frostfall Trader": ShipConfig.new("Frostfall Trader", "res://glb/Frostfall Trader.glb", Vector3(0, 90, 0), 1.28),
+	"Priority Trader": ShipConfig.new("Priority Trader", "res://glb/Priority Trader.glb", Vector3(0, 90, 0), 1.23),
+	"Silk Road Trader": ShipConfig.new("Silk Road Trader", "res://glb/Silk Road Trader.glb", Vector3(0, 270, 0), 1.28),
+	"Snowdrift Freighter": ShipConfig.new("Snowdrift Freighter", "res://glb/Snowdrift Freighter.glb", Vector3(0, 90, 0), 1.65),
+	"Snowman Traderr": ShipConfig.new("Snowman Traderr", "res://glb/Snowman Traderr.glb", Vector3(0, 90, 0), 1.28),
+	"Xfer Trader": ShipConfig.new("Xfer Trader", "res://glb/Xfer Trader.glb", Vector3(0, 90, 0), 1.28)
 
 
 }
