@@ -111,7 +111,7 @@ func spawn_verification_grid():
 	# Spawn ships in organized rows
 	var row_z_position = 0.0
 	var row_spacing = 400.0  # Space between class rows (100% increase from 200)
-	var ship_spacing = 300.0  # Space between ships in same row (100% increase from 150)
+	var ship_spacing = 250.0  # Space between ships in same row (reduced to prevent gaps)
 	
 	for ship_class in ship_class_order:
 		var ships_in_class = ship_classes[ship_class]
