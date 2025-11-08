@@ -71,14 +71,14 @@ func _physics_process(delta):
 			update_name_label_position()
 		return
 	
-	# Stations should remain stationary but with slow clockwise rotation
+	# Stations should remain stationary but with slow counterclockwise rotation
 	if ship_name.ends_with("Station"):
 		velocity = Vector3.ZERO
 		move_and_slide()
 		
-		# Apply slow clockwise rotation (negative angle = clockwise)
-		var station_rotation_speed = 0.15  # Slow rotation speed in radians per second
-		rotation_angle -= station_rotation_speed * delta
+		# Apply slow counterclockwise rotation (positive angle = counterclockwise)
+		var station_rotation_speed = 0.075  # Very slow rotation speed in radians per second
+		rotation_angle += station_rotation_speed * delta
 		rotation_angle = fmod(rotation_angle, TAU)
 		
 		# Update visual rotation to show the slow spin
