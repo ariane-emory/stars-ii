@@ -1,11 +1,23 @@
 extends Node3D
 
 ## Spawns NPC ships at game start
-## In verification mode, spawns all ships organized by class
+## Two scenarios available:
+## - 'ship_gallery': All ships in organized grid, starts paused (for reviewing ships)
+## - 'normal': Random ships spawned naturally with movement
 
-@export var npc_count: int = 8
-@export var spawn_radius: float = 1000.0
-@export var verification_mode: bool = true  # When true, spawns all ships in organized grid
+# ============================================================
+# SCENARIO SELECTION - Change this to switch between scenarios
+# ============================================================
+enum Scenario {
+	SHIP_GALLERY,  # Organized grid view of all ships, starts paused
+	NORMAL         # Random ships with natural movement
+}
+
+@export var current_scenario: Scenario = Scenario.SHIP_GALLERY
+
+# Scenario-specific settings
+@export var npc_count: int = 8  # Only used in NORMAL scenario
+@export var spawn_radius: float = 1000.0  # Only used in NORMAL scenario
 
 var npc_ship_scene = preload("res://scenes/npc_ship.tscn")
 
@@ -55,10 +67,15 @@ var ship_class_order = [
 ]
 
 func _ready():
-	if verification_mode:
-		spawn_verification_grid()
-	else:
-		spawn_npcs()
+	match current_scenario:
+		Scenario.SHIP_GALLERY:
+			spawn_verification_grid()
+			# Start paused for ship gallery scenario
+			GameState.npc_paused = true
+		Scenario.NORMAL:
+			spawn_npcs()
+			# Start unpaused for normal scenario
+			GameState.npc_paused = false
 
 func classify_ship(ship_name: String) -> String:
 	## Classify a ship based on its name

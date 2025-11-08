@@ -8,7 +8,6 @@
 
 [sub_resource type="Environment" id="Environment_1"]
 background_mode = 1
-background_color = Color(0, 0, 0, 1)
 ambient_light_source = 1
 ambient_light_color = Color(0.5, 0.5, 0.5, 1)
 
@@ -37,6 +36,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2000, 0, -500)
 
 [node name="NPCShips" type="Node3D" parent="."]
 script = ExtResource("3_spawner")
-verification_mode = true
 
 [node name="HUD" parent="." instance=ExtResource("4_hud")]
