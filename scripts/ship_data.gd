@@ -101,7 +101,7 @@ var ship_configs: Dictionary = {
 	"Robin Gunship": ShipConfig.new("Robin Gunship", "res://glb/Robin Gunship.glb", Vector3(0, 90, 0), 1.15),
 	"Royal Standard Battleship": ShipConfig.new("Royal Standard Battleship", "res://glb/Royal Standard Battleship.glb", Vector3(0, 90, 0), 2.87),
 	"Sai Fighter": ShipConfig.new("Sai Fighter", "res://glb/Sai Fighter.glb", Vector3(0, 90, 0), 0.8),
-	"Chrysalis Construction Ship": ShipConfig.new("Chrysalis Construction Ship", "res://glb/Chrysalis Construction Ship.glb", Vector3(0, 0, 0), 1.60),
+	"Chrysalis Construction Ship": ShipConfig.new("Chrysalis Construction Ship", "res://glb/Chrysalis Construction Ship.glb", Vector3(0, 90, 0), 1.60),
 	"Scarab Construction Ship": ShipConfig.new("Scarab Construction Ship", "res://glb/Scarab Construction Ship.glb", Vector3(0, 90, 0), 1.60),
 	"Sentry Patrol Ship": ShipConfig.new("Sentry Patrol Ship", "res://glb/Sentry Patrol Ship.glb", Vector3(0, 90, 0), 1.2),
 	"Secutor Patrol Ship": ShipConfig.new("Secutor Patrol Ship", "res://glb/Secutor Patrol Ship.glb", Vector3(0, 90, 0), 1.431),
