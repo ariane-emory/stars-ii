@@ -23,6 +23,7 @@ var ship_classes = {
 	"Freighters": [],
 	"Battleships": [],
 	"Haulers": [],
+	"Stations": [],
 	"Liners": [],
 	"Gun Platforms": [],
 	"Mining/Construction": [],
@@ -46,6 +47,7 @@ var ship_class_order = [
 	"Freighters",
 	"Battleships",
 	"Haulers",
+	"Stations",
 	"Liners",
 	"Gun Platforms",
 	"Mining/Construction",
@@ -95,6 +97,8 @@ func classify_ship(ship_name: String) -> String:
 		return "Missile Boats"
 	elif ship_name.ends_with("Interceptor"):
 		return "Interceptors"
+	elif ship_name.ends_with("Station"):
+		return "Stations"
 	else:
 		return "Other"
 
@@ -120,10 +124,12 @@ func spawn_verification_grid():
 		
 		print("-\n--- " + ship_class + " (" + str(ships_in_class.size()) + " ships) ---")
 	
-		# Use doubled spacing for battleships to prevent text overlap
+		# Use doubled spacing for battleships and extra wide spacing for stations
 		var current_ship_spacing = ship_spacing
 		if ship_class == "Battleships":
 			current_ship_spacing = ship_spacing * 2.0
+		elif ship_class == "Stations":
+			current_ship_spacing = ship_spacing * 3.0  # Extra wide spacing for very large models
 		
 		# Calculate starting X position to center the row
 		var row_width = (ships_in_class.size() - 1) * current_ship_spacing
@@ -136,8 +142,18 @@ func spawn_verification_grid():
 			
 			spawn_ship_at_position(ship_name, spawn_pos)
 			
-			print("  " + ship_name)		
-		row_z_position += row_spacing
+			print("  " + ship_name)
+		
+		# Apply extra vertical spacing for stations (before and after)
+		var current_row_spacing = row_spacing
+		if ship_class == "Haulers":
+			# Extra spacing after Haulers (before Stations row)
+			current_row_spacing = row_spacing * 1.5  # 600 units instead of 400
+		elif ship_class == "Stations":
+			# Extra spacing after Stations (before Liners row)
+			current_row_spacing = row_spacing * 1.5  # 600 units instead of 400
+		
+		row_z_position += current_row_spacing
 	
 	print("\n=== Total ships spawned: " + str(ShipData.ship_list.size()) + " ===")
 
