@@ -38,7 +38,6 @@ var ship_class_order = [
 	"Fighters",
 	"Scouts", 
 	"Shuttles",
-	"Gunships",
 	"Traders",
 	"Patrol Ships",
 	"Assault Ships",

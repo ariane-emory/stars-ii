@@ -138,7 +138,7 @@ var ship_configs: Dictionary = {
 	"Type 1 Station": ShipConfig.new("Type 1 Station", "res://glb/Type 1 Station.glb", Vector3(0, 0, 0), 5.0),
 	"Type 2 Station": ShipConfig.new("Type 2 Station", "res://glb/Type 2 Station.glb", Vector3(0, 0, 0), 5.0),
 	"Type 3 Station": ShipConfig.new("Type 3 Station", "res://glb/Type 3 Station.glb", Vector3(0, 0, 0), 5.0),
-	"Type 4 Station": ShipConfig.new("Type 4 Station", "res://glb/Type 4 Station.glb", Vector3(0, 0, 0), 5.0),
+	"Type 4 Station": ShipConfig.new("Type 4 Station", "res://glb/Type 4 Station.glb", Vector3(90, 0, 0), 5.0),
 	"Type 5 Station": ShipConfig.new("Type 5 Station", "res://glb/Type 5 Station.glb", Vector3(0, 0, 0), 5.0),
 	"Type 6 Station": ShipConfig.new("Type 6 Station", "res://glb/Type 6 Station.glb", Vector3(0, 0, 0), 5.0),
 	"Type 7 Station": ShipConfig.new("Type 7 Station", "res://glb/Type 7 Station.glb", Vector3(90, 90, 0), 5.0),
